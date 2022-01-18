@@ -1,0 +1,245 @@
+
+Discarded input sections
+
+ .reginfo       0x0000000000000000       0x18 main.o
+ .MIPS.abiflags
+                0x0000000000000000       0x18 main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+mem              0x0000000080000000 0x0000000000400000
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /usr/local/mips64-elf/lib//libm.a
+LOAD /usr/local/mips64-elf/lib//libc.a
+                0x0000000080000000                __kseg0_start = 0x80000000
+                0x0000000080000400                __libdragon_text_start = (__kseg0_start + 0x400)
+
+.text           0x0000000080000400      0xfa0
+ *(.boot)
+ .boot          0x0000000080000400       0x30 entry.o
+                0x0000000080000400                _start
+                0x0000000080000430                . = ALIGN (0x10)
+                0x0000000080000430                __text_start = .
+ *(.text)
+ .text          0x0000000080000430        0x8 entry.o
+                0x0000000080000430                main
+ .text          0x0000000080000438        0x0 main.o
+ *(.text.*)
+ *fill*         0x0000000080000438        0x8 
+ .text._ZL8__strlenPKc
+                0x0000000080000440       0x80 main.o
+ .text._ZL8__mallocj
+                0x00000000800004c0       0x60 main.o
+ .text._Z6__atoiPc
+                0x0000000080000520       0xa0 main.o
+                0x0000000080000520                __atoi(char*)
+ .text._ZL8__memcpyPcS_j
+                0x00000000800005c0       0x80 main.o
+ .text._ZL8__memsetPvcj
+                0x0000000080000640       0x80 main.o
+ .text._ZL8__strdupPKc
+                0x00000000800006c0       0xa0 main.o
+ .text._ZL9__strncmpPKcS0_i
+                0x0000000080000760      0x140 main.o
+ .text._ZL8__strcmpPKcS0_
+                0x00000000800008a0       0x60 main.o
+ .text._ZL9__toupperc
+                0x0000000080000900       0x80 main.o
+ .text._ZL9__tolowerc
+                0x0000000080000980       0x80 main.o
+ .text._ZL4sbrki
+                0x0000000080000a00       0xc0 main.o
+ .text._Z24libn_si_write_controllerv
+                0x0000000080000ac0       0x80 main.o
+                0x0000000080000ac0                libn_si_write_controller()
+ .text._Z23libn_si_read_controllerv
+                0x0000000080000b40       0x80 main.o
+                0x0000000080000b40                libn_si_read_controller()
+ .text._Z23libn_display_initializev
+                0x0000000080000bc0      0x180 main.o
+                0x0000000080000bc0                libn_display_initialize()
+ .text._Z23libn_display_draw_pixeliim
+                0x0000000080000d40       0x60 main.o
+                0x0000000080000d40                libn_display_draw_pixel(int, int, unsigned long)
+ .text._Z22libn_display_draw_rectiiiim
+                0x0000000080000da0       0xc0 main.o
+                0x0000000080000da0                libn_display_draw_rect(int, int, int, int, unsigned long)
+ .text._Z24libn_display_fill_screenm
+                0x0000000080000e60       0x60 main.o
+                0x0000000080000e60                libn_display_fill_screen(unsigned long)
+ .text._Z27libn_display_draw_characteriih
+                0x0000000080000ec0      0x160 main.o
+                0x0000000080000ec0                libn_display_draw_character(int, int, unsigned char)
+ .text._Z22libn_display_draw_textiiPKc
+                0x0000000080001020       0xc0 main.o
+                0x0000000080001020                libn_display_draw_text(int, int, char const*)
+ .text._Z23libn_display_set_colorsmm
+                0x00000000800010e0       0x40 main.o
+                0x00000000800010e0                libn_display_set_colors(unsigned long, unsigned long)
+ .text._Z13libn_dma_waitv
+                0x0000000080001120       0x40 main.o
+                0x0000000080001120                libn_dma_wait()
+ .text._Z13libn_dma_readiii
+                0x0000000080001160       0xa0 main.o
+                0x0000000080001160                libn_dma_read(int, int, int)
+ .text.begin    0x0000000080001200      0x1a0 main.o
+                0x0000000080001200                begin
+ *(.init)
+ *(.fini)
+ *(.gnu.linkonce.t.*)
+                0x00000000800013a0                . = ALIGN (0x10)
+                0x00000000800013a0                __text_end = .
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x00000000800013a0      0x360
+ *(.eh_frame)
+ .eh_frame      0x00000000800013a0      0x360 main.o
+
+.gcc_except_table
+ *(.gcc_except_table*)
+
+.jcr
+ *(.jcr)
+
+.rodata         0x0000000080001700      0x860
+ *(.rdata)
+ *(.rodata)
+ .rodata        0x0000000080001700       0x5a main.o
+ *(.rodata.*)
+ *fill*         0x000000008000175a        0x6 
+ .rodata._ZL11__font_data
+                0x0000000080001760      0x800 main.o
+ *(.gnu.linkonce.r.*)
+                0x0000000080001f60                . = ALIGN (0x8)
+
+.MIPS.abiflags  0x0000000080001f60       0x18
+ .MIPS.abiflags
+                0x0000000080001f60       0x18 entry.o
+                0x0000000080001f78                . = ALIGN (0x4)
+
+.ctors          0x0000000080001f78        0x0
+                0x0000000080001f78                __CTOR_LIST__ = .
+ *(.ctors)
+                0x0000000080001f78                __CTOR_END__ = .
+                0x0000000080001f78                . = ALIGN (0x8)
+
+.data           0x0000000080001f78       0x40
+                0x0000000080001f78                __data_start = .
+ *(.data)
+ .data          0x0000000080001f78        0x0 entry.o
+ .data          0x0000000080001f78        0x0 main.o
+ *(.data.*)
+ .data._ZL11SI_READ_MSG
+                0x0000000080001f78       0x40 main.o
+ *(.gnu.linkonce.d.*)
+                0x0000000080001fb8                . = ALIGN (0x8)
+
+.sdata          0x0000000080001fb8       0x20
+                0x0000000080009fb8                _gp = (. + 0x8000)
+ *(.sdata)
+ *(.sdata.*)
+ .sdata.SI_REG  0x0000000080001fb8        0x4 main.o
+                0x0000000080001fb8                SI_REG
+ .sdata.libn_controller_data
+                0x0000000080001fbc        0x4 main.o
+                0x0000000080001fbc                libn_controller_data
+ .sdata.cpad_data
+                0x0000000080001fc0        0x4 main.o
+                0x0000000080001fc0                cpad_data
+ .sdata.buffer  0x0000000080001fc4        0x4 main.o
+                0x0000000080001fc4                buffer
+ .sdata.VI_REG  0x0000000080001fc8        0x4 main.o
+                0x0000000080001fc8                VI_REG
+ .sdata.fg_color
+                0x0000000080001fcc        0x4 main.o
+                0x0000000080001fcc                fg_color
+ .sdata.PI_REG  0x0000000080001fd0        0x4 main.o
+                0x0000000080001fd0                PI_REG
+ .sdata.running
+                0x0000000080001fd4        0x1 main.o
+                0x0000000080001fd4                running
+ *(.gnu.linkonce.s.*)
+                0x0000000080001fd8                . = ALIGN (0x8)
+ *fill*         0x0000000080001fd5        0x3 
+
+.lit8           0x0000000080001fd8        0x0
+ *(.lit8)
+                0x0000000080001fd8                . = ALIGN (0x8)
+
+.lit4           0x0000000080001fd8        0x0
+ *(.lit4)
+                0x0000000080001fd8                . = ALIGN (0x8)
+                0x0000000080001fd8                __data_end = .
+
+.sbss           0x0000000080001fd8       0x18
+                0x0000000080001fd8                __bss_start = .
+ *(.sbss)
+ *(.sbss.*)
+ .sbss._ZZL4sbrkiE8heap_end
+                0x0000000080001fd8        0x4 main.o
+ .sbss._ZZL4sbrkiE8heap_top
+                0x0000000080001fdc        0x4 main.o
+ .sbss.res      0x0000000080001fe0        0x8 main.o
+                0x0000000080001fe0                res
+ .sbss.bg_color
+                0x0000000080001fe8        0x4 main.o
+                0x0000000080001fe8                bg_color
+ .sbss.x        0x0000000080001fec        0x4 main.o
+                0x0000000080001fec                x
+ *(.gnu.linkonce.sb.*)
+ *(.scommon)
+ *(.scommon.*)
+                0x0000000080001ff0                . = ALIGN (0x8)
+
+.bss            0x0000000080001ff0       0x40
+ *(.bss)
+ .bss           0x0000000080001ff0        0x0 entry.o
+ .bss           0x0000000080001ff0        0x0 main.o
+ *(.bss*)
+ .bss.si_data   0x0000000080001ff0       0x40 main.o
+                0x0000000080001ff0                si_data
+ *(.gnu.linkonce.b.*)
+ *(COMMON)
+                0x0000000080002030                . = ALIGN (0x8)
+                0x0000000080002030                __bss_end = .
+                0x0000000080002030                . = ALIGN (0x8)
+                0x0000000080002030                end = .
+LOAD entry.o
+LOAD main.o
+OUTPUT(file.elf elf32-bigmips)
+
+.reginfo        0x0000000000000000       0x18
+ .reginfo       0x0000000000000000       0x18 entry.o
+
+.pdr            0x0000000000000000      0x2e0
+ .pdr           0x0000000000000000        0x0 entry.o
+ .pdr           0x0000000000000000      0x2e0 main.o
+
+.code           0x0000000000000000        0x0
+ .code          0x0000000000000000        0x0 entry.o
+
+.gnu.attributes
+                0x0000000000000000       0x10
+ .gnu.attributes
+                0x0000000000000000       0x10 entry.o
+ .gnu.attributes
+                0x0000000000000010       0x10 main.o
+
+.mdebug.abiO64  0x0000000000000000        0x0
+ .mdebug.abiO64
+                0x0000000000000000        0x0 main.o
+
+.gcc_compiled_long32
+                0x0000000000000000        0x0
+ .gcc_compiled_long32
+                0x0000000000000000        0x0 main.o
+
+.comment        0x0000000000000000       0x12
+ .comment       0x0000000000000000       0x12 main.o
+                                         0x13 (size before relaxing)
