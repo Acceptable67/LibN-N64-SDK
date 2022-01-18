@@ -1,16 +1,5 @@
 
 /*controller + SI handling*/
-class SI_HANDLER 
-{
-public:
-	void* dram_addr;
-	void* pif_addr_r64;
-	int r1, r2;
-	void* pif_addr_w64;
-	int r3;
-	int status;
-};
-
 static unsigned long long SI_READ_MSG[8] =
 {
 	0xff010401ffffffff,
@@ -22,7 +11,6 @@ static unsigned long long SI_READ_MSG[8] =
 	0,
 	1
 };
-static SI_HANDLER *SI_REG = (SI_HANDLER*)(SI_ADDRESS);
 
 char si_data[64];
 

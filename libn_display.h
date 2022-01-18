@@ -1,38 +1,23 @@
 /*handle everything visual*/
 #include <stdarg.h>
 
-class VI_HANDLER {
-public:
-	int status;
-	int origin;
-	int width;
-	int vint;
-	int currentvl;
-	int vtiming;
-	int vsync;
-	int hsync;
-	int hsyncleap;
-	int hvideo;
-	int vvideo;
-	int vburst;
-	int xscale;
-	int yscale;
+struct resolution_t 
+{
+	int width; 
+	int height;
 };
-struct resolution_t {int width, height;} res;
-
 static uint32_t   *buffer = (uint32_t*)(FRAMEBUFFER_ADDR);
-static VI_HANDLER *VI_REG = (VI_HANDLER*)(VI_ADDRESS);
 
 int fg_color = 0xFFFFFFFF;
 int bg_color = 0x00000000;
 
 namespace LibN64::Display 
 {
-
-	void Initialize() 
+	static resolution_t global_res;
+	void Initialize(resolution_t res) 
 	{
-		res.width = 320;
-		res.height = 240;
+		res.width = res.width;
+		res.height = res.height;
 		VI_REG->status = 0x0003 | 0x00300 | 0x00080;
 		VI_REG->origin = FRAMEBUFFER_ADDR;
 		VI_REG->width = res.width;
@@ -47,11 +32,13 @@ namespace LibN64::Display
 		VI_REG->vburst = 0xE0204;
 		VI_REG->xscale = (0x100*res.width)/160;
 		VI_REG->yscale = (0x100*res.height)/60;
+
+		global_res = res;
 	}
 
 	void DrawPixel(int x, int y, uint32_t color) 
 	{
-		*(buffer + (y * res.width + x)) = color;
+		*(buffer + (y * global_res.width + x)) = color;
 	}
 
 	void DrawRect(int x, int y, int xd, int yd, uint32_t color) 
@@ -65,7 +52,7 @@ namespace LibN64::Display
 
 	void FillScreen(uint32_t color) 
 	{
-		DrawRect(0,0,res.width, res.height, color);
+		DrawRect(0,0,global_res.width, global_res.height, color);
 	}
 
 	void DrawCharacter(int x, int y, unsigned char ch) 
