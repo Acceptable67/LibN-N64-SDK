@@ -1,18 +1,18 @@
 /*handle everything visual*/
 #include <stdarg.h>
 
-struct resolution_t 
-{
-	int width; 
-	int height;
-};
-static uint32_t   *buffer = (uint32_t*)(FRAMEBUFFER_ADDR);
-
-int fg_color = 0xFFFFFFFF;
-int bg_color = 0x00000000;
-
 namespace LibN64::Display 
 {
+	struct resolution_t 
+	{
+		int width; 
+		int height;
+	};
+	static uint32_t   *buffer = (uint32_t*)(FRAMEBUFFER_ADDR);
+
+	int fg_color = 0xFFFFFFFF;
+	int bg_color = 0x00000000;
+
 	static resolution_t global_res;
 	void Initialize(resolution_t res) 
 	{
