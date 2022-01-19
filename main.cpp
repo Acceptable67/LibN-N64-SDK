@@ -34,44 +34,49 @@ namespace LibN64
 {	
 	class libntest  : public LibN64::Frame
 	{
-		public:
-			libntest(resolution_t res) : Frame(res) {}
+	public:
+		libntest(resolution_t res) : Frame(res) {}
 
-		protected:
-			void OnCreate() override
+	protected:
+		void FrameUpdate() override 
+		{
+		
+			std::bitset<32> controllerd(*(int*)(PIF_RAM));
+			DrawTextFormat(20,20,"%s", controllerd.to_string().c_str());
+			DrawTextFormat(20,30,"%08X", controllerd.to_ulong());
+		}
+
+		void KeyJoyXPressed(int data)
+		{
+			switch(data) 
 			{
-				Display::Initialize({320,240});
-				Display::FillScreen(0x202020FF);
-				Display::SetColors(0x20DF00FF, 0xFF0000FF);
-				Controller::SI_WriteController();
+				case Controller::JOYLEFT: DrawText(5,45,"Joy left ");break;
+				case Controller::JOYRIGHT: DrawText(5,45,"Joy right");break;
+				default: break;
 			}
+		}
 
-			void FrameUpdate() override 
+		void KeyJoyYPressed(int data)
+		{
+			switch(data) 
 			{
-				Controller::SI_ReadController();
-				std::bitset<32> controllerd(*(int*)(PIF_RAM));
-				DrawTextFormat(20,20,"%s", controllerd.to_string().c_str());
-				DrawTextFormat(20,30,"%08X", controllerd.to_ulong());
-			
-				if(controllerd.test(BUTTONA)) {
-					DrawText(40,100,"A has been pressed.");
-				}
-				if(controllerd.test(BUTTONB)) {
-					DrawText(40,110,"B has been pressed.");
-				}
-				if(controllerd.test(BUTTONZ)) {
-					DrawText(40,120,"Z has been pressed.");
-				}
-
-				switch(controllerd.to_ulong()) 
-				{
-					case Controller::JOYUP:    DrawText(5,45,"Joy up   ");   break;
-					case Controller::JOYDOWN:  DrawText(5,45,"Joy down "); break;
-					case Controller::JOYLEFT:  DrawText(5,45,"Joy left "); break;
-					case Controller::JOYRIGHT: DrawText(5,45,"Joy right");break;
-					default: break;
-				}
+				case Controller::JOYUP:  DrawText(5,45,"Joy up   ");break;
+				case Controller::JOYDOWN: DrawText(5,45,"Joy down ");break;
+				default: break;
 			}
+		}
+
+		void KeyAPressed() override {
+			DrawText(40,100,"A has been pressed.");
+		}
+
+		void KeyBPressed() override {
+			DrawText(40,100,"B has been pressed.");
+		}
+
+		void KeyZPressed() override {
+			DrawText(40,100,"Z has been pressed.");
+		}
 	};
 
 	extern "C" int begin()
