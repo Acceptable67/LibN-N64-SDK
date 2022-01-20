@@ -6,11 +6,11 @@ namespace LibN64
     class Frame
     {
     private:
-        Display::resolution_t r;
+        Display::Resolution r;
         bool bRunning = false;
 
     public:
-        Frame(Display::resolution_t res) : r(res) {}
+        Frame(Display::Resolution res) : r(res) {}
 
         void Begin() 
         { 
@@ -25,14 +25,14 @@ namespace LibN64
 
             while(bRunning)
             {
-                this->FrameUpdate();
+               this->FrameUpdate();
 
                 Controller::SI_ReadController();
                 if(cpad_data->A) { this->KeyAPressed(); }
                 if(cpad_data->B) { this->KeyBPressed(); }
                 if(cpad_data->Z) { this->KeyZPressed(); }
-                if(cpad_data->x) { this->KeyJoyXPressed(*libn_controller_data & 0x0000FF00);}
-                if(cpad_data->y) { this->KeyJoyYPressed(*libn_controller_data & 0x000000FF);}
+                if(cpad_data->x) { this->KeyJoyXPressed(*reinterpret_cast<uint32_t*>(cpad_data) & 0x0000FF00);}
+                if(cpad_data->y) { this->KeyJoyYPressed(*reinterpret_cast<uint32_t*>(cpad_data) & 0x000000FF);}
 
             } 
         }

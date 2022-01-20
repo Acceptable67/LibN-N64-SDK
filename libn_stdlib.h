@@ -17,38 +17,47 @@ static void  __memset(void*, char value, size_t size);
 static char* __strdup(const char* );
 static int   __strncmp(const char*, const char*, int);
 static int   __strcmp(const char* a, const char*);
-static char* __itoa(int num, int base);
 static char  __toupper(char a);
 static char  __tolower(char a);
 extern "C" void  *sbrk(int incr);
+
+#pragma GCC diagnostic ignored "-Wunused-function"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 extern "C" 
 {
     void _exit(int){}
-    int close( int fildes ){}
+    int close( int fildes ){ return 0;}
     int chown( const char *path, uid_t owner, gid_t group );
     int execve( char *name, char **argv, char **env );
     void exit( int rc );
     int fork( void );
-    int fstat( int fildes, struct stat *st ){}
-    int getpid( void ){}
+    int fstat( int fildes, struct stat *st ){ return 0; }
+    int getpid( void ){ return 0;}
     int gettimeofday( struct timeval *ptimeval, void *ptimezone );
-    int isatty( int file ){}
-    int kill( int pid, int sig ){}
-    int link( char *existing, char *neww ){}
-    int lseek( int file, int ptr, int dir ){}
-    int open( char *file, int flags, int mode );
-    int read( int file, char *ptr, int len ){}
+    int isatty( int file ){ return 0;}
+    int kill( int pid, int sig ){ return 0; }
+    int link( char *existing, char *neww ){ return 0;}
+    int lseek( int file, int ptr, int dir ){ return 0;}
+    int open( char *file, int flags, int mode ){return 0;};
+    int read( int file, char *ptr, int len ){ return 0;}
     int readlink( const char *path, char *buf, size_t bufsize );
     int stat( const char *file, struct stat *st );
     int symlink( const char *path1, const char *path2 );
     clock_t times( struct tms *buf );
     int unlink( char *name );
     int wait( int *status );
-    int write( int file, char *ptr, int len ){}
+    int write( int file, char *ptr, int len ){ return 0;}
+    int printf(const char* format, ...) {
+        LibN64::Display::DrawTextFormat(0,0,format,nullptr);
+    }
     void __assert(const char *, int, const char *);
     void __assert_func(
     const char *file, int line, const char *, const char *e) {
-    __assert(file, line, e);
+        LibN64::Display::DrawTextFormat(0,0,"ASSERTION FAILED", nullptr);
+        LibN64::Display::DrawTextFormat(0,10,"File %s", file);
+        LibN64::Display::DrawTextFormat(0,20,"Line %d", line);
+        LibN64::Display::DrawTextFormat(0,30,"%s", e);
+        HALT();
     }
 }
 
@@ -82,7 +91,7 @@ int __atoi(char* str)
 
 static void __memcpy(char* a, char* b, size_t size)
 {
-    for( int i = 0; i<size; i++ )
+    for(size_t i = 0; i<size; i++ )
     {
         a[i] = b[i];
     }
@@ -90,7 +99,7 @@ static void __memcpy(char* a, char* b, size_t size)
 
 static void __memset(void* arr, char value, size_t size) 
 {
-    for(int i =0;i<size;i++) {
+    for(size_t i =0;i<size;i++) {
         *((char*)arr + i) = value;
     }
 }

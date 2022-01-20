@@ -4,12 +4,14 @@ namespace LibN64::DMA
 		while(PI_REG->status & 3); 
 	} 
 
-	void Read(int RAM, int CART, int length) 
+	template<class T>
+	requires std::is_copy_assignable<T>::value && std::copyable<T>
+	void Read(T RAM, int CART, int length) 
 	{
 		Wait();
-		PI_REG->dram = RAM & 0x00FFFFFF;
+		PI_REG->dram = reinterpret_cast<int>(RAM);
 		PI_REG->cart = CART & 0x1FFFFFFF;
-		PI_REG->cart = length;
+		PI_REG->wlength = length - 1;
 		Wait();
 	}
 }

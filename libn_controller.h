@@ -12,21 +12,26 @@ static unsigned long long SI_READ_MSG[8] =
 	1
 };
 
-char si_data[64];
+auto si_data = new 
+char[sizeof(long long)*sizeof(long long)];
 
 namespace LibN64::Controller 
 {
 	void SI_WriteController() {
 		while(SI_REG->status & 3);
+
 		SI_REG->dram_addr = SI_READ_MSG;
-		SI_REG->pif_addr_w64 = (void*)0xBFC007C0;
+		SI_REG->pif_addr_w64 = reinterpret_cast<void*>(0xBFC007C0);
+		
 		while(SI_REG->status & 3);
 	}
 
 	void SI_ReadController() {
 		while(SI_REG->status & 3);
+		
 		SI_REG->dram_addr = si_data;
-		SI_REG->pif_addr_r64 = (void*)0xBFC007C0;
+		SI_REG->pif_addr_r64 = reinterpret_cast<void*>(0xBFC007C0);
+		
 		while(SI_REG->status & 3);
 	}
 
@@ -59,8 +64,4 @@ namespace LibN64::Controller
 		signed y : 8;
 	};
 }
-//for buttons
 struct LibN64::Controller::Cpad *cpad_data = reinterpret_cast<LibN64::Controller::Cpad*>(PIF_RAM);
-
-//for joy
-int *libn_controller_data = (int*)(PIF_RAM);
