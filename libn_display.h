@@ -9,6 +9,27 @@ namespace LibN64::Display
 		uint32_t height;
 	};
 
+	enum Bitdepth 
+	{
+		BD16BPP         = 0x2,
+		BD32BPP         = 0x3
+	};
+
+	enum Gamma 
+	{
+		GAMMA_OFF,
+		GAMMA_DITHER    = 0x4,
+		GAMMA_ENABLE    = 0x8,
+	};
+
+	enum AntiAliasing 
+	{
+		DIVOT_ENABLE    = 0x10,
+		AA_RESAMP_FETCH = 0x100,
+		AA_RESAMP_ONLY  = 0x200,
+		AA_REPLICATE    = 0x300
+	};
+
 	struct LibPos3D {
 		float x, y, z;
 		float w;
@@ -95,11 +116,11 @@ namespace LibN64::Display
 	uint32_t bg_color = 0x00000000;
 
 	static Resolution global_res;
-	void Initialize(Resolution res) 
+	void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma = GAMMA_OFF) 
 	{
 		res.width 			= res.width;
 		res.height 			= res.height;
-		VI_REG->status 		= BD32BPP | AA_REPLICATE;
+		VI_REG->status 		= bd | aa | gamma;
 		VI_REG->origin 		= FRAMEBUFFER_ADDR;
 		VI_REG->width 		= res.width;
 		VI_REG->vint 		= 0x200;
@@ -119,7 +140,7 @@ namespace LibN64::Display
 		global_res = res;
 	}
 
-	void DrawPixel(uint32_t x, uint32_t y, uint32_t color) 
+	void DrawPixel(uint32_t x, uint32_t y, auto color) 
 	{
 		*(buffer + (y * global_res.width + x)) = color;
 	}
@@ -138,12 +159,13 @@ namespace LibN64::Display
 		DrawRect(0,0,global_res.width, global_res.height, color);
 	}
 
+	/*8x8*/
 	void DrawCharacter(uint32_t x, uint32_t y, unsigned char ch) 
 	{
 		uint32_t trans = ((bg_color & 0xff) == 0) ? 1 : 0; 
-		for(uint32_t row = 0; row < 8; row++) {
-			unsigned char c = __font_data[(ch * 8) + row];
-			for(uint32_t col = 0; col < 8; col++) 
+		for(uint32_t row = 0; row < font_width; row++) {
+			unsigned char c = __font_data[(ch * font_width) + row];
+			for(uint32_t col = 0; col < font_height; col++) 
 			{
 				if(trans) 
 				{
@@ -167,26 +189,30 @@ namespace LibN64::Display
 		uint32_t xoffset = 0, yoffset = 0;
 		for(auto& c : text) 
 		{
-			DrawCharacter(x + xoffset, y + yoffset, c);
-			xoffset += 8;
+			if((x + xoffset) >= global_res.width || c == '\n') 
+			{
+				y+=font_height;
+				xoffset = 0;
+			} 
+			else if(c == '\t') 
+			{
+				x+=font_width*4;
+			} 
+			else
+			{
+				DrawCharacter(x + xoffset, y + yoffset, c);
+				xoffset += font_width;
+			}
 		}
 	}
 
-	template<class T>
-	void DrawTextFormat(uint32_t x, uint32_t y,  const std::string format, T arg) {
-		/*va_list args;
-		va_start(args, format);
-
-		char buffer[300];
-		sprintf(buffer, format, args);
-		DrawText(x, y, buffer);
-
-		va_end(args);	*/
+	template<class T, class ...Args>
+	requires (!std::is_member_function_pointer<T>::value) || (!std::is_member_function_pointer<Args...>::value)
+	void DrawTextFormat(uint32_t x, uint32_t y,  const std::string format, T arg, Args... args) {
 		char buf[100];
-		snprintf(buf, 100, format.c_str(), arg);
+		snprintf(reinterpret_cast<char*>(buf), sizeof(buf), format.c_str(), arg, args...);
 		DrawText(x,y,buf);
 	}
-
 
 
 	void SetColors(uint32_t foreground, uint32_t background) {
@@ -286,7 +312,7 @@ namespace LibN64::Display
 			Send();
 		}
 
-		void SetPrimitiveColor( uint32_t color )
+		void SetPrimitiveColor( auto color )
 		{
 			/* Set packed color */
 			AddCommand( 0xF7000000 );
@@ -294,7 +320,7 @@ namespace LibN64::Display
 			Send();
 		}
 
-		void SetBlendColor( uint32_t color )
+		void SetBlendColor( auto color )
 		{
 			AddCommand( 0xF9000000 );
 			AddCommand( color );
@@ -343,7 +369,7 @@ namespace LibN64::Display
 			Send();
 		}
 
-		inline void DrawRectangleSetup( uint32_t tx, uint32_t ty, uint32_t bx, uint32_t by, uint32_t color )
+		inline void DrawRectangleSetup( uint32_t tx, uint32_t ty, uint32_t bx, uint32_t by, auto color )
 		{
 			RDP::Attach();
 			RDP::SetDefaultClipping();

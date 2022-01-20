@@ -30,18 +30,6 @@ public:
 };
 static VI_HANDLER *VI_REG = reinterpret_cast<VI_HANDLER*>(VI_ADDRESS);
 
-enum VI_Flags 
-{
-    BD16BPP         = 0x2,
-    BD32BPP         = 0x3,
-    GAMMA_DITHER    = 0x4,
-    GAMMA_ENABLE    = 0x8,
-    DIVOT_ENABLE    = 0x10,
-    AA_RESAMP_FETCH = 0x100,
-    AA_RESAMP_ONLY  = 0x200,
-    AA_REPLICATE    = 0x300
-};
-
 class PI_HANDLER {
 public:
 	int dram;

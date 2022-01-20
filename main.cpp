@@ -16,7 +16,7 @@
 #include <bitset>
 #include <vector>
 
-#include "font.h"
+#include "libn_font.h"
 
 #include "libn_regs.h"
 #include "libn_controller.h"
@@ -36,7 +36,7 @@ namespace LibN64
 	class libntest  : public LibN64::Frame
 	{
 	public:
-		libntest(Resolution res) : Frame(res) {}
+		libntest(Resolution res, Bitdepth bd, AntiAliasing aa) : Frame(res, bd, aa) {}
 		
 	protected:
 		auto OnCreate() -> void
@@ -47,12 +47,14 @@ namespace LibN64
 		int x, y;
 		auto FrameUpdate() -> void override
 		{
+			x = std::abs(x);
+			y = std::abs(y);
 			/*Optional RDP Screen refresh*/
-			//RDP::DrawRectangleSetup(0,0,ScreenWidth(),ScreenHeight(),0x202020FF);
+			RDP::DrawRectangleSetup(0,0,ScreenWidth(),ScreenHeight(),0x202020FF);
                 
 			std::bitset<sizeof(int)*8> controllerd(*reinterpret_cast<uint32_t*>(PIF_RAM));
-			DrawTextFormat(20,20,"%s", controllerd.to_string().c_str());
-			DrawTextFormat(20,30,"%08X", controllerd.to_ulong());
+			DrawTextFormat(x,y,"%s", controllerd.to_string().c_str());
+			DrawTextFormat(20,50,"%08X", controllerd.to_ulong());
 		}
 
 		auto KeyJoyXPressed(int data) -> void override
@@ -90,7 +92,7 @@ namespace LibN64
 
 	extern "C" int begin()
 	{	
-		libntest t({320,240});
+		libntest t({320,240}, BD32BPP, AA_REPLICATE);
 		t.Begin();
 
 		HALT();
