@@ -22,7 +22,7 @@ namespace LibN64
 
             Display::Initialize(r, bd, aa);
 			Display::FillScreen(0x202020FF);
-			Display::SetColors(0x20DF00FF, 0xFF0000FF);
+			Display::SetColors(Display::fg_color, Display::bg_color);
 			Controller::SI_WriteController();
 
             this->OnCreate();

@@ -1,10 +1,4 @@
-#define FRAMEBUFFER_ADDR 0xA0100000
-#define PIF_BASE		 0xBFC00000
-#define PIF_RAM  		 0xBFC007C4
-#define VI_ADDRESS		 0xA4400000
-#define SI_ADDRESS 		 0xA4800000 
-#define PI_ADDRESS 		 0xA4600000
-#define HALT() while(1)
+
 
 #include <stdlib.h>
 #include <c++/11.2.0/cstdlib>
@@ -14,13 +8,16 @@
 #include <c++/11.2.0/cassert>
 #include <string>
 #include <bitset>
+#include <functional>
 #include <vector>
+#include <map>
 
 #include "libn_font.h"
 
+#include "libn_timer.h"
 #include "libn_regs.h"
-#include "libn_controller.h"
 #include "libn_display.h"
+#include "libn_controller.h"
 #include "libn_dma_pi.h"
 #include "libn_frame.h"
 #include "libn_stdlib.h"
@@ -38,23 +35,25 @@ namespace LibN64
 	public:
 		libntest(Resolution res, Bitdepth bd, AntiAliasing aa) : Frame(res, bd, aa) {}
 		
+	LibN64::Timer::LibTimer localtimer;
 	protected:
 		auto OnCreate() -> void
 		{
-			Display::SetColors(0xFFFFFFFF, 0x000000FF);
+			Display::SetColors(LibColor::YELLOW, LibColor::RED);
 		}
 
 		int x, y;
 		auto FrameUpdate() -> void override
 		{
-			x = std::abs(x);
-			y = std::abs(y);
 			/*Optional RDP Screen refresh*/
-			RDP::DrawRectangleSetup(0,0,ScreenWidth(),ScreenHeight(),0x202020FF);
+			//RDP::DrawRectangleSetup(0,0,ScreenWidth(),ScreenHeight(),0x202020FF);
                 
 			std::bitset<sizeof(int)*8> controllerd(*reinterpret_cast<uint32_t*>(PIF_RAM));
 			DrawTextFormat(x,y,"%s", controllerd.to_string().c_str());
-			DrawTextFormat(20,50,"%08X", controllerd.to_ulong());
+			DrawTextFormat(20,50,"CPAD Data %08X Timer %u", controllerd.to_ulong(), localtimer.GetSecondsPassed());
+			DrawText(20,80,"Press A to start the timer");
+
+			localtimer.Update();
 		}
 
 		auto KeyJoyXPressed(int data) -> void override
@@ -78,6 +77,7 @@ namespace LibN64
 		}
 
 		auto KeyAPressed() -> void override {
+			localtimer.Start();
 			DrawText(40,100,"A has been pressed.");
 		}
 
