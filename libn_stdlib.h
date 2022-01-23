@@ -32,10 +32,10 @@ extern "C"
     void exit( int rc );
     int fork( void );
     int fstat( int fildes, struct stat *st ){ return 0; }
-    int getpid( void ){ return 0;}
+    int getpid( void ){ return 1;}
     int gettimeofday( struct timeval *ptimeval, void *ptimezone );
     int isatty( int file ){ return 0;}
-    int kill( int pid, int sig ){ return 0; }
+    int kill( int pid, int sig ){ exit(1); return 0; }
     int link( char *existing, char *neww ){ return 0;}
     int lseek( int file, int ptr, int dir ){ return 0;}
     int open( char *file, int flags, int mode ){return 0;};
@@ -49,6 +49,7 @@ extern "C"
     int write( int file, char *ptr, int len ){ return 0;}
     int printf(const char* format, ...) {
         LibN64::Display::DrawTextFormat(0,0,format,nullptr);
+        return 0;
     }
     void __assert(const char *, int, const char *);
     void __assert_func(

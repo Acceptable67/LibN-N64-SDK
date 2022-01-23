@@ -4,15 +4,25 @@
 
 namespace LibN64::Display 
 {
+	struct Resolution;
+	struct TextColor;
+
 	struct Resolution
 	{
 		uint32_t width; 
 		uint32_t height;
 	};
+
+	struct TextColor
+	{
+		static uint32_t Foreground;
+		static uint32_t Background;
+	};
+	static Resolution global_res;
 	static auto *buffer = reinterpret_cast<uint32_t*>(FRAMEBUFFER_ADDR);
 
-	static uint32_t fg_color = 0xFFFFFFFF;
-	static uint32_t bg_color = 0x00000000;
+	uint32_t TextColor::Foreground = 0xFFFFFFFF;
+	uint32_t TextColor::Background = 0x202020FF;
 
 	enum Bitdepth 
 	{
@@ -98,7 +108,6 @@ namespace LibN64::Display
 		}
 	};
 
-
 	template<class SpecifiedType>
 	requires std::integral<SpecifiedType> || std::floating_point<SpecifiedType>
 	struct Lib2DVec
@@ -118,12 +127,12 @@ namespace LibN64::Display
 	/*from LIBN64.H*/
 	constexpr int MakeColor(int r, int g, int b, int a) 
 	{
-		return (r << 24) | (((g & 0x00FFFFFF) << 16)) | (((b & 0xFF00FFFF) << 8)) | ((a & 0xFFFF00FF));
+		return (r << 24) 		   | 
+		(((g & 0x00FFFFFF) << 16)) |
+		(((b & 0xFF00FFFF) << 8))  | 
+		((a & 0xFFFF00FF));
 	}
 
-	/**
-	 * @brief Predefined colors to choose from when writing colors to a shape or object
-	 */
 	enum LibColor 
 	{
 		 RED			= MakeColor(0xFF, 0x00, 0x00, 0xFF),
@@ -140,12 +149,15 @@ namespace LibN64::Display
 		 YELLOW			= MakeColor(0xFF, 0xFF, 0x00, 0xFF),
 		 CYAN			= MakeColor(0x00, 0xFF, 0xFF, 0xFF),
 		 GREY			= MakeColor(0x80, 0x80, 0x80, 0xFF),
+		 GREY_SMOOTH	= MakeColor(0x20, 0x20, 0x20, 0xFF),
 		 PURPLE			= MakeColor(0xFF, 0x00, 0x9B, 0xFF)
 	};
 
-	static Resolution global_res;
 	void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma = GAMMA_OFF) 
 	{
+		TextColor::Foreground = LibColor::WHITE;
+		TextColor::Background = LibColor::BLACK;
+
 		res.width 			= res.width;
 		res.height 			= res.height;
 		VI_REG->status 		= bd | aa | gamma;
@@ -175,8 +187,10 @@ namespace LibN64::Display
 
 	void DrawRect(uint32_t x, uint32_t y, uint32_t xd, uint32_t yd, auto color) 
 	{
-		for(decltype(xd) i = 0; i < xd; i++) {
-			for(decltype(yd) d = 0; d < yd; d++) {
+		for(decltype(xd) i = 0; i < xd; i++) 
+		{
+			for(decltype(yd) d = 0; d < yd; d++) 
+			{
 				DrawPixel(x + i, y + d, color);
 			}
 		}
@@ -190,7 +204,7 @@ namespace LibN64::Display
 	/*8x8 taken from LibDragon*/
 	void DrawCharacter(uint32_t x, uint32_t y, unsigned char ch) 
 	{
-		uint32_t trans = ((bg_color & 0xff) == 0) ? 1 : 0; 
+		uint32_t trans = ((TextColor::Background & 0xff) == 0) ? 1 : 0; 
 		for(uint32_t row = 0; row < font_width; row++) {
 			unsigned char c = __font_data[(ch * font_width) + row];
 			for(uint32_t col = 0; col < font_height; col++) 
@@ -199,12 +213,12 @@ namespace LibN64::Display
 				{
 					if(c & 0x80) 
 					{
-						DrawPixel(x + col, y + row, fg_color);
+						DrawPixel(x + col, y + row, TextColor::Background);
 					}
 				} 
 				else 
 				{
-					DrawPixel(x + col, y + row, (c & 0x80) ? fg_color : bg_color);
+					DrawPixel(x + col, y + row, (c & 0x80) ? TextColor::Foreground : TextColor::Background);
 				}
 			
 				c <<= 1;
@@ -214,13 +228,13 @@ namespace LibN64::Display
 
 	void DrawText(uint32_t x, uint32_t y, const std::string text) 
 	{
-		uint32_t xoffset = 0, yoffset = 0;
+		LibPos toffset = {0,0}; 
 		for(auto& c : text) 
 		{
-			if((x + xoffset) >= global_res.width || c == '\n') 
+			if((x + toffset.x) >= global_res.width || c == '\n') 
 			{
 				y += font_height;
-				xoffset = 0;
+				toffset.x = 0;
 			} 
 			else if(c == '\t') 
 			{
@@ -228,8 +242,8 @@ namespace LibN64::Display
 			} 
 			else
 			{
-				DrawCharacter(x + xoffset, y + yoffset, c);
-				xoffset += font_width;
+				DrawCharacter(x + toffset.x, y + toffset.y, c);
+				toffset.x += font_width;
 			}
 		}
 	}
@@ -243,16 +257,17 @@ namespace LibN64::Display
 	}
 
 
-	void SetColors(uint32_t foreground, uint32_t background) {
-		fg_color = foreground;
-		bg_color = background;
+	void SetColors(uint32_t foreground, uint32_t background) 
+	{
+		TextColor::Foreground  = foreground;
+		TextColor::Background  = background;
 	}
 
 	namespace RDP 
 	{
 
 		std::array<uint32_t,1024> commandBuffer;
-		
+
 		size_t pos = 0;
 		void AddCommand( uint32_t first)
 		{	
@@ -273,7 +288,12 @@ namespace LibN64::Display
 			DP_REG->cmd_end   = reinterpret_cast<uint32_t>(commandBuffer.begin()) + pos;
 		}	
 
-
+		void SetOtherModes()
+		{
+			AddCommand(0x2F102800);
+			AddCommand(0x00000000);
+			Send();
+		}
 
 		void SetClipping( uint32_t tx, uint32_t ty, uint32_t bx, uint32_t by )
 		{
@@ -355,14 +375,21 @@ namespace LibN64::Display
 			RDP::Init();
 			RDP::Attach();
 			RDP::SetDefaultClipping();
+			RDP::Sync();
 			RDP::EnableBlend();
 			RDP::Sync();
 			RDP::SetBlendColor(color);
 			RDP::Sync();
 			RDP::DrawRectangle(tx, ty, bx, by);
-			RDP::Sync();
+	
 			RDP::Close();
+			
 		}
+
+		void ClearScreen(auto color) 
+		{
+			DrawRectangleSetup(0,0, global_res.width, global_res.height, color);
+		} 
 
 	}
 };

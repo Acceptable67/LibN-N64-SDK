@@ -21,8 +21,8 @@ namespace LibN64
             bRunning = true; 
 
             Display::Initialize(r, bd, aa);
-			Display::FillScreen(0x202020FF);
-			Display::SetColors(Display::fg_color, Display::bg_color);
+			Display::FillScreen(Display::LibColor::GREY_SMOOTH);
+			Display::SetColors(Display::TextColor::Foreground, Display::TextColor::Background);
 			Controller::SI_WriteController();
 
             this->OnCreate();

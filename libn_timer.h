@@ -4,29 +4,46 @@ namespace LibN64::Timer
     {
         unsigned long long ticks;
         asm("mfc0 %0, $9" : "=r"(ticks));
-        return ticks / ((93750000/2) / 1000);
+        return ticks / ((93750000/2) / 1000); //take vr4300 clock speed and divide by two
     }
 
-    auto SecondsSinceStartup() 
+    float SecondsSinceStartup() 
     {
-        return MillisecondsSinceStartup() / 1000;
+        return MillisecondsSinceStartup()  * 0.001;
     }
+
+    enum TimerType 
+     {
+        ONE_SHOT,
+        CONTINUOUS_CALL,
+        TIMER
+     };
 
     class LibTimer 
     {
     private:
-        bool called  = false;
-        bool started = false;
-        uint32_t ticks;
+        TimerType localType = CONTINUOUS_CALL;
+        bool  bCalled  = false;
+        bool  bStarted = false;
+
+        float ticks;
+        float execute_at;
+
         std::function<void()> localfunc;
     public:
-
-        uint32_t GetSecondsPassed() 
+        LibTimer(){}
+        LibTimer(TimerType type, float tickExecution = 0) : localType(type), execute_at(tickExecution){} 
+        float GetSecondsPassed() 
         {
             return ticks;
         }
 
-        uint32_t GetMsPassed() 
+        float GetMinutesPassed() 
+        {
+            return ticks / 60;
+        }
+
+        float GetMsPassed() 
         {
             return (ticks * 1000);
         }
@@ -34,33 +51,56 @@ namespace LibN64::Timer
         /*Optional function that would be called every second*/
         void Update(std::function<void()> callback = []{}) 
         {
-            if(started) 
+            auto TimerCheckAndInc = [&](bool bSetCall) {
+                this->ticks += 0.01;
+                bCalled = bSetCall;
+                if(localType == TimerType::ONE_SHOT && ticks >= execute_at) 
+                {
+                    callback();
+                    bStarted = false;
+                    this->ResetTicks();
+                    return;
+                } 
+                else if(localType == TimerType::CONTINUOUS_CALL && ticks >= execute_at)
+                {
+                    callback();
+                    this->ResetTicks();
+                }
+            }; 
+
+            if(bStarted) 
             {
-				if(Timer::SecondsSinceStartup() % 2 == 0) 
+                /*there must be a better way to optimize this, but will figure out later*/
+				if(((Timer::MillisecondsSinceStartup() / 10) % 2) == 0) 
 				{
-					if(!called) 
+					if(!bCalled) 
 					{
-						ticks+=1;
-						called = true;
-                        callback();
+						TimerCheckAndInc(true);
 					}
 				} 
 				else 
                 {
-					if(called) 
+					if(bCalled) 
                     {
-						ticks+=1;
-						called = false;
-                        callback();
+                        TimerCheckAndInc(false);
 					}
 				}
 		
 			}
         }
 
+        void ResetTicks()
+        {
+            ticks = 0;
+        }
+
         void Start() 
         {
-            started = true;
+            bStarted = true;
+        }
+
+        void Stop() {
+            bStarted = false;
         }
     };
 };

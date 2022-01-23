@@ -8,9 +8,13 @@
 #include <c++/11.2.0/cassert>
 #include <string>
 #include <bitset>
+#include <math.h>
 #include <functional>
 #include <vector>
+#include <thread>
+#include <future>
 #include <map>
+#include <utility>
 
 #include "libn_font.h"
 
@@ -34,11 +38,13 @@ namespace LibN64
 	{
 	public:
 		libntest(Resolution res, Bitdepth bd, AntiAliasing aa) : Frame(res, bd, aa) {}
-		
-	LibN64::Timer::LibTimer localtimer;
+	
 	protected:
+		LibN64::Timer::LibTimer localtimer
+		 = Timer::LibTimer(Timer::TimerType::TIMER);
 		auto OnCreate() -> void
 		{
+			Display::FillScreen(BLACK);
 			Display::SetColors(LibColor::YELLOW, LibColor::RED);
 		}
 
@@ -46,11 +52,12 @@ namespace LibN64
 		auto FrameUpdate() -> void override
 		{
 			/*Optional RDP Screen refresh*/
-			//RDP::DrawRectangleSetup(0,0,ScreenWidth(),ScreenHeight(),0x202020FF);
-                
+			//RDP::ClearScreen(GREY_SMOOTH);
+			//FillScreen(GREY_SMOOTH);
 			std::bitset<sizeof(int)*8> controllerd(*reinterpret_cast<uint32_t*>(PIF_RAM));
 			DrawTextFormat(x,y,"%s", controllerd.to_string().c_str());
-			DrawTextFormat(20,50,"CPAD Data %08X Timer %u", controllerd.to_ulong(), localtimer.GetSecondsPassed());
+			DrawTextFormat(20,50,"CPAD Data %08X\nLocal Timer %0.2f\nSince Startup %0.2f", controllerd.to_ulong(),
+			localtimer.GetSecondsPassed(), Timer::SecondsSinceStartup());
 			DrawText(20,80,"Press A to start the timer");
 
 			localtimer.Update();
