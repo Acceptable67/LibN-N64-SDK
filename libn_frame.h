@@ -1,6 +1,4 @@
 
-bool running = true;
-
 namespace LibN64 
 {
     class Frame
@@ -42,7 +40,9 @@ namespace LibN64
                 if(cpad_data->right) { this->KeyDRightPressed(); }
                 if(cpad_data->x)     { this->KeyJoyXPressed(*reinterpret_cast<uint32_t*>(cpad_data) & 0x0000FF00);}
                 if(cpad_data->y)     { this->KeyJoyYPressed(*reinterpret_cast<uint32_t*>(cpad_data) & 0x000000FF);}
-
+                
+                Display::cPos.x = 10;
+                Display::cPos.y = 10;
             } 
         }
 

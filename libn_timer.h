@@ -3,7 +3,7 @@ namespace LibN64::Timer
     auto MillisecondsSinceStartup()
     {
         unsigned long long ticks;
-        asm("mfc0 %0, $9" : "=r"(ticks));
+        asm("mfc0 %0, $9\n" : "=r"(ticks));
         return ticks / ((93750000/2) / 1000); //take vr4300 clock speed and divide by two
     }
 
@@ -19,6 +19,9 @@ namespace LibN64::Timer
         TIMER
      };
 
+    /*Essentially a version of multithreading.
+      Specified code is called every X milliseconds the user requests it to.
+      Can stop, start, reset.*/
     class LibTimer 
     {
     private:

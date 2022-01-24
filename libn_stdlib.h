@@ -9,7 +9,6 @@
 
 extern char end __attribute__((section (".data")));
 int errno __attribute__((weak));
-
 static int   __strlen(const char*); 
 static void* __malloc(size_t size);
 static void  __memcpy(char*, char* b, size_t len);
@@ -21,36 +20,85 @@ static char  __toupper(char a);
 static char  __tolower(char a);
 extern "C" void  *sbrk(int incr);
 
-#pragma GCC diagnostic ignored "-Wunused-function"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
 extern "C" 
 {
-    void _exit(int){}
-    int close( int fildes ){ return 0;}
+    void _exit(int) {
+         exit(1);
+    }
+
+    int close(int fildes) {
+         return 0;
+    }
     int chown( const char *path, uid_t owner, gid_t group );
     int execve( char *name, char **argv, char **env );
     void exit( int rc );
     int fork( void );
-    int fstat( int fildes, struct stat *st ){ return 0; }
-    int getpid( void ){ return 1;}
+
+    int fstat( int fildes, struct stat *st ) {
+         return 0; 
+    }
+    int getpid( void ) { 
+        return 1001;
+    }
     int gettimeofday( struct timeval *ptimeval, void *ptimezone );
     int isatty( int file ){ return 0;}
-    int kill( int pid, int sig ){ exit(1); return 0; }
-    int link( char *existing, char *neww ){ return 0;}
-    int lseek( int file, int ptr, int dir ){ return 0;}
+
+    int kill( int pid, int sig ) 
+    { 
+        if(pid == 1001) 
+            exit(1);
+         else 
+            return 0; 
+    }
+    int link( char *existing, char *neww )  { return 0;}
+    int lseek( int file, int ptr, int dir ) { return 0;}
     int open( char *file, int flags, int mode ){return 0;};
-    int read( int file, char *ptr, int len ){ return 0;}
+    int read( int file, char *ptr, int len ) { return 0;}
     int readlink( const char *path, char *buf, size_t bufsize );
     int stat( const char *file, struct stat *st );
     int symlink( const char *path1, const char *path2 );
     clock_t times( struct tms *buf );
     int unlink( char *name );
     int wait( int *status );
-    int write( int file, char *ptr, int len ){ return 0;}
+
+    /*STDIO, STDIN, AND STDERR HOOKS*/
+    int write( int file, char *ptr, int len ) {
+        char buffer[32];
+        memcpy(buffer, ptr, 32);
+        buffer[31] = '\0';
+
+        if(file == 1) 
+        { //stdout
+            LibN64::Display::DrawText(LibN64::Display::cPos.x,LibN64::Display::cPos.y, buffer); 
+        }
+         else { //stderr
+         LibN64::Display::DrawText(LibN64::Display::cPos.x,LibN64::Display::cPos.y,std::to_string(file) + ptr);
+         LibN64::Display::cPos.y+=8; 
+        }
+         return 0;
+    }
+
     int printf(const char* format, ...) {
-        LibN64::Display::DrawTextFormat(0,0,format,nullptr);
+        va_list va;
+        va_start(va, format);
+
+        char buffer[100];
+        vsnprintf(buffer, sizeof(buffer), format, va);
+
+        LibN64::Display::DrawText(LibN64::Display::cPos.x,LibN64::Display::cPos.y,buffer);
+
+        auto lines = 1;
+        std::string localformat = format;
+        for(auto &n : localformat) {
+            if(n == '\n') {
+                lines++;
+            }
+        }
+        LibN64::Display::cPos.y += 8 * lines;
+        va_end(va);
         return 0;
     }
+
     void __assert(const char *, int, const char *);
     void __assert_func(
     const char *file, int line, const char *, const char *e) {
@@ -98,14 +146,14 @@ static void __memcpy(char* a, char* b, size_t size)
     }
 }
 
-static void __memset(void* arr, char value, size_t size) 
+[[maybe_unused]] static void __memset(void* arr, char value, size_t size) 
 {
     for(size_t i =0;i<size;i++) {
         *((char*)arr + i) = value;
     }
 }
 
-static char *__strdup( const char * in )
+[[maybe_unused]] static char *__strdup( const char * in )
 {
     if( !in ) { return 0; }
 
@@ -115,7 +163,7 @@ static char *__strdup( const char * in )
     return ret;
 }
 
-static int __strncmp( const char* a, const char*  b, int len )
+[[maybe_unused]] static int __strncmp( const char* a, const char*  b, int len )
 {
     if( !a || !b ) { return 0; }
 
@@ -131,12 +179,12 @@ static int __strncmp( const char* a, const char*  b, int len )
     return 0;
 }
 
-static int __strcmp( const char * const a, const char * const b )
+[[maybe_unused]] static int __strcmp( const char * const a, const char * const b )
 {
     return __strncmp( a, b, -1 );
 }
 
-static char __toupper(char a) 
+[[maybe_unused]] static char __toupper(char a) 
 {
     if(a >= 0x61 && a <= 0x7A)
         return a - 0x20;
@@ -144,7 +192,7 @@ static char __toupper(char a)
         return 0x00;
 }
 
-static char __tolower(char a) 
+[[maybe_unused]] static char __tolower(char a) 
 {
     if(a >= 0x41 && a <= 0x5A)
         return a + 0x20;

@@ -10,27 +10,15 @@
 #include <bitset>
 #include <math.h>
 #include <functional>
+#include <ranges>
 #include <vector>
-#include <thread>
-#include <future>
 #include <map>
 #include <utility>
 
-#include "libn_font.h"
-
-#include "libn_timer.h"
-#include "libn_regs.h"
-#include "libn_display.h"
-#include "libn_controller.h"
-#include "libn_dma_pi.h"
-#include "libn_frame.h"
-#include "libn_stdlib.h"
-
-#define BUTTONA 31
-#define BUTTONB 30
-#define BUTTONZ 29
+#include "libn.h"
 
 using namespace LibN64::Display;
+using namespace LibN64::Timer;
 
 namespace LibN64
 {	
@@ -40,35 +28,44 @@ namespace LibN64
 		libntest(Resolution res, Bitdepth bd, AntiAliasing aa) : Frame(res, bd, aa) {}
 	
 	protected:
-		LibN64::Timer::LibTimer localtimer
-		 = Timer::LibTimer(Timer::TimerType::TIMER);
+		LibTimer localtimer = LibTimer(TimerType::TIMER);
+		LibSprite *spr;
+
 		auto OnCreate() -> void
 		{
-			Display::FillScreen(BLACK);
+			Display::FillScreen(GREY_SMOOTH);
 			Display::SetColors(LibColor::YELLOW, LibColor::RED);
+
+			spr = new LibSprite(0xB0101000);
 		}
 
 		int x, y;
 		auto FrameUpdate() -> void override
 		{
 			/*Optional RDP Screen refresh*/
-			//RDP::ClearScreen(GREY_SMOOTH);
-			//FillScreen(GREY_SMOOTH);
+			
+			//RDP::DrawRectangleSetup(0,0,200,200,RED);
 			std::bitset<sizeof(int)*8> controllerd(*reinterpret_cast<uint32_t*>(PIF_RAM));
-			DrawTextFormat(x,y,"%s", controllerd.to_string().c_str());
-			DrawTextFormat(20,50,"CPAD Data %08X\nLocal Timer %0.2f\nSince Startup %0.2f", controllerd.to_ulong(),
+			printf("%s", controllerd.to_string().c_str());
+			printf("CPAD Data     %08lX\n"
+				   "Local Timer   %0.2f\n"
+				   "Since Startup %0.2f", controllerd.to_ulong(),
 			localtimer.GetSecondsPassed(), Timer::SecondsSinceStartup());
-			DrawText(20,80,"Press A to start the timer");
-
+			printf("\nPress A to start the timer");
+			printf("Press B to stop the timer");
 			localtimer.Update();
+
+			spr->Draw(120,120);
+	
+
 		}
 
 		auto KeyJoyXPressed(int data) -> void override
 		{
 			switch(data) 
 			{
-				case Controller::JOYLEFT:  DrawText(5,45,"Joy left "); x--; break;
-				case Controller::JOYRIGHT: DrawText(5,45,"Joy right"); x++; break;
+				case Controller::JOYLEFT:  DrawText(5,125,"Joy left "); x--; break;
+				case Controller::JOYRIGHT: DrawText(5,125,"Joy right"); x++; break;
 				default: break;
 			}
 		}
@@ -77,8 +74,8 @@ namespace LibN64
 		{
 			switch(data) 
 			{
-				case Controller::JOYUP:   DrawText(5,45,"Joy up   "); y--; break;
-				case Controller::JOYDOWN: DrawText(5,45,"Joy down "); y++; break;
+				case Controller::JOYUP:   DrawText(5,125,"Joy up   "); y--; break;
+				case Controller::JOYDOWN: DrawText(5,125,"Joy down "); y++; break;
 				default: break;
 			}
 		}
@@ -89,6 +86,7 @@ namespace LibN64
 		}
 
 		auto KeyBPressed() -> void override {
+			localtimer.Stop();
 			DrawText(40,100,"B has been pressed.");
 		}
 

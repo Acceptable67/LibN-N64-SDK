@@ -19,7 +19,7 @@ namespace LibN64::Display
 		static uint32_t Background;
 	};
 	static Resolution global_res;
-	static auto *buffer = reinterpret_cast<uint32_t*>(FRAMEBUFFER_ADDR);
+	static auto* buffer = reinterpret_cast<uint32_t*>(FRAMEBUFFER_ADDR);
 
 	uint32_t TextColor::Foreground = 0xFFFFFFFF;
 	uint32_t TextColor::Background = 0x202020FF;
@@ -107,21 +107,16 @@ namespace LibN64::Display
 			return (tmp.x == x.x && tmp.y == x.y);
 		}
 	};
+	static LibN64::Display::LibPos cPos = {10,10};
 
 	template<class SpecifiedType>
 	requires std::integral<SpecifiedType> || std::floating_point<SpecifiedType>
 	struct Lib2DVec
 	{
 		public:
-		std::pair<SpecifiedType, SpecifiedType> values;
-		
-		SpecifiedType& First() {
-			return values.first;
-		}
-
-		SpecifiedType& Second() {
-			return values.second;
-		}
+			SpecifiedType first_element;
+			SpecifiedType second_element;
+			
 	};
 
 	/*from LIBN64.H*/
@@ -160,6 +155,7 @@ namespace LibN64::Display
 
 		res.width 			= res.width;
 		res.height 			= res.height;
+
 		VI_REG->status 		= bd | aa | gamma;
 		VI_REG->origin 		= FRAMEBUFFER_ADDR;
 		VI_REG->width 		= res.width;
@@ -205,7 +201,7 @@ namespace LibN64::Display
 	void DrawCharacter(uint32_t x, uint32_t y, unsigned char ch) 
 	{
 		uint32_t trans = ((TextColor::Background & 0xff) == 0) ? 1 : 0; 
-		for(uint32_t row = 0; row < font_width; row++) {
+		for(decltype(font_width) row = 0; row < font_width; row++) {
 			unsigned char c = __font_data[(ch * font_width) + row];
 			for(uint32_t col = 0; col < font_height; col++) 
 			{
@@ -280,9 +276,11 @@ namespace LibN64::Display
 
 		void Send()
 		{
-		    while( DP_REG->status & 0x600 ) ;
+		    while(DP_REG->status & 0x600){};
+
 			DP_REG->status = 0x15; //0b00010101
-	   		while( DP_REG->status & 0x600 ) ;
+
+	   		while(DP_REG->status & 0x600);
 
 			DP_REG->cmd_start = reinterpret_cast<uint32_t>(commandBuffer.begin()) + pos-1;
 			DP_REG->cmd_end   = reinterpret_cast<uint32_t>(commandBuffer.begin()) + pos;
@@ -355,9 +353,7 @@ namespace LibN64::Display
 
 
 		void Attach(  )
-		{
-			uint32_t bitdepth = BD32BPP;
-			
+		{	
 			AddCommand((0x3F000000 | 0x00180000 | (global_res.width- 1)));
 			AddCommand(FRAMEBUFFER_ADDR );
 			Send();
@@ -381,7 +377,6 @@ namespace LibN64::Display
 			RDP::SetBlendColor(color);
 			RDP::Sync();
 			RDP::DrawRectangle(tx, ty, bx, by);
-	
 			RDP::Close();
 			
 		}
