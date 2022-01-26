@@ -3,12 +3,12 @@
 	.section .boot
 	.global _start
 _start:
-	lw t0, 0x80000318			/* memory size */
+	lw t0, 0x80000318			
 	li t1, 0x7FFFFFF0
-	addu sp,t0,t1				/* init stack */
-	la gp, _gp					/* init data pointer */
+	addu sp,t0,t1				
+	la gp, _gp					
 	li v0, 8
-	sw v0,(0xbfc007fc)			/* magic N64 hardware init */
+	sw v0,(0xbfc007fc)			
 	
 	jal main
 	
@@ -19,3 +19,4 @@ _start:
   	j begin
 	  
 .section .code
+
