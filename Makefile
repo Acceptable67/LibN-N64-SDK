@@ -1,7 +1,7 @@
 N64_INST=/usr/local/bin
 TOOLS=/home/spencer/libdragon/NEW/libdragon/tools
 
-CFLAGS = -march=vr4300 -mtune=vr4300 -Wall -Wextra -Werror -O2 -I/usr/local/mips64-elf/include -I/usr/local/include/ -Iinclude/
+CFLAGS = -march=vr4300 -mtune=vr4300 -Wall -Wextra -Wpedantic -Werror -O2 -I/usr/local/mips64-elf/include -I/usr/local/include/ -Iinclude/
 
 all: entry.o main.o file.elf file.bin file.z64
 
@@ -11,7 +11,25 @@ entry.o: entry.S
 main.o: main.cpp
 	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
 
-file.elf: main.o entry.o
+libn_timer.o: src/libn_timer.cpp
+	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+
+libn_controller.o: src/libn_controller.cpp
+	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+
+libn_frame.o: src/libn_frame.cpp
+	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+
+libn_display.o: src/libn_display.cpp
+	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+
+libn_sprite.o: src/libn_sprite.cpp
+	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+
+libn_dma_pi.o: src/libn_dma_pi.cpp
+	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+
+file.elf: main.o libn_timer.o libn_dma_pi.o libn_sprite.o libn_display.o libn_controller.o libn_frame.o entry.o
 	$(N64_INST)/mips64-elf-g++ -o $@ -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -L/usr/local/lib/ -lm -lc -lgcc  -Tn64.ld *o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
 
 file.bin: file.elf 

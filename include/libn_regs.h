@@ -13,7 +13,7 @@
 #define SP_ADDRESS		 0xA4000000
 
 #define CreateGlobalRegister(GLOB) \
-static volatile auto GLOB ## _REG = reinterpret_cast<GLOB ## _HANDLER*>(GLOB ## _ADDRESS) \
+static volatile auto* GLOB ## _REG = reinterpret_cast<GLOB ## _HANDLER*>(GLOB ## _ADDRESS) \
 
 
 #define CachedAddr  (_addr) ((void *)(((unsigned long)(_addr))&~0x20000000))
@@ -22,6 +22,7 @@ static volatile auto GLOB ## _REG = reinterpret_cast<GLOB ## _HANDLER*>(GLOB ## 
 #define HALT() while(1)
 
 #include <any>
+#include <libn_types.h>
 
 struct SI_HANDLER 
 {
@@ -88,12 +89,5 @@ struct SP_HANDLER
 	u32 SP_DMA_FULL_REG;
 	u32 SP_DMA_BUSY_REG;
 };
-
-CreateGlobalRegister(SI);
-CreateGlobalRegister(PI);
-CreateGlobalRegister(VI);
-CreateGlobalRegister(MI);
-CreateGlobalRegister(DP);
-CreateGlobalRegister(SP);
 
 #endif

@@ -10,6 +10,8 @@
 #include <errno.h>
 #include <source_location>
 
+u32 consolex = 10, consoley = 10;
+
 using namespace LibN64;
 
 extern char   end     __attribute__((section (".data")));
@@ -81,6 +83,12 @@ extern "C"
          return 0;
     }
 
+    void ResetConsole()
+    {
+        consolex = 10;
+        consoley = 10;
+    }
+
     int printf(const char* format, ...) 
     {
         va_list va;
@@ -89,7 +97,7 @@ extern "C"
         char buffer[100];
         vsnprintf(buffer, sizeof(buffer), format, va);
 
-        Display::DrawText({Display::cPos.x,Display::cPos.y},buffer);
+        Display::DrawText({consolex,consoley},buffer);
 
         auto lines = 1;
         std::string localformat = format;
@@ -98,7 +106,7 @@ extern "C"
                 lines++;
             }
         }
-        Display::cPos.y += 8 * lines;
+        consoley += 8 * lines;
         va_end(va);
         return 0;
     }
