@@ -1,6 +1,8 @@
 # LibN-N64-SDK
 The simplest solution to compiling a fully working ROM with as little as possible in C or C++.
 
+**Looking for any eager collaboraters. Feel free to put in requests!** 
+
 After months of trying, finally got my own custom SDK to work, and is a *header-only* implementation. 
 What is here is nothing extraordinary, just a couple days of work and it's features are incredibly rudimentary.  Works fine but when clearing screen, it flickers. Have been trying to work around this with software and hardware alike but can't seem to find a solution. Double buffering works but copying the contents makes everything *dog* slow. 
 
