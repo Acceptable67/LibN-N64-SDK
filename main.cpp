@@ -1,5 +1,4 @@
 #include <stdlib.h>
-
 #include <string>
 #include <bitset>
 #include <math.h>
@@ -8,10 +7,11 @@
 #include <vector>
 #include <cstring>
 #include <map>
-
 #include <utility>
 #include <source_location>
 #include <stack>
+#include <list>
+#include <memory_resource>
 #include <memory>
 
 #include <libn.h>
@@ -28,25 +28,26 @@ namespace LibN64
 		libntest(Resolution res, Bitdepth bd, AntiAliasing aa, bool buf) : Frame(res, bd, aa, buf) {}
 
 	private:
-		LibTimer *exTimer;
+		std::shared_ptr<LibTimer> exTimer = std::make_shared<LibTimer>(TimerType::TIMER);
+		bool bTimerStatus;
+
 		LibSprite spr = LibSprite(0xB0101000);
 		auto OnCreate() -> void
 		{
 			SetColors(YELLOW, 0xFF);
-
-			exTimer = new LibTimer(TimerType::TIMER);
 			exTimer->Start();
 		}
 		
 		int x = 0, y = 0;
 		auto FrameUpdate() -> void override
 		{
-			DrawText(x,y,"This is a test. Picture of sky underneath");
-			printf("%0.2f %0.2f",  exTimer->GetSecondsPassed(), Timer::SecondsSinceStartup());
 			
-			spr.Draw(20,20);
-
+			printf("This is a test.\nPicture of sky underneath");
+			printf("System Time %0.2f My Clock %0.2f", Timer::SecondsSinceStartup(), exTimer->GetSecondsPassed());
+			
+			spr.Draw(20 + x,20 + y);
 			exTimer->Update();
+			if(x >= 160 && y >= 120) exTimer->Stop();
 		}
 
 	
@@ -76,17 +77,24 @@ namespace LibN64
 		}
 
 		auto KeyBPressed() -> void override {
+			(bTimerStatus) ? exTimer->Stop() : exTimer->Start();
+			bTimerStatus = !bTimerStatus;
 			printf("B Pressed");
 		}
 
 		auto KeyZPressed() -> void override {
 			printf("Z Pressed");
 		}
+
+		auto KeyStartPressed() -> void override
+		{
+			RDP::ClearScreen(GREY_SMOOTH);
+		}
 	};
 
 	extern "C" int begin()
 	{	
-		libntest t({320,240}, BD32BPP, AA_REPLICATE, true);
+		libntest t({320,240}, BD32BPP, AA_REPLICATE, false);
 		t.Begin();
 
 		HALT();

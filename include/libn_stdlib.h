@@ -1,4 +1,6 @@
 /*super basic functions to get us going up until newlib implementation*/
+#ifndef LIBN_STDLIB_H
+#define LIBN_STDLIB_H
 
 #include <stdarg.h>
 #include <malloc.h>
@@ -8,89 +10,86 @@
 #include <errno.h>
 #include <source_location>
 
-#define assertf(__e, reason)  std::source_location loc = std::source_location::current(); \
-    ((__e) ? (void)0 : __assert_func_cpp(loc.file_name(), loc.line(), loc.function_name(), #__e, reason)) \
+using namespace LibN64;
 
-extern char end __attribute__((section (".data")));
-int errno __attribute__((weak));
+extern char   end     __attribute__((section (".data")));
+int           errno   __attribute__((weak));
 
-static int   __strlen(const char*); 
-static void* __malloc(size_t size);
-static void  __memcpy(char*, char* b, size_t len);
-static void  __memset(void*, char value, size_t size);
-static char* __strdup(const char* );
-static int   __strncmp(const char*, const char*, int);
-static int   __strcmp(const char* a, const char*);
-static char  __toupper(char a);
-static char  __tolower(char a);
+static int    __strlen(const char*); 
+static void*  __malloc(size_t size);
+static void   __memcpy(char*, char* b, size_t len);
+static void   __memset(void*, char value, size_t size);
+static char*  __strdup(const char* );
+static int    __strncmp(const char*, const char*, int);
+static int    __strcmp(const char* a, const char*);
+static char   __toupper(char a);
+static char   __tolower(char a);
+
 extern "C" void  *sbrk(int incr);
+extern "C" int printf(const char*, ...);
 
 extern "C" 
 {
-    void _exit(int) {
+    void _exit(int) 
+    {
          exit(1);
     }
 
-    int close(int fildes) {
+    int close([[maybe_unused]] int fildes) 
+    {
          return 0;
     }
-    int chown( const char *path, uid_t owner, gid_t group );
-    int execve( char *name, char **argv, char **env );
-    void exit( int rc );
-    int fork( void );
 
-    int fstat( int fildes, struct stat *st ) {
+    int fstat( [[maybe_unused]] int fildes, [[maybe_unused]] struct stat *st ) 
+    {
          return 0; 
     }
-    int getpid( void ) { 
+
+    int getpid( void ) 
+    { 
         return 1001;
     }
-    int gettimeofday( struct timeval *ptimeval, void *ptimezone );
-    int isatty( int file ){ return 0;}
 
-    int kill( int pid, int sig ) 
+    int isatty( [[maybe_unused]] int file ) 
+    { 
+        return 0;
+        }
+
+    int kill( int pid, [[maybe_unused]] int sig) 
     { 
         if(pid == 1001) 
             exit(1);
          else 
             return 0; 
     }
-    int link( char *existing, char *neww )  { return 0;}
-    int lseek( int file, int ptr, int dir ) { return 0;}
-    int open( char *file, int flags, int mode ){return 0;};
-    int read( int file, char *ptr, int len ) { return 0;}
-    int readlink( const char *path, char *buf, size_t bufsize );
-    int stat( const char *file, struct stat *st );
-    int symlink( const char *path1, const char *path2 );
-    clock_t times( struct tms *buf );
-    int unlink( char *name );
-    int wait( int *status );
 
     /*STDIO, STDIN, AND STDERR HOOKS*/
-    int write( int file, char *ptr, int len ) {
+    int write( int file, char *ptr, [[maybe_unused]] int len ) 
+    {
         char buffer[32];
         memcpy(buffer, ptr, 32);
         buffer[31] = '\0';
 
         if(file == 1) 
         { //stdout
-            LibN64::Display::DrawText(LibN64::Display::cPos.x,LibN64::Display::cPos.y, buffer); 
+            Display::DrawText({Display::cPos.x, Display::cPos.y}, buffer); 
         }
          else { //stderr
-         LibN64::Display::DrawText(LibN64::Display::cPos.x,LibN64::Display::cPos.y,std::to_string(file) + ptr);
-         LibN64::Display::cPos.y+=8; 
+             Display::DrawText({Display::cPos.x, Display::cPos.y},std::to_string(file) + ptr);
+            Display::cPos.y+=8; 
         }
          return 0;
     }
 
-    int printf(const char* format, ...) {
+    int printf(const char* format, ...) 
+    {
         va_list va;
         va_start(va, format);
 
         char buffer[100];
         vsnprintf(buffer, sizeof(buffer), format, va);
 
-        LibN64::Display::DrawText(LibN64::Display::cPos.x,LibN64::Display::cPos.y,buffer);
+        Display::DrawText({Display::cPos.x,Display::cPos.y},buffer);
 
         auto lines = 1;
         std::string localformat = format;
@@ -99,28 +98,46 @@ extern "C"
                 lines++;
             }
         }
-        LibN64::Display::cPos.y += 8 * lines;
+        Display::cPos.y += 8 * lines;
         va_end(va);
         return 0;
     }
-    void __assert(const char *, int, const char *);
+
     void __assert_func(const char *file, int line, const char *, const char *e) 
     {
-        LibN64::Display::DrawTextFormat(0,0,"ASSERTION FAILED", nullptr);
-        LibN64::Display::DrawTextFormat(0,10,"File %s", file);
-        LibN64::Display::DrawTextFormat(0,20,"Line %d", line);
-        LibN64::Display::DrawTextFormat(0,30,"%s", e);
+        printf("ASSERTION FAILED");
+        printf("File %s", file);
+        printf("Line %d", line);
+        printf("%s", e);
         HALT();
     }
 
-    void __assert_func_cpp(std::string file, uint32_t line, std::string function, std::string exp, std::string reason) 
+    void __assert_func_cpp(std::string file, u32 line, [[maybe_unused]] std::string function, std::string exp, std::string reason) 
     {
         printf("ASSERTION FAILED!\n\n");
-        printf("File: %s\nFunction:\n%s\n\n", file.c_str(), function.c_str());
-        printf("Line: %ld\n\n", line);
+        printf("File: %s\n\n", file.c_str());
+        printf("Line: %u\n\n", line);
         printf("\"%s\" %s", exp.c_str(), reason.c_str());
         HALT();
     }
+
+    void __assert(const char *, int, const char *);
+    int link( char *existing, char *neww );
+    int lseek( [[maybe_unused]]int file,   [[maybe_unused]]int ptr,   [[maybe_unused]]int dir ) {return 0;}
+    int open(  [[maybe_unused]]char *file, [[maybe_unused]]int flags, [[maybe_unused]] int mode ){return 0;}
+    int read(  [[maybe_unused]]int file,   [[maybe_unused]]char *ptr, [[maybe_unused]]int len ){return 0;}
+    int readlink( const char *path, char *buf, size_t bufsize );
+    int stat( const char *file, struct stat *st );
+    int symlink( const char *path1, const char *path2 );
+    clock_t times( struct tms *buf );
+    int unlink( char *name );
+    int wait( int *status );
+    int chown( const char *path, uid_t owner, gid_t group );
+    int execve( char *name, char **argv, char **env );
+    void exit( int rc );
+    int fork( void );
+    int gettimeofday( struct timeval *ptimeval, void *ptimezone );
+
 }
 
 static int __strlen(const char *str)
@@ -161,7 +178,7 @@ static void __memcpy(char* a, char* b, size_t size)
 
 [[maybe_unused]] static void __memset(void* arr, char value, size_t size) 
 {
-    for(size_t i =0;i<size;i++) {
+    for(size_t i = 0; i < size; i++) {
         *((char*)arr + i) = value;
     }
 }
@@ -240,3 +257,4 @@ extern "C" void *sbrk( int incr )
     return (void *)prev_heap_end;
 }
 
+#endif

@@ -1,3 +1,6 @@
+#ifndef LIBN_DMA_PI_H
+#define LIBN_DMA_PI_H
+
 namespace LibN64::DMA 
 {
 	void Wait() { 
@@ -26,8 +29,6 @@ namespace LibN64::DMA
 		PI_REG->rlength = length - 1;
 		Wait();
 	}
-
-
 }
-
+#endif
 

@@ -1,17 +1,19 @@
+#ifndef LIBN_DISPLAY_H
+#define LIBN_DISPLAY_H
+
 /*handle everything visual*/
 #include <stdarg.h>
 #include <array>
 #include <malloc.h>
 
-#define  DISPLAY_BUFFER 0
-#define  BACKUP_BUFFER	1
-#define  EXTRA_BUFFER	2
-
-#define NUMBER_BUFFERS	2
-
 namespace LibN64::Display 
 {
 	bool dbuffering = false;
+
+	auto GetBuffer(Buffer b)
+	{
+		return buffer_list[b];
+	}
 
 	void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma, bool dBuf) 
 	{
@@ -23,15 +25,15 @@ namespace LibN64::Display
 
 		dbuffering = dBuf;
 		
-		for(int i =0; i < NUMBER_BUFFERS; i++) 
+		for(int i = 0; i < NUMBER_BUFFERS; i++) 
 		{
 			buffer_list[i] = new int[res.width * res.height];
 		}
 
-		active_buffer = (buffer_list[DISPLAY_BUFFER]);
+		active_buffer = GetBuffer(Buffer::DISPLAY);
 
 		VI_REG->status 		= bd | aa | gamma;
-		VI_REG->origin 		= (int)active_buffer | 0xA0000000;
+		VI_REG->origin 		= reinterpret_cast<int>(active_buffer) | 0xA0000000;
 		VI_REG->width 		= res.width;
 		VI_REG->vint 		= 0x200;
 		VI_REG->currentvl 	= 0x0;
@@ -45,59 +47,70 @@ namespace LibN64::Display
 		VI_REG->xscale 		= (0x100*res.width)/160;
 		VI_REG->yscale 		= (0x100*res.height)/60;
 
-		*reinterpret_cast<uint32_t*>(((PIF_RAM)-0x4)+0x3c) = 0x8;
+		*reinterpret_cast<u32*>(((PIF_RAM)-sizeof(int))+0x3c) = 0x8;
 
 		global_res = res;
+	}
+
+	void checkVI_Int() {
+		if((MI_REG->intr & MI_REG->mask) & 0x08) {
+			VI_REG->currentvl = VI_REG->currentvl;
+		}
+	}
+
+	auto SetVI_Int(auto line) {
+		MI_REG->mask = 0x0080;
+		VI_REG->vint = line;
 	}
 
 	void SetVI_DRAM(const std::any addr) {
 		VI_REG->origin = std::any_cast<int>(addr) | 0xA0000000;
 	}
 
-	void SetActiveBuffer(int num) 
+	void SetActiveBuffer(const int num) 
 	{
 		active_buffer = buffer_list[num];
 	}
 
-	void DrawPixel(uint32_t x, uint32_t y, auto color) 
+	void DrawPixel(LibPos pos, const auto color) 
 	{
-		*(((dbuffering) ? buffer_list[BACKUP_BUFFER] : buffer_list[DISPLAY_BUFFER]) + (y * global_res.width + x)) = color;
+		*(((dbuffering) ? GetBuffer(Buffer::BACKUP) : GetBuffer(Buffer::DISPLAY)) + (pos.y * global_res.width + pos.x)) = color;
 	}
 
-	void DrawRect(uint32_t x, uint32_t y, auto xd, auto yd, auto color) 
+	void DrawRect(LibPos pos, const auto xd, const auto yd, const auto color) 
 	{
-		for(decltype(xd) i = 0; i < xd; i++) 
+		for(auto i = (u32)0; i < xd; i++) 
 		{
-			for(decltype(yd) d = 0; d < yd; d++) 
+			for(auto d = (u32)0; d < yd; d++) 
 			{
-				DrawPixel(x + i, y + d, color);
+				DrawPixel({pos.x + i, pos.y + d}, color);
 			}
 		}
 	}
 
-	void FillScreen(auto color) 
+	void FillScreen(const auto color) 
 	{
-		DrawRect(0,0,global_res.width, global_res.height, color);
+		DrawRect({0,0},global_res.width, global_res.height, color);
 	}
 
 	/*8x8 taken from LibDragon*/
-	void DrawCharacter(uint32_t x, uint32_t y, unsigned char ch) 
+	void DrawCharacter(const LibPos pos, const unsigned char ch) 
 	{
-		uint32_t trans = ((TextColor::Background & 0xff) == 0) ? 1 : 0; 
-		for(decltype(font_width) row = 0; row < font_width; row++) {
+		u32 trans = ((TextColor::Background & 0xff) == 0) ? 1 : 0; 
+		for(u32 row = 0; row < font_width; row++) {
 			unsigned char c = __font_data[(ch * font_width) + row];
-			for(uint32_t col = 0; col < font_height; col++) 
+			for(u32 col = 0; col < font_height; col++) 
 			{
 				if(trans) 
 				{
 					if(c & 0x80) 
 					{
-						DrawPixel(x + col, y + row, TextColor::Background);
+						DrawPixel({pos.x + col, pos.y + row}, TextColor::Foreground);
 					}
 				} 
 				else 
 				{
-					DrawPixel(x + col, y + row, (c & 0x80) ? TextColor::Foreground : TextColor::Background);
+					DrawPixel({pos.x + col, pos.y + row}, (c & 0x80) ? TextColor::Foreground : TextColor::Background);
 				}
 			
 				c <<= 1;
@@ -105,23 +118,23 @@ namespace LibN64::Display
 		}
 	}
 
-	void DrawText(uint32_t x, uint32_t y, const std::string text) 
+	void DrawText(LibPos pos, const std::string text) 
 	{
 		LibPos toffset = {0,0}; 
 		for(auto& c : text) 
 		{
-			if((x + toffset.x) >= global_res.width || c == '\n') 
+			if((pos.x + toffset.x) >= global_res.width || c == '\n') 
 			{
-				y += font_height;
+				pos.y += font_height;
 				toffset.x = 0;
 			} 
 			else if(c == '\t') 
 			{
-				x += font_width * 4;
+				pos.x += font_width * 4;
 			} 
 			else
 			{
-				DrawCharacter(x + toffset.x, y + toffset.y, c);
+				DrawCharacter({pos.x + toffset.x, pos.y + toffset.y}, c);
 				toffset.x += font_width;
 			}
 		}
@@ -129,14 +142,14 @@ namespace LibN64::Display
 
 	template<class T, class ...Args>
 	requires (!std::is_member_function_pointer<T>::value) || (!std::is_member_function_pointer<Args...>::value)
-	void DrawTextFormat(uint32_t x, uint32_t y,  const std::string format, T arg, Args... args) {
+	void DrawTextFormat(const LibPos pos,  const std::string format, T arg, Args... args) {
 		char buf[300];
 		snprintf(reinterpret_cast<char*>(buf), sizeof(buf), format.c_str(), arg, args...);
-		DrawText(x,y,buf);
+		DrawText({pos.x,pos.y},buf);
 	}
 
 
-	void SetColors(uint32_t foreground, uint32_t background) 
+	void SetColors(const u32 foreground, const u32 background) 
 	{
 		TextColor::Foreground  = foreground;
 		TextColor::Background  = background;
@@ -144,29 +157,37 @@ namespace LibN64::Display
 
 	namespace RDP 
 	{
-
-		std::array<uint32_t,1024> commandBuffer;
+		static u32 commandBuffer[48];
 
 		size_t pos = 0;
-		void AddCommand( uint32_t first)
+		size_t start = 0;
+		void AddCommand(u32 command)
 		{	
-			if(pos >= commandBuffer.size()) 
-				pos=0; 
+			if(pos >= 48) 
+				return;
 				
-			commandBuffer[pos] = first;
+			commandBuffer[pos] = command;
 			pos++;
 		}
 
 		void Send()
 		{
+			if(pos - start == 0) { return;}
+
 		    while(DP_REG->status & 0x600){};
 
 			DP_REG->status = 0x15; //0b00010101
 
-	   		while(DP_REG->status & 0x600);
+	   		while(DP_REG->status & 0x600){}
 
-			DP_REG->cmd_start = reinterpret_cast<uint32_t>(commandBuffer.begin()) + pos-1;
-			DP_REG->cmd_end   = reinterpret_cast<uint32_t>(commandBuffer.begin()) + pos;
+			DP_REG->cmd_start = (static_cast<u32>((u32)commandBuffer | 0xA0000000)) ;
+			DP_REG->cmd_end   = (static_cast<u32>((u32)commandBuffer | 0xA0000000) + pos) ;
+
+			if(pos > 24) {
+				start = 0;
+				pos = 0;
+			}
+			start = pos;
 		}	
 
 		void SetOtherModes()
@@ -176,7 +197,7 @@ namespace LibN64::Display
 			Send();
 		}
 
-		void SetClipping( uint32_t tx, uint32_t ty, uint32_t bx, uint32_t by )
+		void SetClipping( u32 tx, u32 ty, u32 bx, u32 by )
 		{
 			AddCommand((0xED000000 | (tx << 14) | (ty << 2)));
 			AddCommand(((bx << 14) | (by << 2)) );
@@ -184,12 +205,12 @@ namespace LibN64::Display
 		}
 
 
-		void SetDefaultClipping( void )
+		void SetDefaultClipping()
 		{
 			SetClipping(0, 0, global_res.width, global_res.height );
 		}
 
-		void EnablePrimitive( void )
+		void EnablePrimitive()
 		{
 			AddCommand(0xEFB000FF);
 			AddCommand(0x00004000);
@@ -227,29 +248,29 @@ namespace LibN64::Display
 			Send();
 		}
 
-		void DrawRectangle(uint32_t tx, uint32_t ty, uint32_t bx, uint32_t by)
+		void DrawRectangle(u32 tx, u32 ty, u32 bx, u32 by)
 		{
 			AddCommand ( (0xF6000000 | ( bx << 14 ) | ( by << 2 )));
-			AddCommand((( tx << 14 ) | ( ty << 2 )) );
+			AddCommand(( tx << 14 ) | ( ty << 2 ) );
 			Send();
 		}
 
 
-		void Attach(  )
+		void Attach()
 		{	
 			AddCommand((0x3F000000 | 0x00180000 | (global_res.width- 1)));
-			AddCommand(FRAMEBUFFER_ADDR );
+			AddCommand( reinterpret_cast<int>(buffer_list[Buffer::DISPLAY]));
 			Send();
 		}
 
-		void Sync( )
+		void Sync()
 		{
 			AddCommand(0xE7000000); //PIPE
 			AddCommand(0x00000000 );
 			Send();
 		}
 
-		void DrawRectangleSetup( uint32_t tx, uint32_t ty, uint32_t bx, uint32_t by, auto color )
+		void DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, auto color)
 		{
 			RDP::Init();
 			RDP::Attach();
@@ -264,10 +285,12 @@ namespace LibN64::Display
 			
 		}
 
-		void ClearScreen(auto color) 
+		void ClearScreen(const auto color) 
 		{
 			DrawRectangleSetup(0,0, global_res.width, global_res.height, color);
 		} 
 
 	}
 };
+
+#endif

@@ -1,14 +1,31 @@
+#ifndef LIBN_H
+#define LIBN_H
+
 #include <c++/11.2.0/cstdlib>
 #include <c++/11.2.0/cstdio>
 #include <c++/11.2.0/cstdint>
 #include <c++/11.2.0/cstdbool>
 #include <c++/11.2.0/cassert>
-
 #include <any>
 
 #pragma GCC diagnostic ignored "-Wdeprecated-enum-enum-conversion"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 
+#define NUMBER_BUFFERS	2
+
+#define assertf(__e, reason)  std::source_location loc = std::source_location::current(); \
+    ((__e) ? (void)0 : __assert_func_cpp(loc.file_name(), loc.line(), loc.function_name(), #__e, reason)) \
+
+using u64 = unsigned long long;
+using u32 = unsigned int;
+using u16 = unsigned short int;
+using u8  = unsigned char;
+using c8  = char;
+
+using u64_t = uint64_t;
+using u32_t = uint32_t;
+using u16_t = uint16_t;
+using u8_t  =  uint8_t;
 
 namespace LibN64
 {
@@ -20,8 +37,10 @@ namespace LibN64
         void SI_ReadController();
     }
 
-    namespace DMA {
+    namespace DMA 
+    {
         void Wait();
+
         template<class T>
         requires std::is_copy_assignable<T>::value && std::copyable<T>
         void Read(T RAM, int CART, int length);
@@ -32,20 +51,22 @@ namespace LibN64
         void Write(T RAM, B CART, int length); 
     }
 
-    namespace Display {
+    namespace Display 
+    {
         struct Resolution
         {
-            uint32_t width; 
-            uint32_t height;
-        } global_res;
+            u32 width; 
+            u32 height;
+        };
+        static Resolution global_res;
 
         struct TextColor
         {
-            static uint32_t Foreground;
-            static uint32_t Background;
+            static u32 Foreground;
+            static u32 Background;
         };
-        	uint32_t TextColor::Foreground = 0xFFFFFFFF;
-	        uint32_t TextColor::Background = 0x202020FF;
+        u32 TextColor::Foreground = 0xFFFFFFFF;
+	    u32 TextColor::Background = 0x202020FF;
 
         enum Bitdepth 
         {
@@ -68,13 +89,20 @@ namespace LibN64
             AA_REPLICATE    = 0x300
         };
 
-        constexpr int MakeColor(int r, int g, int b, int a) 
+        constexpr uint32_t MakeColor(u32 r, u32 g, u32 b, u32 a) 
         {
             return (r << 24) 		   | 
             (((g & 0x00FFFFFF) << 16)) |
             (((b & 0xFF00FFFF) << 8))  | 
             ((a & 0xFFFF00FF));
         }
+
+        enum Buffer 
+        {
+            DISPLAY = 0,
+            BACKUP,
+            EXTRA
+        };
 
         enum LibColor 
         {
@@ -96,7 +124,8 @@ namespace LibN64
             PURPLE			= MakeColor(0xFF, 0x00, 0x9B, 0xFF)
         };
 
-        struct LibPos3D {
+        struct LibPos3D 
+        {
             float x, y, z;
             float w;
 
@@ -135,7 +164,7 @@ namespace LibN64
 
         struct LibPos 
         { 
-            uint32_t x, y; 
+            u32 x, y; 
             LibPos operator +(LibPos x) const 
             {
                 LibPos tmp = { this->x, this->y };
@@ -158,7 +187,7 @@ namespace LibN64
                 return (tmp.x == x.x && tmp.y == x.y);
             }
         };
-        LibPos cPos = {10,10};
+        static LibPos cPos = {10,10};
 
         template<class SpecifiedType>
         requires std::integral<SpecifiedType> || std::floating_point<SpecifiedType>
@@ -169,32 +198,71 @@ namespace LibN64
                 SpecifiedType second_element;
                 
         };
-    	std::array<int*, 2> buffer_list;
-        int *active_buffer;
-        void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma = GAMMA_OFF, bool dBuf = true);
-        void SetActiveBuffer(int num);
+        
+    	static std::array<int*, NUMBER_BUFFERS> buffer_list;
+        static int*                active_buffer;
+        constexpr bool      bFilling = false;
+
+        auto GetBuffer(Buffer);
+         void SetActiveBuffer(const int num);
+        void checkVI_Int();
+        auto SetVI_Int(auto);
         void SetVI_DRAM(const std::any addr);
-        bool bFilling = false;
-        void FillScreen(auto color);
-        void SetColors(uint32_t foreground, uint32_t background);
-        void DrawRect(uint32_t x, uint32_t y, auto xd, auto yd, auto color);
-        void DrawPixel(uint32_t x, uint32_t y, auto color);
-        void DrawText(uint32_t x, uint32_t y, const std::string text);
-        void DrawCharacter(uint32_t x, uint32_t y, unsigned char ch);
+        void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma = GAMMA_OFF, bool dBuf = true);
+        void FillScreen(const auto color);
+        void SetColors(const u32 foreground, const u32 background);
+        void DrawRect(LibPos, const auto xd, const auto yd, const auto color);
+        void DrawPixel(LibPos, const auto color);
+        void DrawText(LibPos, const std::string text);
+        void DrawCharacter(const LibPos, const unsigned char ch);
         template<class T, class ...Args>
 	    requires (!std::is_member_function_pointer<T>::value) || (!std::is_member_function_pointer<Args...>::value)
-	    void DrawTextFormat(uint32_t x, uint32_t y,  const std::string format, T arg, Args... args);
-            
+	    void DrawTextFormat(const LibPos,  const std::string format, T arg, Args... args);
+
+        namespace RDP 
+        {
+            void AddCommand(u32);
+            void Send();
+            void Sync();
+            void Attach();
+            void EnableBlend();
+            void EnablePrimitive();
+            void SetDefaultClipping();
+            void SetClipping(u32, u32, u32, u32);
+            void SetBlendColor(const auto);
+            void SetPrimitiveColor(const auto);
+            void DrawRectangle(u32, u32, u32, u32);
+            void DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, auto color);
+            void Close();
+            void ClearScreen(const auto color);
+            void Init();
+        }
     }
+
+    namespace Timer 
+    {
+        auto MillisecondsSinceStartup();
+        float SecondsSinceStartup();
+
+        enum TimerType 
+        {
+            ONE_SHOT,
+            CONTINUOUS_CALL,
+            TIMER
+        };
+
+    }
+
 }
 
-#include "libn_font.h"
-#include "libn_regs.h"
-#include "libn_controller.h"
+#include <libn_font.h>
+#include <libn_regs.h>
+#include <libn_controller.h>
+#include <libn_dma_pi.h>
+#include <libn_frame.h>
+#include <libn_display.h>
+#include <libn_sprite.h>
+#include <libn_stdlib.h>
+#include <libn_timer.h>
 
-#include "libn_dma_pi.h"
-#include "libn_frame.h"
-#include "libn_display.h"
-#include "libn_sprite.h"
-#include "libn_stdlib.h"
-#include "libn_timer.h"
+#endif

@@ -1,4 +1,9 @@
 
+#ifndef LIBN_FRAME_H
+#define LIBN_FRAME_H
+
+#include <libn_controller.h>
+
 namespace LibN64 
 {
     class Frame
@@ -12,7 +17,7 @@ namespace LibN64
         bool bRunning = false;
 
     public:
-        Frame(const Display::Resolution res, const Display::Bitdepth bitdepth, const Display::AntiAliasing antialiasing, const bool DoubleBuffering = true) 
+        Frame(const Display::Resolution res, const Display::Bitdepth bitdepth, const Display::AntiAliasing antialiasing, const bool DoubleBuffering = false) 
         : r(res), bd(bitdepth), aa(antialiasing), bDoubleBuf(DoubleBuffering) {}
 
         void Begin() 
@@ -39,15 +44,15 @@ namespace LibN64
                 if(cpad_data->down)  { this->KeyDDownPressed(); }
                 if(cpad_data->left)  { this->KeyDLeftPressed(); }
                 if(cpad_data->right) { this->KeyDRightPressed(); }
-                if(cpad_data->x)     { this->KeyJoyXPressed(*reinterpret_cast<uint32_t*>(cpad_data) & 0x0000FF00);}
-                if(cpad_data->y)     { this->KeyJoyYPressed(*reinterpret_cast<uint32_t*>(cpad_data) & 0x000000FF);}
+                if(cpad_data->x)     { this->KeyJoyXPressed(*reinterpret_cast<u32*>(cpad_data) & 0x0000FF00);}
+                if(cpad_data->y)     { this->KeyJoyYPressed(*reinterpret_cast<u32*>(cpad_data) & 0x000000FF);}
                 
                 Display::cPos.x = 10;
                 Display::cPos.y = 10;
 
-                auto memcpy = [](auto a, auto b, auto size) 
+                [[maybe_unused]] auto memcpy = [](auto a, auto b, auto size) 
                 {
-                    for(size_t i = 0; i<size; i++ )
+                    for(size_t i = 0; i<size; i++)
                     {
                         if(a[i] != b[i]) 
                             a[i] = b[i];
@@ -55,7 +60,7 @@ namespace LibN64
                 };
 
                 if(bDoubleBuf) {
-                    memcpy(Display::buffer_list[0], Display::buffer_list[1], (Display::global_res.width * Display::global_res.height));
+                    memcpy(Display::buffer_list[Display::DISPLAY], Display::buffer_list[Display::BACKUP], (Display::global_res.width * Display::global_res.height));
                 }
             } 
         }
@@ -73,15 +78,17 @@ namespace LibN64
         virtual void KeyJoyXPressed(int){}
         virtual void KeyJoyYPressed(int){}
 
-        uint32_t ScreenWidth() 
+        u32 ScreenWidth() 
         {
             return r.width;
         }
 
-        uint32_t ScreenHeight()
+        u32 ScreenHeight()
         {
             return r.height;
         }
     };
 
 }
+
+#endif

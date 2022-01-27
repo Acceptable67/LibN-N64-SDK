@@ -1,72 +1,99 @@
+#ifndef LIBN_REG_H
+#define LIBN_REG_H
+
 #define FRAMEBUFFER_ADDR 0xA0100000
 #define PIF_BASE		 0xBFC00000
 #define PIF_RAM  		 0xBFC007C4
+
 #define VI_ADDRESS		 0xA4400000
 #define SI_ADDRESS 		 0xA4800000 
 #define PI_ADDRESS 		 0xA4600000
 #define DP_ADDRESS       0xA4100000
 #define MI_ADDRESS       0xA4300000
+#define SP_ADDRESS		 0xA4000000
 
-#define CachedAddr(_addr) ((void *)(((unsigned long)(_addr))&~0x20000000))
-#define UncachedAddr(_addr) ((void *)(((unsigned long)(_addr))|0x20000000))
+#define CreateGlobalRegister(GLOB) \
+static volatile auto GLOB ## _REG = reinterpret_cast<GLOB ## _HANDLER*>(GLOB ## _ADDRESS) \
+
+
+#define CachedAddr  (_addr) ((void *)(((unsigned long)(_addr))&~0x20000000))
+#define UncachedAddr(_addr) ((void *)(((unsigned long)(_addr)) |0x20000000))
 
 #define HALT() while(1)
 
 #include <any>
 
-class SI_HANDLER 
+struct SI_HANDLER 
 {
 public:
 	std::any* dram_addr;
 	std::any* pif_addr_r64;
-	uint32_t r1, r2;
+	u32 r1, r2;
 	std::any* pif_addr_w64;
-	uint32_t r3;
-	uint32_t status;
+	u32 r3;
+	u32 status;
 };
 
 
-class VI_HANDLER {
-public:
-	uint32_t status;     uint32_t origin;
-    uint32_t width;      uint32_t vint;
-    uint32_t currentvl;  uint32_t vtiming;
-	uint32_t vsync;      uint32_t hsync;
-	uint32_t hsyncleap;  uint32_t hvideo;
-	uint32_t vvideo;     uint32_t vburst;
-	uint32_t xscale;     uint32_t yscale;
-};
-
-class PI_HANDLER {
-public:
-	uint32_t dram;
-	uint32_t cart;
-	uint32_t rlength;
-	uint32_t wlength;
-	uint32_t status;
-};
-
-class MI_HANDLER 
+struct VI_HANDLER 
 {
 public:
-    uint32_t mode, version, intr, mask;
+	u32 status;     u32 origin;
+    u32 width;      u32 vint;
+    u32 currentvl;  u32 vtiming;
+	u32 vsync;      u32 hsync;
+	u32 hsyncleap;  u32 hvideo;
+	u32 vvideo;     u32 vburst;
+	u32 xscale;     u32 yscale;
 };
 
-class DP_HANDLER 
+struct PI_HANDLER 
 {
 public:
-    uint32_t cmd_start;
-    uint32_t cmd_end;
-    uint32_t cur_address;
-    uint32_t status;
-    uint32_t clock_counter;
-    uint32_t buffer_busy;
-    uint32_t pipe_busy;
-    uint32_t tmem_Load_counter;
+	u32 dram;
+	u32 cart;
+	u32 rlength;
+	u32 wlength;
+	u32 status;
 };
 
-static auto SI_REG = reinterpret_cast<SI_HANDLER*>(SI_ADDRESS);
-static auto PI_REG = reinterpret_cast<PI_HANDLER*>(PI_ADDRESS);
-static auto VI_REG = reinterpret_cast<VI_HANDLER*>(VI_ADDRESS);
-static auto MI_REG = reinterpret_cast<MI_HANDLER*>(MI_ADDRESS);
-static auto DP_REG = reinterpret_cast<DP_HANDLER*>(DP_ADDRESS);
+struct MI_HANDLER 
+{
+public:
+    u32 mode, version, intr, mask;
+};
+
+struct DP_HANDLER 
+{
+public:
+    u32 cmd_start;
+    u32 cmd_end;
+    u32 cur_address;
+    u32 status;
+    u32 clock_counter;
+    u32 buffer_busy;
+    u32 pipe_busy;
+    u32 tmem_Load_counter;
+};
+
+struct SP_HANDLER 
+{
+	u32 SP_DMEM;
+	u32 SP_IMEM;
+	u32 SP_MEM_ADDR_REG;
+	u32 SP_DRAM_ADDR_REG; //for DMA
+	u32 SP_RD_LENGTH;
+	u32 SP_WRITE_LENGTH;
+	u32 SP_STATUS;
+	u32 SP_DMA_FULL_REG;
+	u32 SP_DMA_BUSY_REG;
+};
+
+CreateGlobalRegister(SI);
+CreateGlobalRegister(PI);
+CreateGlobalRegister(VI);
+CreateGlobalRegister(MI);
+CreateGlobalRegister(DP);
+CreateGlobalRegister(SP);
+
+#endif

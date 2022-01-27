@@ -1,3 +1,6 @@
+#ifndef LIBN_CONTROLLER_H
+#define LIBN_CONTROLLER_H
+
 #include <string.h>
 #include <array>
 
@@ -14,7 +17,7 @@ std::array<uint64_t, 8> SI_READ_MSG =
 	0x0000000000000001
 };
 
-std::array<char, sizeof(uint64_t)*sizeof(uint64_t)> si_data; 
+std::array<char, sizeof(u64)*sizeof(u64)> si_data; 
 
 namespace LibN64::Controller 
 {
@@ -85,3 +88,5 @@ namespace LibN64::Controller
 	};
 }
 auto *cpad_data = reinterpret_cast<LibN64::Controller::Cpad*>(PIF_RAM);
+
+#endif
