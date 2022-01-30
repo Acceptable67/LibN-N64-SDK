@@ -27,7 +27,7 @@ namespace LibN64
     {
         for(u32 yy = 0; yy < dimensions.y; yy++) {
             for(u32 xx = 0; xx < dimensions.x; xx++) {
-                Display::DrawPixel({x + xx, y + yy}, data[yy * dimensions.x + xx]);
+               Display::DrawPixel({x + xx, y + yy}, data[yy * dimensions.x + xx]);
             }
         }
     }

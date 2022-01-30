@@ -12,9 +12,8 @@
 #define MI_ADDRESS       0xA4300000
 #define SP_ADDRESS		 0xA4000000
 
-#define CreateGlobalRegister(GLOB) \
-static volatile auto* GLOB ## _REG = reinterpret_cast<GLOB ## _HANDLER*>(GLOB ## _ADDRESS) \
-
+#define CreateGlobalRegister(GLOB, VARIABLE) \
+static volatile auto* VARIABLE = reinterpret_cast<GLOB ## _HANDLER*>(GLOB ## _ADDRESS) \
 
 #define CachedAddr  (_addr) ((void *)(((unsigned long)(_addr))&~0x20000000))
 #define UncachedAddr(_addr) ((void *)(((unsigned long)(_addr)) |0x20000000))

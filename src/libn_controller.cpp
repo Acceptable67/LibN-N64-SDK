@@ -16,9 +16,33 @@ std::array<uint64_t, 8> SI_READ_MSG =
 	0x0000000000000001
 };
 
+std::array<uint64_t, 8> SI_CTRLR_STATUS =
+{
+	0xff010300ffffffff,
+	0xffffffffffffffff,
+	0xffffffffffffffff,
+	0xffffffffffffffff,
+	0xfe00000000000000,
+	0x0000000000000000,
+	0x0000000000000000,
+	0x0000000000000001
+};
+
+std::array<u64, 8> SI_WRITE_MEMPK = 
+{
+	0xff230103ffffffff,
+	0xffffffffffffffff,
+	0xffffffffffffffff,
+	0xffffffffffffffff,
+	0xfe00000000000000,
+	0x0000000000000000,
+	0x0000000000000000,
+	0x0000000000000001
+};
+
 std::array<char, sizeof(uint64_t)*sizeof(uint64_t)> si_data; 
 
-CreateGlobalRegister(SI);
+CreateGlobalRegister(SI, SI_REG);
 
 namespace LibN64::Controller 
 {
@@ -46,6 +70,17 @@ namespace LibN64::Controller
 		SI_REG->pif_addr_r64 = reinterpret_cast<std::any*>(PIF_RAM-0x4);
 		
 		_SI_Busy();
+	}
+
+	void SI_WriteControllerStatus() 
+	{
+		SI_Write(std::addressof(SI_CTRLR_STATUS));
+	}
+
+	std::array<char, sizeof(u64)*sizeof(u64)>  SI_GetData() 
+	{
+		SI_ReadController();
+		return si_data;
 	}
 
 	void SI_WriteController() 

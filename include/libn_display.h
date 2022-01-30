@@ -8,6 +8,7 @@
 #include <libn_types.h>
 #include <any>
 #include <string>
+#include <functional> 
 
 namespace LibN64
 {
@@ -155,14 +156,20 @@ namespace LibN64
                 SpecifiedType second_element;
                 
         };
+     
+        extern LibN64::Display::Resolution global_res;
+        extern std::array<u32, 2>          buffer_list;
         
 
-        auto GetBuffer(Buffer);
-        void SetActiveBuffer(const int num);
-        void checkVI_Int();
-        auto SetVI_Int(auto);
-        void SetVI_DRAM(const std::any addr);
-        void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma = GAMMA_OFF, bool dBuf = true);
+        int* GetBuffer(Buffer);
+        void SetActiveBuffer(Buffer);
+        void SetDrawingBuffer(Buffer);
+        int* GetActiveBuffer();
+        void SetVI_IntCallback(std::function<void()>);
+        void SetVI_Intterupt(u32);
+        void SwapBuffers();
+
+        void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma = GAMMA_OFF);
         void FillScreen(u32 color);
         void SetColors(const u32 foreground, const u32 background);
         void DrawRect(LibPos, const auto xd, const auto yd, const auto color);
@@ -175,6 +182,23 @@ namespace LibN64
 
         namespace RDP 
         {
+            enum Command 
+            {
+                DL_ENABLE_PRIM    = 0xEFB000FF,
+                DL_ENABLE_PRIM_2  = 0x00004000,
+                DL_ENABLE_BLEND_2 = 0x80000000,
+                DL_ENABLE_BLEND   = 0xEF0000FF,
+                DL_SET_PRIM_COL   = 0xF7000000,
+                DL_SET_BLEND_COL  = 0xF9000000,
+                DL_DRAW_RECT 	  = 0xF6000000,
+                DL_ATTACH_FB 	  = 0x3F000000,
+                DL_SET_CLIP_AREA  = 0xED000000,
+                DL_SYNC_PIPE      = 0xE7000000,
+                DL_NULL_CMD       = 0x00000000
+            };
+
+            void DebugAddr();
+            void SendDisplayList();
             void AddCommand(u32);
             void Send();
             void Sync();
@@ -188,8 +212,7 @@ namespace LibN64
             void DrawRectangle(u32, u32, u32, u32);
             void DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, auto color);
             void Close();
-            //void ClearScreen(const auto color);
-			void ClearScreen(u32 color);
+			void FillScreen(u32 color);
             void Init();
         }
     }

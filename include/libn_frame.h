@@ -14,11 +14,11 @@ namespace LibN64
         Display::Bitdepth       bd;
         Display::AntiAliasing   aa;
         Display::Gamma          g;
-        bool bDoubleBuf;
+
         bool bRunning = false;
 
     public:
-        Frame(const Display::Resolution res, const Display::Bitdepth bitdepth, const Display::AntiAliasing antialiasing, const bool DoubleBuffering = false);
+        Frame(const Display::Resolution res, const Display::Bitdepth bitdepth, const Display::AntiAliasing antialiasing);
 
         void Begin();
 

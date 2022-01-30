@@ -4,37 +4,78 @@
 #include <cstdint>
 #include <libn_font.h>
 #include <string>
+#include <functional>
 
 #pragma GCC diagnostic ignored "-Wdeprecated-enum-enum-conversion"
 
-CreateGlobalRegister(VI);
-CreateGlobalRegister(MI);
-CreateGlobalRegister(DP);
+CreateGlobalRegister(VI, VI_REG);
+CreateGlobalRegister(MI, MI_REG);
+CreateGlobalRegister(DP, DP_REG);
 
 namespace LibN64::Display 
 {
-	static Resolution global_res; 
-	static int* local_buffer = reinterpret_cast<int*>(FRAMEBUFFER_ADDR);
+
+	[[maybe_unused]] static int* local_buffer = reinterpret_cast<int*>(FRAMEBUFFER_ADDR);
 	
+	std::array<u32, 2> buffer_list = 
+	{ 
+		FRAMEBUFFER_ADDR, 
+		FRAMEBUFFER_ADDR + 0x01000000
+	};
+
+	LibN64::Display::Resolution global_res = {0,0};
 	static TextColor localColor;
 
-	#ifdef LIBN_DOUBLE_BUFFER
-		*static std::array<int*, 2> buffer_list;
-		bool dbuffering = false;
-		static int*                active_buffer;
+	static int*                active_buffer;
+	static int*				   active_draw_buffer;
 
-		auto GetBuffer(Buffer b)
-		{
-			return buffer_list[b];
+	int* GetBuffer(Buffer id)
+	{
+		return reinterpret_cast<s32*>(buffer_list[id]);
+	}
+
+	int* GetActiveBuffer()
+	{
+		return active_buffer;
+	}
+
+	void SetActiveBuffer(Buffer x)
+	{
+		active_buffer = reinterpret_cast<s32*>(buffer_list[x]);
+	}
+
+	void SetDrawingBuffer(Buffer x)
+	{
+		active_draw_buffer = reinterpret_cast<s32*>(buffer_list[x]);
+	}
+
+	void SetVI_IntCallback(std::function<void()> func) 
+	{
+		if((MI_REG->intr & MI_REG->mask) & 0x08) {
+			func();
+			VI_REG->currentvl = VI_REG->currentvl;
 		}
+	}
 
-		void SetActiveBuffer(const int num) 
-		{
-			active_buffer = buffer_list[num];
-		}
-	#endif
+	void SetVI_Intterupt(u32 line) 
+	{
+		MI_REG->mask = 0x0080;
+		VI_REG->vint = line;
+	}
 
-	void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma, [[maybe_unused]] bool dBuf) 
+	void SwapBuffers() 
+	{
+		if(GetActiveBuffer() == GetBuffer(Buffer::DISPLAY)) 
+			{
+				SetActiveBuffer(BACKUP);
+				SetDrawingBuffer(DISPLAY);
+			} else {
+				SetActiveBuffer(DISPLAY);
+				SetDrawingBuffer(BACKUP);
+			}
+	}
+
+	void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma) 
 	{
 		localColor.Foreground = LibColor::WHITE;
 		localColor.Background = LibColor::BLACK;
@@ -42,22 +83,14 @@ namespace LibN64::Display
 		res.width 			= res.width;
 		res.height 			= res.height;
 
-		#ifdef LIBN_DOUBLE_BUFFER
-			for(int i = 0; i < 2; i++) 
-			{
-				buffer_list[i] = new int[res.width * res.height];
-			}
+		active_buffer 	   = GetBuffer(Buffer::DISPLAY);
+		active_draw_buffer = GetBuffer(Buffer::BACKUP);
 
-			active_buffer = GetBuffer(Buffer::DISPLAY);
-
-			VI_REG->origin      = buffer_list[0] | 0xA0000000;
-		#else	
-			VI_REG->origin 		= FRAMEBUFFER_ADDR;
-		#endif
+		VI_REG->origin      = reinterpret_cast<u32>(active_buffer);
 
 		VI_REG->status 		= bd | aa | gamma;
 		VI_REG->width 		= res.width;
-		VI_REG->vint 		= 0x2;
+		VI_REG->vint 		= 0x200;
 		VI_REG->currentvl 	= 0x0;
 		VI_REG->vtiming 	= 0x3E52239;
 		VI_REG->vsync 		= 0x20D;
@@ -74,25 +107,10 @@ namespace LibN64::Display
 		global_res = res;
 	}
 
-	void checkVI_Int() {
-		if((MI_REG->intr & MI_REG->mask) & 0x08) {
-			VI_REG->currentvl = VI_REG->currentvl;
-		}
-	}
-
-	auto SetVI_Int(auto line) {
-		MI_REG->mask = 0x0080;
-		VI_REG->vint = line;
-	}
-
-	void SetVI_DRAM(const std::any addr) {
-		VI_REG->origin = std::any_cast<int>(addr) | 0xA0000000;
-	}
-
 	void DrawPixel(LibPos pos, const u32 color) 
 	{
-		*(local_buffer + (pos.y * global_res.width + pos.x)) = color;
-	}
+			*(GetBuffer(DISPLAY) + (pos.y * global_res.width + pos.x)) = color;
+		}
 
 	void DrawRect(LibPos pos, const auto xd, const auto yd, const auto color) 
 	{
@@ -166,23 +184,19 @@ namespace LibN64::Display
 
 	namespace RDP 
 	{
-
-		u32 commandBuffer[48];
-
-		size_t pos = 0;
-		size_t start = 0;
-		void AddCommand( u32 first)
+		std::vector<u32> cBuffer;
+		
+		void AddCommand(u32 command)
 		{	
-			if(pos >= 48) 
-				return;
+			if(cBuffer.size() >= 1024) { 
+				cBuffer.clear();
+			}
 				
-			commandBuffer[pos] = first;
-			pos++;
+			cBuffer.push_back(command);
 		}
 
 		void Send()
 		{
-			if(pos - start == 0) { return;}
 
 		    while(DP_REG->status & 0x600){};
 
@@ -190,28 +204,36 @@ namespace LibN64::Display
 
 	   		while(DP_REG->status & 0x600){}
 
-			DP_REG->cmd_start = (static_cast<u32>((u32)commandBuffer | 0xA0000000)) ;
-			DP_REG->cmd_end   = (static_cast<u32>((u32)commandBuffer | 0xA0000000) + pos) ;
-
-			if(pos > 24) {
-				start = 0;
-				pos = 0;
-			}
-			start = pos;
+			DP_REG->cmd_start = (reinterpret_cast<u32>(cBuffer.data()) 		 | 0xA0000000);
+			DP_REG->cmd_end   = (reinterpret_cast<u32>(cBuffer.data() + 285) | 0xA0000000);
+			/*I have no idea why this works with + 285. It should just queue the list then execute,
+			but it doesn't work that way. It needs a very high 'magic' number to get the screen
+			refresh perfect.*/
 		}	
+
+		void DebugAddr()
+		{
+			printf("%08X %08X", (u32)cBuffer.data(), (u32)cBuffer.data() + cBuffer.size());
+			printf("Buffer size %d", (u32)cBuffer.size());
+		}
+
+		void SendDisplayList()
+		{
+			Send();
+		}
 
 		void SetOtherModes()
 		{
 			AddCommand(0x2F102800);
 			AddCommand(0x00000000);
-			Send();
+			
 		}
 
 		void SetClipping( u32 tx, u32 ty, u32 bx, u32 by )
 		{
-			AddCommand((0xED000000 | (tx << 14) | (ty << 2)));
+			AddCommand((DL_SET_CLIP_AREA | (tx << 14) | (ty << 2)));
 			AddCommand(((bx << 14) | (by << 2)) );
-			Send();
+			
 		}
 
 
@@ -222,9 +244,9 @@ namespace LibN64::Display
 
 		void EnablePrimitive( void )
 		{
-			AddCommand(0xEFB000FF);
-			AddCommand(0x00004000);
-			Send();
+			AddCommand(DL_ENABLE_PRIM);
+			AddCommand(DL_ENABLE_PRIM_2);
+		
 		}
 
 		void Init() 
@@ -239,50 +261,45 @@ namespace LibN64::Display
 
 		void EnableBlend()
 		{
-			AddCommand(0xEF0000FF);
-			AddCommand(0x80000000);
-			Send();
+			AddCommand(DL_ENABLE_BLEND);
+			AddCommand(DL_ENABLE_BLEND_2);
+		
 		}
 
 		void SetPrimitiveColor(u32 color)
 		{
-			AddCommand(0xF7000000);
+			AddCommand(DL_SET_PRIM_COL);
 			AddCommand(color );
-			Send();
+		
 		}	
 
 		void SetBlendColor(auto color)
 		{
-			AddCommand (0xF9000000);
+			AddCommand(DL_SET_BLEND_COL);
 			AddCommand(color );
-			Send();
+		
 		}
 
 		void DrawRectangle(u32 tx, u32 ty, u32 bx, u32 by)
 		{
-			AddCommand ( (0xF6000000 | ( bx << 14 ) | ( by << 2 )));
-			AddCommand(( tx << 14 ) | ( ty << 2 ) );
-			Send();
+			AddCommand((DL_DRAW_RECT| (bx << 14) | (by << 2)));
+			AddCommand((tx << 14) | (ty << 2));
+		
 		}
 
 
 		void Attach(  )
 		{	
-			AddCommand((0x3F000000 | 0x00180000 | (global_res.width- 1)));
-			#ifdef LIBN_DOUBLE_BUFFER 
-				AddCommand( reinterpret_cast<int>(buffer_list[Buffer::DISPLAY]));
-			#else
-				AddCommand(FRAMEBUFFER_ADDR);
-			#endif
+			AddCommand((DL_ATTACH_FB | 0x00180000 | (global_res.width- 1)));
+			AddCommand((u32)active_buffer);
 			
-			Send();
 		}
 
 		void Sync( )
 		{
-			AddCommand(0xE7000000); //PIPE
-			AddCommand(0x00000000 );
-			Send();
+			AddCommand(DL_SYNC_PIPE); //PIPE
+			AddCommand(DL_NULL_CMD);
+		
 		}
 
 		void DrawRectangleSetup( u32 tx, u32 ty, u32 bx, u32 by, auto color )
@@ -296,11 +313,12 @@ namespace LibN64::Display
 			RDP::SetBlendColor(color);
 			RDP::Sync();
 			RDP::DrawRectangle(tx, ty, bx, by);
+			RDP::SendDisplayList();
 			RDP::Close();
 			
 		}
 
-		void ClearScreen(u32 color) 
+		void FillScreen(u32 color) 
 		{
 			DrawRectangleSetup(0,0, global_res.width, global_res.height, color);
 		} 

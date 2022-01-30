@@ -2,7 +2,7 @@
 #include <libn_types.h>
 #include <libn_regs.h>
 
-CreateGlobalRegister(PI);
+CreateGlobalRegister(PI, PI_REG);
 
 namespace LibN64
 {

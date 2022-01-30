@@ -2,27 +2,38 @@
 #include <libn_controller.h>
 #include <libn_frame.h>
 
+[[maybe_unused]] CreateGlobalRegister(VI, VI_REG);
+
+using namespace LibN64::Display;
+
 namespace LibN64 
 {
     static auto cpad_data = reinterpret_cast<Controller::Cpad*>(PIF_RAM);
 
-    Frame::Frame(const Display::Resolution res, const Display::Bitdepth bitdepth, const Display::AntiAliasing antialiasing, const bool DoubleBuffering) 
-    : r(res), bd(bitdepth), aa(antialiasing), bDoubleBuf(DoubleBuffering) {}
+    Frame::Frame(const Display::Resolution res, const Display::Bitdepth bitdepth, const Display::AntiAliasing antialiasing) 
+    : r(res), bd(bitdepth), aa(antialiasing) {}
 
     void Frame::Begin() 
     { 
         bRunning = true; 
-        Display::TextColor local = { Display::LibColor::YELLOW, Display::LibColor::BLACK | 0xFF};
+        Display::TextColor local = 
+        {
+             Display::LibColor::YELLOW, 
+             Display::LibColor::BLACK | 0xFF
+        };
 
-        Display::Initialize(r, bd, aa, g, bDoubleBuf);
+        Display::Initialize(r, bd, aa, g);
         Display::FillScreen(Display::LibColor::GREY_SMOOTH);
         Display::SetColors(local.Foreground, local.Background);
+		Display::SetVI_Intterupt(0x200);
+
         Controller::SI_WriteController();
 
         this->OnCreate();
 
         while(bRunning)
         {
+              
             this->FrameUpdate();
 
             Controller::SI_ReadController();
@@ -37,18 +48,13 @@ namespace LibN64
             if(cpad_data->x)     { this->KeyJoyXPressed(*reinterpret_cast<u32*>(cpad_data) & 0x0000FF00);}
             if(cpad_data->y)     { this->KeyJoyYPressed(*reinterpret_cast<u32*>(cpad_data) & 0x000000FF);}
 
-            [[maybe_unused]] auto memcpy = [](auto a, auto b, auto size) 
-            {
-                for(size_t i = 0; i<size; i++)
-                {
-                    if(a[i] != b[i]) 
-                        a[i] = b[i];
-                }
-            };
-
-            if(bDoubleBuf) {
-                // memcpy(Display::buffer_list[Display::DISPLAY], Display::buffer_list[Display::BACKUP], (Display::global_res.width * Display::global_res.height));
-            }
+         	/*clear screen on vertical retrace*/
+            SetVI_IntCallback([&]()
+            {            
+                RDP::FillScreen(GREY_SMOOTH);
+                SwapBuffers();
+               // RDP::FillScreen(GREY_SMOOTH);
+            });
         } 
     }
 
