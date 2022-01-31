@@ -1,9 +1,9 @@
 /*handle everything visual*/
-#include <libn_display.h>
-#include <libn_regs.h>
+#include <libn_display.hpp>
+#include <libn_regs.hpp>
 #include <cstdint>
-#include <libn_font.h>
-#include <libn_sprite.h>
+#include <libn_font.hpp>
+#include <libn_sprite.hpp>
 #include <string>
 #include <functional>
 

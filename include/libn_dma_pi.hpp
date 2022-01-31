@@ -9,8 +9,8 @@ namespace LibN64
 	{
 		void Wait();
 		
-		void Read(void*, int, int);
-		void Write(void*, std::any, int length);
+		template<class T> void Read(T, int, int);
+		template<class T> void Write(T, T, int length);
 	}
 }
 #endif

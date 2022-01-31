@@ -1,8 +1,8 @@
 
-#include <libn_dma_pi.h>
-#include <libn_sprite.h>
-#include <libn_display.h>
-#include <libn_types.h>
+#include <libn_dma_pi.hpp>
+#include <libn_sprite.hpp>
+#include <libn_display.hpp>
+#include <libn_types.hpp>
 #include <cstdint>
 
 namespace LibN64 

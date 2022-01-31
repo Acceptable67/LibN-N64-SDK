@@ -12,8 +12,9 @@ namespace LibN64
             void WriteEntry();
             void ReadEntry();
 
-            PakBuffer ReadAddress(u32 const);
-            void      WriteAddress(u32 const, void* data);
+            //unfortunately templates or std::any do not work here so void it is
+            bool ReadAddress(u16 const, void* output);
+            void WriteAddress(u16 const, void* data);
         }
     }
 }

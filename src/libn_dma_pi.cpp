@@ -1,6 +1,6 @@
 
-#include <libn_types.h>
-#include <libn_regs.h>
+#include <libn_types.hpp>
+#include <libn_regs.hpp>
 
 CreateGlobalRegister(PI, PI_REG);
 
@@ -14,7 +14,8 @@ namespace LibN64
 		} 
 
 		//we have to void* this, std::any or templates wont work
-		void Read(void* RAM, int CART, int length) 
+		template<class T>
+		void Read(T RAM, int CART, int length) 
 		{
 			Wait();
 			PI_REG->dram = reinterpret_cast<u32>(RAM);
@@ -23,7 +24,8 @@ namespace LibN64
 			Wait();
 		}
 
-		void Write(void* RAM, std::any CART, int length) 
+		template<class T>
+		void Write(T RAM, T CART, int length) 
 		{
 			Wait();
 			PI_REG->dram = reinterpret_cast<u32>(RAM);
@@ -35,4 +37,7 @@ namespace LibN64
 
 }
 
-
+template void LibN64::DMA::Read<u8*>(u8*, int, int);
+template void LibN64::DMA::Read<u16*>(u16*, int, int);
+template void LibN64::DMA::Read<u32*>(u32*, int, int);
+template void LibN64::DMA::Read<u64*>(u64*, int, int);

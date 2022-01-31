@@ -13,6 +13,7 @@ using s64 = long long;
 using s32 = int;
 using s16 = short int;
 using s8 = char;
+using byte = char;
 
 using u64_t = uint64_t;
 using u32_t = uint32_t;

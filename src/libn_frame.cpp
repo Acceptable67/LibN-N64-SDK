@@ -1,7 +1,7 @@
-#include <libn_display.h>
-#include <libn_controller.h>
-#include <libn_frame.h>
-#include <libn_sprite.h>
+#include <libn_display.hpp>
+#include <libn_controller.hpp>
+#include <libn_frame.hpp>
+#include <libn_sprite.hpp>
 
 [[maybe_unused]] CreateGlobalRegister(VI, VI_REG);
 
@@ -35,6 +35,8 @@ namespace LibN64
         while(bRunning)
         {
             this->FrameUpdate();
+
+            /*clear screen on vertical retrace*/
             SetVI_IntCallback([&]()
             {            
                 RDP::FillScreen(GREY_SMOOTH);
@@ -51,9 +53,6 @@ namespace LibN64
             if(cpad_data->right) { this->KeyDRightPressed(); }
             if(cpad_data->x)     { this->KeyJoyXPressed(*reinterpret_cast<u32*>(cpad_data) & 0x0000FF00);}
             if(cpad_data->y)     { this->KeyJoyYPressed(*reinterpret_cast<u32*>(cpad_data) & 0x000000FF);}
-
-         	/*clear screen on vertical retrace*/
-        
         } 
     }
 

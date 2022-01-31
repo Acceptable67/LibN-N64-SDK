@@ -16,7 +16,7 @@
 static volatile auto* VARIABLE = reinterpret_cast<GLOB ## _HANDLER*>(GLOB ## _ADDRESS) \
 
 #include <any>
-#include <libn_types.h>
+#include <libn_types.hpp>
 
 struct SI_HANDLER 
 {

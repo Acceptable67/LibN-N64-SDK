@@ -21,16 +21,16 @@
 
 #define HALT() while(1)
 
-#include <libn_types.h>
-#include <libn_font.h>
-#include <libn_regs.h>
-#include <libn_controller.h>
-#include <libn_mempak.h>
-#include <libn_dma_pi.h>
-#include <libn_frame.h>
-#include <libn_display.h>
-#include <libn_sprite.h>
-#include <libn_stdlib.h>
-#include <libn_timer.h>
+#include <libn_types.hpp>
+#include <libn_font.hpp>
+#include <libn_regs.hpp>
+#include <libn_controller.hpp>
+#include <libn_mempak.hpp>
+#include <libn_dma_pi.hpp>
+#include <libn_frame.hpp>
+#include <libn_display.hpp>
+#include <libn_sprite.hpp>
+#include <libn_stdlib.hpp>
+#include <libn_timer.hpp>
 
 #endif

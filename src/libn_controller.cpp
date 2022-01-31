@@ -1,6 +1,6 @@
-#include <libn_regs.h>
-#include <libn_controller.h>
-#include <libn_types.h>
+#include <libn_regs.hpp>
+#include <libn_controller.hpp>
+#include <libn_types.hpp>
 #include <array>
 #include <cstdint>
 /*controller + SI handling*/

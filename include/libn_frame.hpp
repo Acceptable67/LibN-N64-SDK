@@ -2,8 +2,8 @@
 #ifndef LIBN_FRAME_H
 #define LIBN_FRAME_H
 
-#include <libn_controller.h>
-#include <libn_display.h>
+#include <libn_controller.hpp>
+#include <libn_display.hpp>
 
 namespace LibN64 
 {

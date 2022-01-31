@@ -1,7 +1,7 @@
 #include <functional>
 #include <string>
-#include <libn_timer.h>
-#include <libn_types.h>
+#include <libn_timer.hpp>
+#include <libn_types.hpp>
 
 namespace LibN64
 {    
@@ -23,8 +23,14 @@ namespace LibN64
     /*Essentially a version of multithreading.
         Specified code is called every X milliseconds the user requests it to.
         Can stop, start, reset.*/
-        LibTimer::LibTimer(){}
+        LibTimer::LibTimer() 
+        { 
+            this->localType = TimerType::TIMER; 
+            this->execute_at = 0.0; 
+        }
+
         LibTimer::LibTimer(TimerType type, float tickExecution) : localType(type), execute_at(tickExecution){} 
+   
         float LibTimer::GetSecondsPassed() 
         {
             return ticks;

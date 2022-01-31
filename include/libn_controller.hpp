@@ -3,8 +3,8 @@
 
 #include <string.h>
 #include <array>
-#include <libn_regs.h>
-#include <libn_types.h>
+#include <libn_regs.hpp>
+#include <libn_types.hpp>
 
 namespace LibN64
 {

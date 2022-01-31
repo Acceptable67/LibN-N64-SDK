@@ -1,6 +1,8 @@
 #ifndef LIBN_TIMER_H
 #define LIBN_TIMER_H
 
+#include <functional>
+
 namespace LibN64
 {    
     namespace Timer 
@@ -22,7 +24,7 @@ namespace LibN64
         class LibTimer 
         {
         private:
-            TimerType localType = CONTINUOUS_CALL;
+            TimerType localType;
             bool  bCalled  = false;
             bool  bStarted = false;
 

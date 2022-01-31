@@ -1,8 +1,8 @@
 #ifndef LIBN_SPRITE_H
 #define LIBN_SPRITE_H
 
-#include <libn_types.h>
-#include <libn_display.h>
+#include <libn_types.hpp>
+#include <libn_display.hpp>
 
 namespace LibN64 
 {
