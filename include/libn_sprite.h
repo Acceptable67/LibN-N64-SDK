@@ -15,12 +15,12 @@ namespace LibN64
     public:
         LibSprite(const u32 RomOffset);
         void Load(const u32 RomOffset);
-        void Draw(u32 x, u32 y);
+        void Draw(Display::LibPos pos);
 
         u32 Width() const;
-        u32 Height();
+        u32 Height() const;
         u32* Data();
     };
-};
+}
 
 #endif

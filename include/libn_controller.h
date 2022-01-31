@@ -4,32 +4,23 @@
 #include <string.h>
 #include <array>
 #include <libn_regs.h>
+#include <libn_types.h>
 
 namespace LibN64
 {
 	namespace Controller 
 	{
-		class LibPakManager 
-		{
-		private:
-			//to do
-		};
-		
 		void _SI_Busy();
-		template<class VoidType>
-		requires std::is_pointer<VoidType>::value
-		void SI_Write(VoidType dram_address);
-		template<class VoidType>
-		requires std::is_pointer<VoidType>::value
-		void SI_Read(VoidType dram_address);
 
-		void SI_WriteController();
-		void SI_ReadController();
+		void SI_Write(void* dram_address);
+		void SI_Read(void* dram_address);
 
-		void SI_WriteControllerStatus();
-		std::array<s8, sizeof(u64)*sizeof(u64)>  SI_GetData();
+		void WriteController();
+		void ReadController();
+		void WriteControllerStatus();
+		PakBuffer SI_GetData();
 
-		enum 
+		enum JoyDirection
 		{
 			JOYUP 	= 0x00000072,
 			JOYDOWN = 0x0000008E,

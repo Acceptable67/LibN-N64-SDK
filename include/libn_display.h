@@ -2,6 +2,7 @@
 #define LIBN_DISPLAY_H
 
 /*handle everything visual*/
+
 #include <stdarg.h>
 #include <array>
 #include <malloc.h>
@@ -160,7 +161,6 @@ namespace LibN64
         extern LibN64::Display::Resolution global_res;
         extern std::array<u32, 2>          buffer_list;
         
-
         int* GetBuffer(Buffer);
         void SetActiveBuffer(Buffer);
         void SetDrawingBuffer(Buffer);
@@ -172,7 +172,7 @@ namespace LibN64
         void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma = GAMMA_OFF);
         void FillScreen(u32 color);
         void SetColors(const u32 foreground, const u32 background);
-        void DrawRect(LibPos, const auto xd, const auto yd, const auto color);
+        void DrawRect(LibPos, const u16 xd, const u16 yd, const u32 color);
         void DrawPixel(LibPos, const u32 color);
         void DrawText(LibPos, const std::string text);
         void DrawCharacter(const LibPos, const unsigned char ch);
@@ -210,7 +210,7 @@ namespace LibN64
             void SetBlendColor(const auto);
             void SetPrimitiveColor(const auto);
             void DrawRectangle(u32, u32, u32, u32);
-            void DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, auto color);
+            void DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color);
             void Close();
 			void FillScreen(u32 color);
             void Init();

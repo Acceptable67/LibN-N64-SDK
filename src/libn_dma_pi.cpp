@@ -13,20 +13,21 @@ namespace LibN64
 			while(PI_REG->status & 3); 
 		} 
 
-		void Read(std::any RAM, int CART, int length) 
+		//we have to void* this, std::any or templates wont work
+		void Read(void* RAM, int CART, int length) 
 		{
 			Wait();
-			PI_REG->dram = any_cast<int>(RAM);
+			PI_REG->dram = reinterpret_cast<u32>(RAM);
 			PI_REG->cart = CART & 0x1FFFFFFF;
 			PI_REG->wlength = length - 1;
 			Wait();
 		}
 
-		void Write(std::any RAM, std::any CART, int length) 
+		void Write(void* RAM, std::any CART, int length) 
 		{
 			Wait();
-			PI_REG->dram = any_cast<int>(RAM);
-			PI_REG->cart = any_cast<int>(CART); //& 0x1FFFFFFF;
+			PI_REG->dram = reinterpret_cast<u32>(RAM);
+			PI_REG->cart = std::any_cast<u32>(CART); //& 0x1FFFFFFF;
 			PI_REG->rlength = length - 1;
 			Wait();
 		} 

@@ -15,11 +15,6 @@
 #define CreateGlobalRegister(GLOB, VARIABLE) \
 static volatile auto* VARIABLE = reinterpret_cast<GLOB ## _HANDLER*>(GLOB ## _ADDRESS) \
 
-#define CachedAddr  (_addr) ((void *)(((unsigned long)(_addr))&~0x20000000))
-#define UncachedAddr(_addr) ((void *)(((unsigned long)(_addr)) |0x20000000))
-
-#define HALT() while(1)
-
 #include <any>
 #include <libn_types.h>
 

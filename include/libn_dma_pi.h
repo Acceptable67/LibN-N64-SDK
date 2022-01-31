@@ -8,8 +8,9 @@ namespace LibN64
 	namespace DMA 
 	{
 		void Wait();
-		void Read(std::any, int, int);
-		void Write(std::any, std::any, int length);
+		
+		void Read(void*, int, int);
+		void Write(void*, std::any, int length);
 	}
 }
 #endif

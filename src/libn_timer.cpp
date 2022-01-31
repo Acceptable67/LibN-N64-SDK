@@ -1,19 +1,20 @@
 #include <functional>
 #include <string>
 #include <libn_timer.h>
+#include <libn_types.h>
 
 namespace LibN64
 {    
     namespace Timer 
     {
-        auto MillisecondsSinceStartup()
+        extern auto MillisecondsSinceStartup()
         {
-            unsigned long long ticks = 0;
+            u64 ticks = 0;
             asm("mfc0 %0, $9\n" : "=r"(ticks));
             return ticks / ((93750000/2) / 1000); //take vr4300 clock speed and divide by two
         }
 
-        float SecondsSinceStartup() 
+        extern float SecondsSinceStartup() 
         {
             return MillisecondsSinceStartup()  * 0.001;
         }

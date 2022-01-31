@@ -1,6 +1,7 @@
 #include <libn_display.h>
 #include <libn_controller.h>
 #include <libn_frame.h>
+#include <libn_sprite.h>
 
 [[maybe_unused]] CreateGlobalRegister(VI, VI_REG);
 
@@ -25,18 +26,21 @@ namespace LibN64
         Display::Initialize(r, bd, aa, g);
         Display::FillScreen(Display::LibColor::GREY_SMOOTH);
         Display::SetColors(local.Foreground, local.Background);
-		Display::SetVI_Intterupt(0x200);
-
-        Controller::SI_WriteController();
 
         this->OnCreate();
 
+        Display::SetVI_Intterupt(0x200);
+        Controller::WriteController();
+        
         while(bRunning)
         {
-              
             this->FrameUpdate();
+            SetVI_IntCallback([&]()
+            {            
+                RDP::FillScreen(GREY_SMOOTH);
+            });
 
-            Controller::SI_ReadController();
+            Controller::ReadController();
             if(cpad_data->A)     { this->KeyAPressed(); }
             if(cpad_data->B)     { this->KeyBPressed(); }
             if(cpad_data->Z)     { this->KeyZPressed(); }
@@ -49,12 +53,7 @@ namespace LibN64
             if(cpad_data->y)     { this->KeyJoyYPressed(*reinterpret_cast<u32*>(cpad_data) & 0x000000FF);}
 
          	/*clear screen on vertical retrace*/
-            SetVI_IntCallback([&]()
-            {            
-                RDP::FillScreen(GREY_SMOOTH);
-                SwapBuffers();
-               // RDP::FillScreen(GREY_SMOOTH);
-            });
+        
         } 
     }
 

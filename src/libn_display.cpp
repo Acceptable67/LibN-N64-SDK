@@ -3,6 +3,7 @@
 #include <libn_regs.h>
 #include <cstdint>
 #include <libn_font.h>
+#include <libn_sprite.h>
 #include <string>
 #include <functional>
 
@@ -112,7 +113,7 @@ namespace LibN64::Display
 			*(GetBuffer(DISPLAY) + (pos.y * global_res.width + pos.x)) = color;
 		}
 
-	void DrawRect(LibPos pos, const auto xd, const auto yd, const auto color) 
+	void DrawRect(LibPos pos, const u16 xd, const u16 yd, const u32 color) 
 	{
 		for(u32 i = 0; i < xd; i++) 
 		{
@@ -129,7 +130,7 @@ namespace LibN64::Display
 	}
 
 	/*8x8 taken from LibDragon*/
-	void DrawCharacter(const LibPos pos, unsigned char ch) 
+	void DrawCharacter(const LibPos pos, u8 ch) 
 	{
 		u32 trans = ((localColor.Background & 0xff) == 0) ? 1 : 0; 
 		for(u32 row = 0; row < font_width; row++) {
@@ -175,6 +176,11 @@ namespace LibN64::Display
 		}
 	}
 
+	/*void DrawSprite(LibPos pos, LibSprite& spr) 
+	{
+		s8 local = spr.Data();
+	}*/
+
 
 	void SetColors(const u32 foreground, const u32 background) 
 	{
@@ -184,7 +190,7 @@ namespace LibN64::Display
 
 	namespace RDP 
 	{
-		std::vector<u32> cBuffer;
+		static std::vector<u32> cBuffer;
 		
 		void AddCommand(u32 command)
 		{	
@@ -288,23 +294,23 @@ namespace LibN64::Display
 		}
 
 
-		void Attach(  )
+		void Attach()
 		{	
 			AddCommand((DL_ATTACH_FB | 0x00180000 | (global_res.width- 1)));
 			AddCommand((u32)active_buffer);
 			
 		}
 
-		void Sync( )
+		void Sync()
 		{
 			AddCommand(DL_SYNC_PIPE); //PIPE
 			AddCommand(DL_NULL_CMD);
 		
 		}
 
-		void DrawRectangleSetup( u32 tx, u32 ty, u32 bx, u32 by, auto color )
+		void DrawRectangleSetup( u32 tx, u32 ty, u32 bx, u32 by, u32 color )
 		{
-			RDP::Init();
+			
 			RDP::Attach();
 			RDP::SetDefaultClipping();
 			RDP::Sync();
@@ -314,7 +320,7 @@ namespace LibN64::Display
 			RDP::Sync();
 			RDP::DrawRectangle(tx, ty, bx, by);
 			RDP::SendDisplayList();
-			RDP::Close();
+		
 			
 		}
 
