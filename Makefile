@@ -1,39 +1,44 @@
 N64_INST=/usr/local/bin
 TOOLS=/home/spencer/libdragon/NEW/libdragon/tools
 
-CFLAGS = -march=vr4300 -mtune=vr4300 -Wall -Wextra -Wpedantic -Werror -O4 -I/usr/local/mips64-elf/include -I/usr/local/include/ -Iinclude/
+INCS =  -I/usr/local/mips64-elf/include -Iinclude/
+WRNGS = -Wall -Wextra -Wpedantic -O4
+CFLAGS = -c -std=c++20 -march=vr4300 -mtune=vr4300 $(WRNGS) $(INCS)
+DEPS =  main.o libn_timer.o libn_dma_pi.o libn_sprite.o libn_display.o libn_controller.o libn_mempak.o libn_frame.o entry.o
 
-all: entry.o main.o file.elf file.bin file.z64
+BUILD = $(N64_INST)/mips64-elf-g++ $(CFLAGS) $< -o $@
 
-entry.o: entry.S
-	$(N64_INST)/mips64-elf-gcc -c -std=gnu99 $(CFLAGS) $< -o $@ 
+all: $(DEPS) file.elf file.bin file.z64
 
-main.o: main.cpp
-	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+entry.o: 			entry.S
+	$(BUILD)
 
-libn_timer.o: src/libn_timer.cpp
-	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+main.o: 			main.cpp
+	$(BUILD)
 
-libn_controller.o: src/libn_controller.cpp
-	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+libn_timer.o: 		src/libn_timer.cpp
+	$(BUILD)
 
-libn_mempak.o: src/libn_mempak.cpp
-	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+libn_controller.o:  src/libn_controller.cpp
+	$(BUILD)
 
-libn_frame.o: src/libn_frame.cpp
-	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+libn_mempak.o:		src/libn_mempak.cpp
+	$(BUILD)
 
-libn_display.o: src/libn_display.cpp
-	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+libn_frame.o:		src/libn_frame.cpp
+	$(BUILD)
 
-libn_sprite.o: src/libn_sprite.cpp
-	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+libn_display.o: 	src/libn_display.cpp
+	$(BUILD)
 
-libn_dma_pi.o: src/libn_dma_pi.cpp
-	$(N64_INST)/mips64-elf-g++ -c -std=c++20 $(CFLAGS) $< -o $@
+libn_sprite.o: 		src/libn_sprite.cpp
+	$(BUILD)
 
-file.elf: main.o libn_timer.o libn_dma_pi.o libn_sprite.o libn_display.o libn_controller.o libn_mempak.o libn_frame.o entry.o
-	$(N64_INST)/mips64-elf-g++ -o $@ -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -L/usr/local/lib/ -lm -lc -lgcc  -Tn64.ld *o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
+libn_dma_pi.o:		src/libn_dma_pi.cpp
+	$(BUILD)
+
+file.elf: $(DEPS)
+	$(N64_INST)/mips64-elf-g++ -o $@ -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -lm -lc -lgcc  -Tn64.ld *o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
 
 file.bin: file.elf 
 	$(N64_INST)/mips64-elf-objcopy $< $@ -O binary

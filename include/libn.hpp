@@ -16,8 +16,11 @@
 #define assertf(__e, reason)  std::source_location loc = std::source_location::current(); \
     ((__e) ? (void)0 : __assert_func_cpp(loc.file_name(), loc.line(), loc.function_name(), #__e, reason)) \
 
-#define CachedAddr  (_addr) ((void *)(((unsigned long)(_addr))&~0x20000000))
-#define UncachedAddr(_addr) ((void *)(((unsigned long)(_addr)) |0x20000000))
+#define CachedAddr(X) \
+    ((void *)(((unsigned long)(X))&~0x20000000))
+    
+#define UncachedAddr(X) \
+    ((void *)(((unsigned long)(X)) |0x20000000))
 
 #define HALT() while(1)
 

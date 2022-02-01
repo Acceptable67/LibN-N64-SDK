@@ -3,15 +3,12 @@
 
 #include <any>
 
-namespace LibN64
-{
-	namespace DMA 
-	{
-		void Wait();
-		
-		template<class T> void Read(T, int, int);
-		template<class T> void Write(T, T, int length);
-	}
-}
-#endif
+namespace LibN64 {
+namespace DMA {
+void Wait();
 
+template <class T> void Read(T, int, int);
+template <class T> void Write(T, T, int length);
+} // namespace DMA
+} // namespace LibN64
+#endif
