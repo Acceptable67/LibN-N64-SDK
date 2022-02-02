@@ -25,12 +25,12 @@ using namespace LibN64::Timer;
 namespace LibN64 {
 static bool bRunning;
 static LibPos circlePos = {40, 40};
-
+static Resolution default_res = {320,240};
 CreateControllerHandle(CPAD_DATA);
 
 void InitDisplay() {
 	// ReadROMTitle();
-	Display::Initialize({320, 240}, BD32BPP, AA_RESAMP_ONLY, GAMMA_OFF);
+	Display::Initialize(default_res, BD32BPP, AA_RESAMP_ONLY, GAMMA_OFF);
 	Display::FillScreen(GREY);
 	Display::SetColors(LibColor::GOLD, LibColor::NAVY_BLUE | 0xFF);
 

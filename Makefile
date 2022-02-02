@@ -1,10 +1,10 @@
 N64_INST=/usr/local/bin
 TOOLS=/home/spencer/libdragon/NEW/libdragon/tools
 
-INCS =  -I/usr/local/mips64-elf/include -Iinclude/
+INCS =  -I/usr/local/mips64-elf/include -Iinclude/ -I/
 WRNGS = -Wall -Wextra -Wpedantic -O4
 CFLAGS = -c -std=c++20 -march=vr4300 -mtune=vr4300 $(WRNGS) $(INCS)
-DEPS =  main.o libn_timer.o libn_dma_pi.o libn_sprite.o libn_display.o libn_controller.o libn_mempak.o libn_frame.o entry.o
+DEPS =  main.o libn_timer.o libn_stdlib.o libn_dma_pi.o libn_sprite.o libn_display.o libn_controller.o libn_mempak.o libn_frame.o entry.o
 
 BUILD = $(N64_INST)/mips64-elf-g++ $(CFLAGS) $< -o $@
 
@@ -14,6 +14,9 @@ entry.o: 			entry.S
 	$(BUILD)
 
 main.o: 			main.cpp
+	$(BUILD)
+
+libn_stdlib.o:		src/libn_stdlib.cpp 
 	$(BUILD)
 
 libn_timer.o: 		src/libn_timer.cpp
