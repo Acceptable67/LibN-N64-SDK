@@ -25,6 +25,8 @@ using s32_t     = int32_t;
 using s16_t     = int16_t;
 using s8_t      = int8_t;
 
+using AnyType = void*;
+
 using PakBuffer = std::array<u8, sizeof(u64) * sizeof(u64)>;
 
 #endif

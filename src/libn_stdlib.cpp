@@ -56,7 +56,6 @@ int kill(int pid, [[maybe_unused]] int sig) {
 		return 0;
 }
 
-/*STDIO, STDIN, AND STDERR HOOKS*/
 int write(int file, char *ptr, [[maybe_unused]] int len) {
 	char buffer[32];
 	memcpy(buffer, ptr, 32);
@@ -76,13 +75,12 @@ void ResetConsole() {
 	consoley = 10;
 }
 
-int printf(const char *format, ...) {
+int printf(const s8 *format, ...) {
 	va_list va;
 	va_start(va, format);
 
-	char buffer[100];
+	s8 buffer[100];
 	vsnprintf(buffer, sizeof(buffer), format, va);
-
 	Display::DrawText({consolex, consoley}, buffer);
 
 	auto lines		= 1;
@@ -95,7 +93,7 @@ int printf(const char *format, ...) {
 	return 0;
 }
 
-void __assert_func(const char *file, int line, const char *, const char *e) {
+void __assert_func(const char *file, int line,  [[maybe_unused]] const char * function, const char *e) {
 	printf("ASSERTION FAILED");
 	printf("File %s", file);
 	printf("Line %d", line);
@@ -112,6 +110,59 @@ void __assert_func_cpp(std::string file, u32 line,
 	printf("\"%s\" %s", exp.c_str(), reason.c_str());
 	while (1) {}
 }
+
+
+#ifdef CONSOLE_ALT
+
+std::vector<std::string> consoleTextBuffer;
+void ClearConsole() {
+	consoleTextBuffer.clear();
+}
+
+void RenderConsole() {
+	consolex   = 10;
+	consoley   = 10;
+	auto lines = 1;
+	for (auto &str : consoleTextBuffer) {
+		Display::DrawText({consolex, consoley}, str);
+		consoley += 8 * lines;
+	}
+	ClearConsole();
+}
+
+int printf(const char *format, ...) {
+	va_list va;
+	va_start(va, format);
+
+	char buffer[100];
+	vsnprintf(buffer, sizeof(buffer), format, va);
+	consoleTextBuffer.push_back(std::string(buffer));
+	va_end(va);
+	return 0;
+}
+
+void __assert_func(const char *file, int line, const char *, const char *e) {
+	ClearConsole();
+	printf("ASSERTION FAILED");
+	printf("File %s", file);
+	printf("Line %d", line);
+	printf("%s", e);
+	RenderConsole();
+	while (1) {}
+}
+
+void __assert_func_cpp(std::string file, u32 line,
+    [[maybe_unused]] std::string function, std::string exp,
+    std::string reason) {
+	ClearConsole();
+	printf("ASSERTION FAILED!\n\n");
+	printf("File: %s\n\n", file.c_str());
+	printf("Line: %u\n\n", line);
+	printf("\"%s\" %s", exp.c_str(), reason.c_str());
+	RenderConsole();
+	while (1) {}
+}
+#endif
 
 int __strlen(const char *str) {
 	if (!str) { return 0; }
@@ -138,11 +189,11 @@ void __memcpy(char *a, char *b, size_t size) {
 	for (size_t i = 0; i < size; i++) { a[i] = b[i]; }
 }
 
-[[maybe_unused]] void __memset(void *arr, char value, size_t size) {
+void __memset(void *arr, char value, size_t size) {
 	for (size_t i = 0; i < size; i++) { *((char *)arr + i) = value; }
 }
 
-[[maybe_unused]] char *__strdup(const char *in) {
+char *__strdup(const char *in) {
 	if (!in) { return 0; }
 
 	char *ret = (char *)__malloc(__strlen(in) + 1);
@@ -151,7 +202,7 @@ void __memcpy(char *a, char *b, size_t size) {
 	return ret;
 }
 
-[[maybe_unused]] int __strncmp(const char *a, const char *b, int len) {
+int __strncmp(const char *a, const char *b, int len) {
 	if (!a || !b) { return 0; }
 
 	int cur = 0;
@@ -165,17 +216,17 @@ void __memcpy(char *a, char *b, size_t size) {
 	return 0;
 }
 
-[[maybe_unused]] int __strcmp(const char *const a, const char *const b) {
+int __strcmp(const char *const a, const char *const b) {
 	return __strncmp(a, b, -1);
 }
 
-[[maybe_unused]] char __toupper(char a) {
+char __toupper(char a) {
 	if (a >= 0x61 && a <= 0x7A) return a - 0x20;
 	else
 		return 0x00;
 }
 
-[[maybe_unused]] char __tolower(char a) {
+char __tolower(char a) {
 	if (a >= 0x41 && a <= 0x5A) return a + 0x20;
 	else
 		return 0x00;

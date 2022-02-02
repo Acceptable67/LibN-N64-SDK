@@ -12,7 +12,15 @@ void Wait() {
 }
 
 // we have to void* this, std::any or templates wont work
-void Read(void *RAM, int CART, int length) {
+void Read(AnyType RAM, AnyType CART, u32 length) {
+	Wait();
+	PI_REG->dram	= reinterpret_cast<u32>(RAM);
+	PI_REG->cart	= reinterpret_cast<u32>(CART) & 0x1FFFFFFF;
+	PI_REG->wlength = length - 1;
+	Wait();
+}
+
+void Read(AnyType RAM, u32 CART, u32 length) {
 	Wait();
 	PI_REG->dram	= reinterpret_cast<u32>(RAM);
 	PI_REG->cart	= CART & 0x1FFFFFFF;
@@ -20,7 +28,7 @@ void Read(void *RAM, int CART, int length) {
 	Wait();
 }
 
-void Write(void *RAM, void *CART, int length) {
+void Write(AnyType RAM, AnyType CART, u32 length) {
 	Wait();
 	PI_REG->dram	= reinterpret_cast<u32>(RAM);
 	PI_REG->cart	= reinterpret_cast<u32>(CART); //& 0x1FFFFFFF;

@@ -7,7 +7,7 @@
 #include <libn_types.hpp>
 
 #define CreateControllerHandle(X)                                              \
-    static auto X = reinterpret_cast<Controller::Cpad *>(PIF_RAM)
+    static const auto X = reinterpret_cast<Controller::Cpad *>(PIF_RAM)
 
 namespace LibN64 {
 namespace Controller {

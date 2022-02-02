@@ -27,7 +27,7 @@ class LibTimer {
 
   public:
     LibTimer();
-    LibTimer(TimerType type, float tickExecution = 0.0);
+    LibTimer(TimerType type, float tickExecution = 0.0f);
     float GetSecondsPassed();
     float GetMinutesPassed();
     float GetMsPassed();

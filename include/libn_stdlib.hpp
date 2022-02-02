@@ -9,20 +9,21 @@
 
 using namespace LibN64;
 
- int __strlen(const char *);
- void *__malloc(size_t size);
- void __memcpy(char *, char *b, size_t len);
- void __memset(void *, char value, size_t size);
- char *__strdup(const char *);
- int __strncmp(const char *, const char *, int);
- int __strcmp(const char *a, const char *);
- char __toupper(char a);
- char __tolower(char a);
+int __strlen(const char *src);
+void *__malloc(size_t size);
+void __memcpy(char *dest, char *src, size_t len);
+void __memset(void *dest, char value, size_t size);
+char *__strdup(const char *);
+int __strncmp(const char *a, const char *b, int amt);
+int __strcmp(const char *a, const char *b);
+char __toupper(char);
+char __tolower(char);
 
 extern "C" {
 void *sbrk(int incr);
-int printf(const char *, ...);
-void ResetConsole();
+int printf(const s8 *, ...);
+void RenderConsole();
+void ClearConsole();
 void _exit(int);
 int close([[maybe_unused]] int fildes);
 int fstat([[maybe_unused]] int fildes, [[maybe_unused]] struct stat *st);

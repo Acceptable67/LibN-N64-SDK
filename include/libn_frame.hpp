@@ -17,7 +17,7 @@ class Frame {
     bool bClearScreen = false;
 
   public:
-    Frame(const Display::Resolution res, const Display::Bitdepth bitdepth,
+    constexpr Frame(const Display::Resolution res, const Display::Bitdepth bitdepth,
         const Display::AntiAliasing antialiasing);
 
     void Begin();

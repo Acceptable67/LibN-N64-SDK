@@ -11,6 +11,7 @@
 #pragma GCC diagnostic ignored "-Wdeprecated-enum-enum-conversion"
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 
+#define EXTERN extern "C"
 #define NUMBER_BUFFERS	2
 
 #define assertf(__e, reason)  std::source_location loc = std::source_location::current(); \
@@ -35,5 +36,7 @@
 #include <libn_sprite.hpp>
 #include <libn_stdlib.hpp>
 #include <libn_timer.hpp>
+
+EXTERN int begin();
 
 #endif
