@@ -2,8 +2,8 @@
 #ifndef LIBN_FRAME_H
 #define LIBN_FRAME_H
 
-#include <libn_controller.hpp>
-#include <libn_display.hpp>
+#include <libn/controller.hpp>
+#include <libn/vi_display.hpp>
 
 namespace LibN64 {
 class Frame {

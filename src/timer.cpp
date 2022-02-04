@@ -1,7 +1,7 @@
 #include <functional>
 #include <string>
-#include <libn_timer.hpp>
-#include <libn_types.hpp>
+#include <libn/timer.hpp>
+#include <libn/types.hpp>
 
 namespace LibN64 {
 namespace Timer {

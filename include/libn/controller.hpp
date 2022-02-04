@@ -3,8 +3,8 @@
 
 #include <string.h>
 #include <array>
-#include <libn_regs.hpp>
-#include <libn_types.hpp>
+#include <libn/regs.hpp>
+#include <libn/types.hpp>
 
 #define CreateControllerHandle(X)                                              \
     static const auto X = reinterpret_cast<Controller::Cpad *>(PIF_RAM)
@@ -13,12 +13,12 @@ namespace LibN64 {
 namespace Controller {
 void _SI_Busy();
 
-void SI_Write(void *dram_address);
-void SI_Read(void *dram_address);
+void SI_Write(AnyType dram_address);
+void SI_Read(AnyType dram_address);
 
-void WriteController();
-void ReadController();
-void WriteControllerStatus();
+void Write();
+void Read();
+void WriteStatus();
 PakBuffer SI_GetData();
 
 enum JoyDirection {

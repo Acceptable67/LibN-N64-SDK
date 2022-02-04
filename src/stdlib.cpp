@@ -1,15 +1,15 @@
-#include <libn_stdlib.hpp>
-#include <libn_types.hpp>
-#include <libn_display.hpp>
-#include <stdarg.h>
-#include <malloc.h>
-#include <sys/types.h>
-#include <limits.h>
+#include <cstring>
 #include <dir.h>
 #include <errno.h>
+#include <libn/stdlib.hpp>
+#include <libn/types.hpp>
+#include <libn/vi_display.hpp>
+#include <limits.h>
+#include <malloc.h>
 #include <source_location>
-#include <cstring>
+#include <stdarg.h>
 #include <string>
+#include <sys/types.h>
 
 using namespace LibN64;
 u32 consolex = 10, consoley = 10;
@@ -17,16 +17,13 @@ u32 consolex = 10, consoley = 10;
 extern char end __attribute__((section(".data")));
 int errno __attribute__((weak));
 
-int lseek([[maybe_unused]] int file, [[maybe_unused]] int ptr,
-    [[maybe_unused]] int dir) {
+int lseek([[maybe_unused]] int file, [[maybe_unused]] int ptr, [[maybe_unused]] int dir) {
 	return 0;
 }
-int open([[maybe_unused]] char *file, [[maybe_unused]] int flags,
-    [[maybe_unused]] int mode) {
+int open([[maybe_unused]] char *file, [[maybe_unused]] int flags, [[maybe_unused]] int mode) {
 	return 0;
 }
-int read([[maybe_unused]] int file, [[maybe_unused]] char *ptr,
-    [[maybe_unused]] int len) {
+int read([[maybe_unused]] int file, [[maybe_unused]] char *ptr, [[maybe_unused]] int len) {
 	return 0;
 }
 
@@ -56,8 +53,27 @@ int kill(int pid, [[maybe_unused]] int sig) {
 		return 0;
 }
 
+int gettimeofday ( struct timeval *tp ,  struct timezone *tz )
+{
+
+}
+
+clock_t times(struct tms *buf)
+{
+
+}
+
+int link(char *existing, char *neww)
+{
+
+}
+
+int unlink(const char *path){
+
+}
+
 int write(int file, char *ptr, [[maybe_unused]] int len) {
-	char buffer[32];
+	s8 buffer[32];
 	memcpy(buffer, ptr, 32);
 	buffer[31]	 = '\0';
 	std::string copy = buffer;
@@ -75,25 +91,36 @@ void ResetConsole() {
 	consoley = 10;
 }
 
-int printf(const s8 *format, ...) {
-	va_list va;
-	va_start(va, format);
-
-	s8 buffer[100];
-	vsnprintf(buffer, sizeof(buffer), format, va);
-	Display::DrawText({consolex, consoley}, buffer);
-
+void _prnt_advance(const s8 * str)
+{
 	auto lines		= 1;
-	std::string localformat = format;
+	std::string_view localformat = str;
 	for (auto &n : localformat) {
 		if (n == '\n') { lines++; }
 	}
 	consoley += 8 * lines;
-	va_end(va);
-	return 0;
 }
 
-void __assert_func(const char *file, int line,  [[maybe_unused]] const char * function, const char *e) {
+int printf(const s8 *format, ...) {
+	va_list va;
+	va_start(va, format);
+	s8 buffer[100];
+	vsnprintf(buffer, sizeof(buffer), format, va);
+	Display::DrawText({consolex, consoley}, buffer);
+	va_end(va);
+
+	_prnt_advance(format);
+	return 1;
+}
+
+/*This is the print for fmt:: library*/
+int stdvprint(const s8 *ptr) {
+	Display::DrawText({consolex, consoley}, ptr);
+	_prnt_advance(ptr);
+	return 1;
+}
+
+void __assert_func(const char *file, int line, [[maybe_unused]] const char *function, const char *e) {
 	printf("ASSERTION FAILED");
 	printf("File %s", file);
 	printf("Line %d", line);
@@ -101,16 +128,14 @@ void __assert_func(const char *file, int line,  [[maybe_unused]] const char * fu
 	while (1) {}
 }
 
-void __assert_func_cpp(std::string file, u32 line,
-    [[maybe_unused]] std::string function, std::string exp,
-    std::string reason) {
+void __assert_func_cpp(std::string file, u32 line, [[maybe_unused]] std::string function, std::string exp,
+		       std::string reason) {
 	printf("ASSERTION FAILED!\n\n");
 	printf("File: %s\n\n", file.c_str());
 	printf("Line: %u\n\n", line);
 	printf("\"%s\" %s", exp.c_str(), reason.c_str());
 	while (1) {}
 }
-
 
 #ifdef CONSOLE_ALT
 
@@ -151,9 +176,8 @@ void __assert_func(const char *file, int line, const char *, const char *e) {
 	while (1) {}
 }
 
-void __assert_func_cpp(std::string file, u32 line,
-    [[maybe_unused]] std::string function, std::string exp,
-    std::string reason) {
+void __assert_func_cpp(std::string file, u32 line, [[maybe_unused]] std::string function, std::string exp,
+		       std::string reason) {
 	ClearConsole();
 	printf("ASSERTION FAILED!\n\n");
 	printf("File: %s\n\n", file.c_str());
@@ -240,8 +264,7 @@ extern "C" void *sbrk(int incr) {
 
 	if (heap_end == 0) {
 		heap_end = &end;
-		heap_top = (char *)((void *)0x80000000) + (*(int *)0xA0000318) -
-			   0x10000;
+		heap_top = (char *)((void *)0x80000000) + (*(int *)0xA0000318) - 0x10000;
 	}
 
 	prev_heap_end = heap_end;

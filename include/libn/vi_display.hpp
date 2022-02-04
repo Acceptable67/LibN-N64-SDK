@@ -6,10 +6,12 @@
 #include <stdarg.h>
 #include <array>
 #include <malloc.h>
-#include <libn_types.hpp>
+#include <libn/types.hpp>
+#include <libn/sprite.hpp>
 #include <any>
 #include <string>
 #include <functional>
+#include <string_view>
 
 #define NUMBER_BUFFERS 2
 
@@ -25,7 +27,10 @@ struct TextColor {
 	u32 Background;
 };
 
-enum Bitdepth { BD16BPP = 0x2, BD32BPP = 0x3 };
+enum Bitdepth { 
+	BD16BPP = 0x2, 
+	BD32BPP = 0x3 
+};
 
 enum Gamma {
 	GAMMA_OFF,
@@ -48,7 +53,7 @@ inline constexpr uint32_t MakeColor(u32 r, u32 g, u32 b, u32 a) {
 enum Buffer { DISPLAY = 0, BACKUP, EXTRA };
 
 enum LibColor {
-	RED	      = MakeColor(0xFF, 0x00, 0x00, 0xFF),
+	RED	      	  = MakeColor(0xFF, 0x00, 0x00, 0xFF),
 	GREEN	      = MakeColor(0x00, 0xFF, 0x00, 0xFF),
 	WHITE	      = MakeColor(0xFF, 0xFF, 0xFF, 0xFF),
 	BLACK	      = MakeColor(0x00, 0x00, 0x00, 0x00),
@@ -126,32 +131,32 @@ requires std::integral<SpecifiedType> || std::floating_point<SpecifiedType>
 struct Lib2DVec {
       public:
 	SpecifiedType first_element;
-	SpecifiedType second_element;
+	SpecifiedType second_element; 
 };
 
 extern LibN64::Display::Resolution global_res;
 extern std::array<u32, NUMBER_BUFFERS> buffer_list;
 
-int *GetBuffer(Buffer);
-void SetActiveBuffer(Buffer);
-void SetDrawingBuffer(Buffer);
-int *GetActiveBuffer();
-void SetVI_IntCallback(std::function<void()>);
-void SetVI_Intterupt(u32);
+s32 *GetBuffer(Buffer frameBuffer);
+void SetActiveBuffer(Buffer frameBuffer);
+void SetDrawingBuffer(Buffer frameBuffer);
+s32 *GetActiveBuffer();
+void SetVI_IntCallback(std::function<void()> callbackFunction);
+void SetVI_Intterupt(u32 vline);
 void SwapBuffers();
+void Initialize(Resolution res, Bitdepth bd, AntiAliasing aa,
+		Gamma gamma = GAMMA_OFF);
 
-void Initialize(
-    Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma = GAMMA_OFF);
 void FillScreen(u32 color);
 void SetColors(const u32 foreground, const u32 background);
-void DrawRect(LibPos, const u16 xd, const u16 yd, const u32 color);
-void DrawLine(LibPos, LibPos, const u32);	 
-void DrawTri(LibPos, LibPos, LibPos, const u32); 
-void DrawCircle(LibPos, u32 = 1, const u32 = WHITE, bool = true, float = 0.1);
-void DrawPixel(LibPos, const u32 color);
-void DrawText(LibPos, const std::string text);
-void DrawCharacter(const LibPos, const unsigned char ch);
-void DrawTextFormat(const LibPos, const std::string format, ...);
+void DrawRect(LibPos boxPosition, const u16 xd, const u16 yd, const u32 color, bool filled = true);
+void DrawLine(LibPos point1, LibPos point2, const u32 color);
+void DrawTri(LibPos point1, LibPos point2, LibPos point3, const u32 color);
+void DrawCircle(LibPos circlePosition, u32 scale = 1, const u32 color = WHITE, bool filled = true, float stepSize = 0.1);
+void DrawPixel(LibPos pixelPosition, const u32 color);
+void DrawText(LibPos textPosition, const std::string_view text);
+void DrawCharacter(const LibPos textPosition, const unsigned char ch);
+void DrawTextFormat(const LibPos textPosition, const std::string format, ...);
 
 namespace RDP {
 enum Command {
@@ -180,11 +185,12 @@ void SetDefaultClipping();
 void SetClipping(u32, u32, u32, u32);
 void SetBlendColor(const auto);
 void SetPrimitiveColor(const auto);
-void DrawRectangle(u32, u32, u32, u32);
+void DrawRectangle(u32 point1, u32 point2, u32 width, u32 heiht);
 void DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color);
 void Close();
 void FillScreen(u32 color);
 void Init();
+// void LoadTexture(LibSprite, u32);
 } // namespace RDP
 } // namespace Display
 }; // namespace LibN64

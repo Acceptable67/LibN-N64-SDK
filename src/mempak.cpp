@@ -1,8 +1,8 @@
-#include <libn_controller.hpp>
-#include <libn_types.hpp>
-#include <libn_regs.hpp>
-#include <libn_timer.hpp>
-#include <libn_display.hpp>
+#include <libn/controller.hpp>
+#include <libn/types.hpp>
+#include <libn/regs.hpp>
+#include <libn/timer.hpp>
+#include <libn/vi_display.hpp>
 
 PakBuffer SI_READ_MEMPK = {0xFF, 0x03, 0x21, 0x02, 0x00, 0x00, 0x00, 0x00, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
@@ -61,8 +61,8 @@ namespace LibN64 {
 namespace Controller {
 namespace MemPak {
 void __reset_ctrl() {
-    WriteController();
-    ReadController();
+    Controller::Write();
+    Controller::Read();
 }
 
 void WriteAddress(const u16 address, void *data) {
@@ -96,7 +96,7 @@ bool ReadAddress(const u16 address, void *output) {
 }
 
 bool isInserted() {
-    WriteControllerStatus();
+    Controller::WriteStatus();
 
     if (SI_GetData()[6] == 0x1) {
         __reset_ctrl();

@@ -4,8 +4,8 @@
 
 #include <cstring>
 #include <string>
-#include <libn_types.hpp>
-#include <libn_display.hpp>
+#include <libn/types.hpp>
+#include <libn/vi_display.hpp>
 
 using namespace LibN64;
 
@@ -33,6 +33,7 @@ int kill(int pid, [[maybe_unused]] int sig);
 int write(int file, char *ptr, [[maybe_unused]] int len);
 void ResetConsole();
 int printf(const char *format, ...);
+int stdvprint(const s8* ptr);
 void __assert_func(const char *file, int line, const char *, const char *e);
 void __assert_func_cpp(std::string file, u32 line,
     [[maybe_unused]] std::string function, std::string exp, std::string reason);
@@ -48,13 +49,14 @@ int readlink(const char *path, char *buf, size_t bufsize);
 int stat(const char *file, struct stat *st);
 int symlink(const char *path1, const char *path2);
 clock_t times(struct tms *buf);
-int unlink(char *name);
+int unlink(const char *name);
 int wait(int *status);
 int chown(const char *path, uid_t owner, gid_t group);
 int execve(char *name, char **argv, char **env);
 void exit(int rc);
 int fork(void);
-int gettimeofday(struct timeval *ptimeval, void *ptimezone);
+//int gettimeofday(struct timeval *ptimeval, void *ptimezone);
+int gettimeofday ( struct timeval *tp ,  struct timezone *tz );
 }
 
 #endif

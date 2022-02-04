@@ -10,12 +10,12 @@ _start:
 	li v0, 8
 	sw v0,(0xbfc007fc)			
 	
-	jal main
+	jal mainn
 	
 
 .section .text
-	main:
-	.global main
+	mainn:
+	.global mainn
   	j begin
 	  
 .section .code

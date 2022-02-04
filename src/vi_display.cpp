@@ -1,12 +1,12 @@
 /*handle everything visual*/
-#include <libn_display.hpp>
-#include <libn_regs.hpp>
-#include <cstdint>
-#include <libn_font.hpp>
-#include <libn_sprite.hpp>
-#include <string>
 #include <cmath>
+#include <cstdint>
 #include <functional>
+#include <libn/font.hpp>
+#include <libn/regs.hpp>
+#include <libn/sprite.hpp>
+#include <libn/vi_display.hpp>
+#include <string>
 #include <type_traits>
 #include <utility>
 
@@ -16,20 +16,18 @@ CreateGlobalRegister(DP, DP_REG);
 
 namespace LibN64::Display {
 
-std::array<u32, 2> buffer_list = {
-    FRAMEBUFFER_ADDR, FRAMEBUFFER_ADDR + 0x01000000};
+std::array<u32, 2> buffer_list	       = {FRAMEBUFFER_ADDR, FRAMEBUFFER_ADDR + 0x01000000};
 
 LibN64::Display::Resolution global_res = {0, 0};
 static TextColor localColor;
-
 static int *active_buffer;
 static int *active_draw_buffer;
 
-int *GetBuffer(Buffer id) {
+s32 *GetBuffer(Buffer id) {
 	return reinterpret_cast<s32 *>(buffer_list[id]);
 }
 
-int *GetActiveBuffer() {
+s32 *GetActiveBuffer() {
 	return active_buffer;
 }
 
@@ -99,12 +97,21 @@ void DrawPixel(LibPos pos, const u32 color) {
 	*(GetBuffer(DISPLAY) + (pos.y * global_res.width + pos.x)) = color;
 }
 
-void DrawRect(LibPos pos, const u16 xd, const u16 yd, const u32 color) {
-	for (u32 i = 0; i < xd; i++) {
-		for (u32 d = 0; d < yd; d++) {
-			DrawPixel({pos.x + i, pos.y + d}, color);
+void DrawRect(LibPos pos, const u16 xd, const u16 yd, const u32 color, bool bFilled) {
+	if(bFilled) 
+	{
+		for (u32 i = 0; i < xd; i++) {
+			for (u32 d = 0; d < yd; d++) {
+				DrawPixel({pos.x + i, pos.y + d}, color);
+			}
 		}
+	} else {
+		DrawLine(pos, {pos.x + xd, pos.y}, color); 
+		DrawLine({pos.x + xd, pos.y}, {pos.x+xd, pos.y + yd}, color);
+		DrawLine({pos.x+xd, pos.y+yd}, {pos.x, pos.y + yd}, color); 
+		DrawLine({pos.x, pos.y + yd}, pos, color);
 	}
+	
 }
 
 void DrawCircle(LibPos pos, u32 scale, const u32 color, bool isFilled, float cStepSize) {
@@ -139,14 +146,10 @@ void DrawCharacter(const LibPos pos, u8 ch) {
 		unsigned char c = __font_data[(ch * font_width) + row];
 		for (u32 col = 0; col < font_height; col++) {
 			if (trans) {
-				if (c & 0x80) {
-					DrawPixel({pos.x + col, pos.y + row},
-						  localColor.Foreground);
-				}
+				if (c & 0x80) { DrawPixel({pos.x + col, pos.y + row}, localColor.Foreground); }
 			} else {
 				DrawPixel({pos.x + col, pos.y + row},
-					  (c & 0x80) ? localColor.Foreground
-						     : localColor.Background);
+					  (c & 0x80) ? localColor.Foreground : localColor.Background);
 			}
 
 			c <<= 1;
@@ -154,7 +157,7 @@ void DrawCharacter(const LibPos pos, u8 ch) {
 	}
 }
 
-void DrawText(LibPos pos, const std::string text) {
+void DrawText(LibPos pos, const std::string_view text) {
 	LibPos toffset = {0, 0};
 	for (auto &c : text) {
 		if ((pos.x + toffset.x) >= global_res.width || c == '\n') {
@@ -163,8 +166,7 @@ void DrawText(LibPos pos, const std::string text) {
 		} else if (c == '\t' || c == '\r') {
 			pos.x += font_width * 4;
 		} else {
-			DrawCharacter(
-			    {pos.x + toffset.x, pos.y + toffset.y}, c);
+			DrawCharacter({pos.x + toffset.x, pos.y + toffset.y}, c);
 			toffset.x += font_width;
 		}
 	}
@@ -250,18 +252,15 @@ void Send() {
 
 	while (DP_REG->status & 0x600) {}
 
-	DP_REG->cmd_start =
-	    (reinterpret_cast<u32>(cBuffer.data()) | 0xA0000000);
-	DP_REG->cmd_end =
-	    (reinterpret_cast<u32>(cBuffer.data() + 285) | 0xA0000000);
+	DP_REG->cmd_start = (reinterpret_cast<u32>(cBuffer.data()) | 0xA0000000);
+	DP_REG->cmd_end	  = (reinterpret_cast<u32>(cBuffer.data() + 285) | 0xA0000000);
 	/*I have no idea why this works with + 285. It should just queue the
 	list then execute, but it doesn't work that way. It needs a very high
 	'magic' number to get the screen refresh perfect.*/
 }
 
 void DebugAddr() {
-	printf("%08X %08X", (u32)cBuffer.data(),
-	       (u32)cBuffer.data() + cBuffer.size());
+	printf("%08X %08X", (u32)cBuffer.data(), (u32)cBuffer.data() + cBuffer.size());
 	printf("Buffer size %d", (u32)cBuffer.size());
 }
 
@@ -287,6 +286,48 @@ void EnablePrimitive(void) {
 	AddCommand(DL_ENABLE_PRIM);
 	AddCommand(DL_ENABLE_PRIM_2);
 }
+
+/*void LoadTexture(LibSprite *spr, u32 tslot) {
+	auto RoundToPower = [](u32 number) {
+		if (number <= 4) { return 4; }
+		if (number <= 8) { return 8; }
+		if (number <= 16) { return 16; }
+		if (number <= 32) { return 32; }
+		if (number <= 64) { return 64; }
+		if (number <= 128) { return 128; }
+		return 256;
+	};
+
+	auto Log2 = [](u32 number) {
+		switch (number) {
+			case 4: return 2;
+			case 8: return 3;
+			case 16: return 4;
+			case 32: return 5;
+			case 64: return 6;
+			case 128: return 7;
+			default: return 8;
+		}
+	};
+
+	AddCommand(0xFD000000 | 0x180000 | (spr->Width() - 1));
+	AddCommand((u32)(spr->Data()));
+
+    auto tw = (spr->Width() - 1) - 0 + 1;
+    auto th = (spr->Height() - 1) - 0 + 1;
+
+	auto _rw   = RoundToPower(tw);
+	auto _rh   = RoundToPower(th);
+	auto wbits = Log2(_rw);
+	auto hbits = Log2(_rh);
+
+	AddCommand(0xF5000000 | 0x180000 |
+		(((((_rw / 8) + ((_rw % 8) ? 1 : 0)) * 3) & 0x1FF) << 9) |
+		((tslot / 8) & 0x1FF));
+	AddCommand(((tslot & 0x7) << 24) | 0 | (hbits << 14) | (wbits << 4));
+	Send();
+}
+*/
 
 void Init() {
 	MI_REG->mask = 0x0800;
@@ -344,4 +385,5 @@ void FillScreen(u32 color) {
 }
 
 } // namespace RDP
-}; // namespace LibN64::Display
+} // namespace LibN64::Display
+  // namespace LibN64::Display

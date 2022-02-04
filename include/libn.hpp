@@ -1,11 +1,26 @@
 #ifndef LIBN_H
 #define LIBN_H
 
-#include <c++/11.2.0/cstdlib>
 #include <c++/11.2.0/cstdio>
 #include <c++/11.2.0/cstdint>
 #include <c++/11.2.0/cstdbool>
 #include <c++/11.2.0/cassert>
+#include <stdlib.h>
+#include <string>
+#include <bitset>
+#include <math.h>
+#include <functional>
+#include <iostream>
+#include <ranges>
+#include <vector>
+#include <cstring>
+#include <map>
+#include <utility>
+#include <source_location>
+#include <stack>
+#include <list>
+#include <memory_resource>
+#include <memory>
 #include <any>
 
 #pragma GCC diagnostic ignored "-Wdeprecated-enum-enum-conversion"
@@ -25,17 +40,17 @@
 
 #define HALT() while(1)
 
-#include <libn_types.hpp>
-#include <libn_font.hpp>
-#include <libn_regs.hpp>
-#include <libn_controller.hpp>
-#include <libn_mempak.hpp>
-#include <libn_dma_pi.hpp>
-#include <libn_frame.hpp>
-#include <libn_display.hpp>
-#include <libn_sprite.hpp>
-#include <libn_stdlib.hpp>
-#include <libn_timer.hpp>
+#include <libn/types.hpp>
+#include <libn/font.hpp>
+#include <libn/regs.hpp>
+#include <libn/controller.hpp>
+#include <libn/mempak.hpp>
+#include <libn/pi_dma.hpp>
+#include <libn/frame.hpp>
+#include <libn/vi_display.hpp>
+#include <libn/sprite.hpp>
+#include <libn/stdlib.hpp>
+#include <libn/timer.hpp>
 
 EXTERN int begin();
 

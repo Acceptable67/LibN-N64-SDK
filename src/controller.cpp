@@ -1,6 +1,6 @@
-#include <libn_regs.hpp>
-#include <libn_controller.hpp>
-#include <libn_types.hpp>
+#include <libn/regs.hpp>
+#include <libn/controller.hpp>
+#include <libn/types.hpp>
 #include <array>
 #include <cstdint>
 /*controller + SI handling*/
@@ -43,20 +43,20 @@ void SI_Read(void *dram_address) {
     _SI_Busy();
 }
 
-void WriteControllerStatus() {
+void WriteStatus() {
     SI_Write(std::addressof(SI_CTRLR_STATUS));
 }
 
 PakBuffer SI_GetData() {
-    ReadController();
+    Read();
     return si_data;
 }
 
-void WriteController() {
+void Write() {
     SI_Write(std::addressof(SI_READ_MSG));
 }
 
-void ReadController() {
+void Read() {
     SI_Read(std::addressof(si_data));
 }
 } // namespace Controller

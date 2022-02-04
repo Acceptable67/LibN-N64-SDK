@@ -1,6 +1,6 @@
 
-#include <libn_types.hpp>
-#include <libn_regs.hpp>
+#include <libn/types.hpp>
+#include <libn/regs.hpp>
 
 CreateGlobalRegister(PI, PI_REG);
 

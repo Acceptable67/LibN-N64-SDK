@@ -1,7 +1,7 @@
-#include <libn_display.hpp>
-#include <libn_controller.hpp>
-#include <libn_frame.hpp>
-#include <libn_sprite.hpp>
+#include <libn/vi_display.hpp>
+#include <libn/controller.hpp>
+#include <libn/frame.hpp>
+#include <libn/sprite.hpp>
 
 using namespace LibN64::Display;
 
@@ -25,7 +25,7 @@ void Frame::Begin() {
 	this->OnCreate();
 
 	Display::SetVI_Intterupt(0x200);
-	Controller::WriteController();
+	Controller::Write();
 
 	while (bRunning) {
 		this->FrameUpdate();
@@ -35,7 +35,7 @@ void Frame::Begin() {
 			if (bClearScreen) RDP::FillScreen(GREY_SMOOTH);
 		});
 
-		Controller::ReadController();
+		Controller::Read();
 		if (cpad_data->A) { this->KeyAPressed(); }
 		if (cpad_data->B) { this->KeyBPressed(); }
 		if (cpad_data->Z) { this->KeyZPressed(); }

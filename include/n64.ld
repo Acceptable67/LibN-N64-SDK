@@ -33,7 +33,7 @@ __libdragon_text_start  = __kseg0_start + 0x400;
 
 MEMORY
 {
-    mem : ORIGIN = __kseg0_start, LENGTH = 4M
+    mem : ORIGIN = __kseg0_start, LENGTH = 8M
 }
 
 SECTIONS {
