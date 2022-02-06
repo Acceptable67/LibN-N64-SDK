@@ -21,11 +21,11 @@ void Read();
 void WriteStatus();
 PakBuffer SI_GetData();
 
-enum JoyDirection {
-    JOYUP    = 0x00000072,
-    JOYDOWN  = 0x0000008E,
-    JOYRIGHT = 0x00007200,
-    JOYLEFT  = 0x00008E00
+enum JoyStick {
+    JoyUp    = 0x00000072,
+    JoyDown  = 0x0000008E,
+    JoyRight = 0x00007200,
+    JoyLeft  = 0x00008E00
 };
 
 struct Cpad {

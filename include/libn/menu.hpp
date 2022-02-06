@@ -1,3 +1,5 @@
+
+	
 	class LibMenu 
 	{
 		private:
@@ -7,8 +9,8 @@
 			std::string 		mContent;
 			LibColor	mForecolor, mBackcolor;
 
-			int			mMenuItemSpacing = 10;
-			int			mMenuItemCount;
+			u32			mMenuItemSpacing = 10;
+			u32			mMenuItemCount;
 			float		mMenuItemSelection;
 
 			std::map<int,std::string>			mMenuItems;
@@ -48,7 +50,7 @@
 				}
 			}
 
-			void MoveSelectionUp(Frame &r)   
+			void MoveSelectionUp()   
 			{ 
 				mMenuItemsSelected.fill(false);
 
@@ -57,7 +59,7 @@
 					mMenuItemSelection-= 1; 
 			}
 
-			void MoveSelectionDown(Frame &r) 
+			void MoveSelectionDown() 
 			{ 
 				mMenuItemsSelected.fill(false);
 
@@ -70,7 +72,7 @@
 			{
 				if(bMenuIsShowing) 
 				{
-					auto findLargestMenuItem = [&]() -> int
+					auto findLargestMenuItem = [&]() -> u32
 					{
 						std::vector<int> stringLengths;
 						for(auto& t : mMenuItems) {
@@ -105,10 +107,11 @@
 					Display::DrawRect(mPos, dimensions.x, dimensions.y, mBackcolor, false);
 		
 					Display::DrawRect(mPos, dimensions.x, 15, mBackcolor);
+
+					TextColor backup = GetColors();
 					Display::SetColors(mForecolor, mBackcolor);
 					Display::DrawText({mPos.x+5, mPos.y+5}, mTitle);
-					Display::SetColors(GOLD, NAVY_BLUE | 0xFF);
-
+					Display::SetColors(mBackcolor, mForecolor);
 					int incy = 20, spot = 0;
 					for(auto &t : mMenuItems) 
 					{
@@ -126,6 +129,7 @@
 						incy+=mMenuItemSpacing;
 						++spot;
 					}
+							Display::SetColors(backup.Foreground, backup.Background | 0xFF);
 				}
 			}
 

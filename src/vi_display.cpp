@@ -18,7 +18,7 @@ namespace LibN64::Display {
 
 std::array<u32, 2> buffer_list	       = {FRAMEBUFFER_ADDR, FRAMEBUFFER_ADDR + 0x01000000};
 
-LibN64::Display::Resolution global_res = {0, 0};
+Resolution global_res = {0, 0};
 static TextColor localColor;
 static int *active_buffer;
 static int *active_draw_buffer;
@@ -140,7 +140,7 @@ void FillScreen(u32 color) {
 }
 
 /*8x8 taken from LibDragon*/
-void DrawCharacter(const LibPos pos, u8 ch) {
+void DrawCharacter(const LibPos pos, const u8 ch) {
 	u32 trans = ((localColor.Background & 0xff) == 0) ? 1 : 0;
 	for (u32 row = 0; row < font_width; row++) {
 		unsigned char c = __font_data[(ch * font_width) + row];
@@ -233,6 +233,10 @@ void DrawTri(LibPos pos1, LibPos pos2, LibPos pos3, const u32 color) {
 void SetColors(const u32 foreground, const u32 background) {
 	localColor.Foreground = foreground;
 	localColor.Background = background;
+}
+
+TextColor GetColors() {
+	return localColor;
 }
 
 namespace RDP {

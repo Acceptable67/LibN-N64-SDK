@@ -53,23 +53,20 @@ int kill(int pid, [[maybe_unused]] int sig) {
 		return 0;
 }
 
-int gettimeofday ( struct timeval *tp ,  struct timezone *tz )
+int gettimeofday ( [[maybe_unused]] struct timeval *tp , [[maybe_unused]] struct timezone *tz )
 {
-
+	return 0;
 }
 
-clock_t times(struct tms *buf)
-{
+clock_t times( [[maybe_unused]] struct tms *buf);
 
+int link([[maybe_unused]] char *existing, [[maybe_unused]] char *neww)
+{
+	return 0;
 }
 
-int link(char *existing, char *neww)
-{
-
-}
-
-int unlink(const char *path){
-
+int unlink([[maybe_unused]] const char *path){
+	return 0;
 }
 
 int write(int file, char *ptr, [[maybe_unused]] int len) {

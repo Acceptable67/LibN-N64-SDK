@@ -63,31 +63,6 @@ void Frame::ExitFrameLoop() {
 	bRunning = false;
 }
 
-void Frame::FrameUpdate() {
-}
-void Frame::OnCreate() {
-}
-void Frame::KeyAPressed() {
-}
-void Frame::KeyBPressed() {
-}
-void Frame::KeyZPressed() {
-}
-void Frame::KeyDUpPressed() {
-}
-void Frame::KeyDDownPressed() {
-}
-void Frame::KeyDLeftPressed() {
-}
-void Frame::KeyDRightPressed() {
-}
-void Frame::KeyStartPressed() {
-}
-void Frame::KeyJoyXPressed(int) {
-}
-void Frame::KeyJoyYPressed(int) {
-}
-
 u32 Frame::ScreenWidth() {
 	return r.width;
 }
