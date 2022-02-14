@@ -1,9 +1,9 @@
 
+#include <cstdint>
 #include <libn/pi_dma.hpp>
 #include <libn/sprite.hpp>
-#include <libn/vi_display.hpp>
 #include <libn/types.hpp>
-#include <cstdint>
+#include <libn/vi_display.hpp>
 
 namespace LibN64 {
 LibSprite::LibSprite(const u32 RomOffset) {
@@ -11,22 +11,18 @@ LibSprite::LibSprite(const u32 RomOffset) {
 }
 
 void LibSprite::Load(const u32 RomOffset) {
-	this->width = *reinterpret_cast<short *>(RomOffset);
-	this->height =
-	    *reinterpret_cast<short *>(RomOffset + (sizeof(char) * 2));
-	this->size = (width * height);
+	this->width  = *reinterpret_cast<short *>(RomOffset);
+	this->height = *reinterpret_cast<short *>(RomOffset + (sizeof(char) * 2));
+	this->size   = (width * height);
 
-	data	   = new u32[this->size];
+	data	     = new u32[this->size];
 
-	DMA::Read(data, RomOffset + (sizeof(int) * 2),
-		  ((this->size) * sizeof(int)) - 0x8);
+	DMA::Read(data, RomOffset + (sizeof(int) * 2), ((this->size) * sizeof(int)) - 0x8);
 }
 
 void LibSprite::Draw(u32 x, u32 y) {
 	for (u32 yy = 0; yy < height; yy++) {
-		for (u32 xx = 0; xx < width; xx++) {
-			Display::DrawPixel({x + xx, y + yy}, data[yy * width + xx]);
-		}
+		for (u32 xx = 0; xx < width; xx++) { Display::DrawPixel({x + xx, y + yy}, data[yy * width + xx]); }
 	}
 }
 

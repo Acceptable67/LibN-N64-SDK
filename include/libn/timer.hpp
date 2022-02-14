@@ -2,11 +2,11 @@
 #define LIBN_TIMER_H
 
 #include <functional>
+#include <libn/types.hpp>
 
 namespace LibN64 {
 namespace Timer {
 auto MillisecondsSinceStartup();
-
 float SecondsSinceStartup();
 
 enum TimerType { ONE_SHOT, CONTINUOUS_CALL, TIMER };
@@ -20,8 +20,8 @@ class LibTimer {
     bool bCalled  = false;
     bool bStarted = false;
 
-    float ticks;
-    float execute_at;
+    f32 ticks;
+    f32 execute_at;
 
     std::function<void()> localfunc;
 
@@ -35,7 +35,7 @@ class LibTimer {
     /*Optional function that would be called every second
     We could just probe the COP0 for the time and subtract from
     that to get our value but this will do.*/
-    void Update(std::function<void()> callback = []() {});
+    void Update(std::function<void()> callback = [](void){});
     void ResetTicks();
     void Start();
     void Stop();

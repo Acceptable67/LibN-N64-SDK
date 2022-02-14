@@ -110,6 +110,12 @@ int printf(const s8 *format, ...) {
 	return 1;
 }
 
+int printf(const std::string_view formatted_string) {
+	Display::DrawText({consolex, consoley}, formatted_string);
+	_prnt_advance(formatted_string.data());
+	return 1;
+}
+
 /*This is the print for fmt:: library*/
 int stdvprint(const s8 *ptr) {
 	Display::DrawText({consolex, consoley}, ptr);

@@ -17,23 +17,24 @@ class Frame {
     bool bClearScreen = false;
 
   public:
-    constexpr Frame(const Display::Resolution res, const Display::Bitdepth bitdepth,
+    Frame(const Display::Resolution res, const Display::Bitdepth bitdepth,
         const Display::AntiAliasing antialiasing);
+    Frame() = default;
 
     void Begin();
-
-    virtual void FrameUpdate() = 0;
-    virtual void OnCreate() = 0;
-    virtual void KeyAPressed() = 0;
-    virtual void KeyBPressed() = 0;
-    virtual void KeyZPressed() = 0;
-    virtual void KeyDUpPressed() = 0;
-    virtual void KeyDDownPressed() = 0;
-    virtual void KeyDLeftPressed() = 0;
-    virtual void KeyDRightPressed() = 0;
-    virtual void KeyStartPressed() = 0;
-    virtual void KeyJoyXPressed(int) = 0;
-    virtual void KeyJoyYPressed(int) = 0;
+ 
+    virtual void FrameUpdate();
+    virtual void OnCreate();
+    virtual void KeyAPressed();
+    virtual void KeyBPressed();
+    virtual void KeyZPressed();
+    virtual void KeyDUpPressed();
+    virtual void KeyDDownPressed();
+    virtual void KeyDLeftPressed();
+    virtual void KeyDRightPressed();
+    virtual void KeyStartPressed();
+    virtual void KeyJoyXPressed(int);
+    virtual void KeyJoyYPressed(int);
 
     void SetScreenClear();
     void ExitFrameLoop();

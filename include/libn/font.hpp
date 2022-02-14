@@ -1,8 +1,10 @@
 #ifndef LIBN_FONT_H
 #define LIBN_FONT_H
 
-static constexpr uint8_t font_width          = 8;
-static constexpr uint8_t font_height         = 8;
+#include <libn/types.hpp>
+
+static constexpr u8 font_width          = 8;
+static constexpr u8 font_height         = 8;
 
 static unsigned char const __font_data[2048] = {0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x7E, 0x81, 0xA5, 0x81, 0xBD, 0x99, 0x81, 0x7E, 0x7E,

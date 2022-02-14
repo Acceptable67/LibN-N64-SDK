@@ -3,44 +3,43 @@
 #include <libn/frame.hpp>
 #include <libn/sprite.hpp>
 
+using namespace LibN64;
 using namespace LibN64::Display;
 
-namespace LibN64 {
 CreateControllerHandle(cpad_data);
 
-constexpr Frame::Frame(const Display::Resolution res,
-    const Display::Bitdepth bitdepth, const Display::AntiAliasing antialiasing)
-    : r(res), bd(bitdepth), aa(antialiasing) {
+Frame::Frame(const Resolution res, const Bitdepth bitdepth, 
+	const AntiAliasing antialiasing)
+	: r(res), bd(bitdepth), aa(antialiasing) 
+{
+
 }
 
-void Frame::Begin() {
-	bRunning		 = true;
-	Display::TextColor local = {
-	    Display::LibColor::YELLOW, Display::LibColor::BLACK | 0xFF};
+void Frame::Begin() 
+{
+	this->bRunning = true;
+	TextColor local = { LibColor::YELLOW, LibColor::BLACK | 0xFF};
 
-	Display::Initialize(r, bd, aa, g);
-	Display::FillScreen(Display::LibColor::GREY_SMOOTH);
-	Display::SetColors(local.Foreground, local.Background);
+	Initialize(this->r, this->bd, this->aa, this->g);
+	SetColors(local.Foreground, local.Background);
 
 	this->OnCreate();
 
-	Display::SetVI_Intterupt(0x200);
+	SetVI_Intterupt(0x200);
 	Controller::Write();
 
 	while (bRunning) {
-		this->FrameUpdate();
-
 		/*clear screen on vertical retrace*/
 		SetVI_IntCallback([&]() {
-			if (bClearScreen) RDP::FillScreen(GREY_SMOOTH);
+			this->FrameUpdate();
 		});
 
 		Controller::Read();
-		if (cpad_data->A) { this->KeyAPressed(); }
-		if (cpad_data->B) { this->KeyBPressed(); }
-		if (cpad_data->Z) { this->KeyZPressed(); }
+		if (cpad_data->A) 	{ this->KeyAPressed(); }
+		if (cpad_data->B) 	{ this->KeyBPressed(); }
+		if (cpad_data->Z) 	{ this->KeyZPressed(); }
 		if (cpad_data->start) { this->KeyStartPressed(); }
-		if (cpad_data->up) { this->KeyDUpPressed(); }
+		if (cpad_data->up) 	{ this->KeyDUpPressed(); }
 		if (cpad_data->down) { this->KeyDDownPressed(); }
 		if (cpad_data->left) { this->KeyDLeftPressed(); }
 		if (cpad_data->right) { this->KeyDRightPressed(); }
@@ -71,4 +70,15 @@ u32 Frame::ScreenHeight() {
 	return r.height;
 }
 
-} // namespace LibN64
+ void Frame::FrameUpdate(){}
+ void Frame::OnCreate(){}
+ void Frame::KeyAPressed(){}
+ void Frame::KeyBPressed(){}
+ void Frame::KeyZPressed(){}
+ void Frame::KeyDUpPressed(){}
+ void Frame::KeyDDownPressed(){}
+ void Frame::KeyDLeftPressed(){}
+ void Frame::KeyDRightPressed(){}
+ void Frame::KeyStartPressed(){}
+ void Frame::KeyJoyXPressed(int){}
+ void Frame::KeyJoyYPressed(int){}

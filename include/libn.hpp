@@ -39,6 +39,7 @@
     ((void *)(((unsigned long)(X)) |0x20000000))
 
 #define HALT() while(1)
+#define MainLoop while(true)
 
 #include <libn/types.hpp>
 #include <libn/font.hpp>

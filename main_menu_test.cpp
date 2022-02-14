@@ -1,12 +1,6 @@
 
 #include <libn.hpp>
-
-
-//#define DRAW_SPRITE
-#undef DRAW_SPRITE
-#ifdef DRAW_SPRITE
-#	define SPRITE_LOCATION 0xB0101000
-#endif
+#include <libn/menu.hpp>
 
 #define FMT_HEADER_ONLY
 #include <fmt/format.h>
@@ -14,97 +8,83 @@
 using namespace LibN64;
 using namespace LibN64::Display;
 
-#include <libn/menu.hpp>
-
 CreateControllerHandle(CPAD_DATA);
 
-enum MenuId
+void TestCallback()
 {
-	Main_Menu
-};
+	printf("Menu Option 1 selected");
+}
 
-enum SubMenuId 
+void Test2Callback()
 {
-	SubM1,
-	SubM2
-};
+	printf("Menu Option 2 Selected");
+}
 
-static constexpr Resolution default_res = {320, 240};
-static bool bRunning				 = false;
+enum MenuId { Main_Menu, Second_Menu }; 
+enum SubMenuId { SubM1, SubM2 };
 
-namespace LibN64 
-{
-	void InitDisplay() 
+class MainApp : public Frame {
+public: 
+	MainApp(Resolution res,
+	Bitdepth bitdepth, 
+	AntiAliasing antialiasing)
+	: Frame(res, bitdepth, antialiasing){}  
+
+	LibMenuManager mm;
+	LibMenu *menu_first, *menu_second;
+
+	void _SetupMenu()
 	{
-		Initialize(default_res, Bitdepth::BD32BPP, AntiAliasing::AA_REPLICATE, Gamma::GAMMA_OFF);
-		FillScreen(LibColor::GREY);
-		SetColors(LibColor::GOLD, LibColor::NAVY_BLUE | 0xFF);
-
-		bRunning = true;
-
-		SetVI_Intterupt(0x200);
-		Controller::Write();
+		menu_first  = mm.AddMenu(Main_Menu, "Main Menu", {40, 40}, BLACK, WHITE);
+		menu_first->AddMenuItem(SubMenuId::SubM1, "Test ", TestCallback);
+		menu_first->AddMenuItem(SubMenuId::SubM2, "Test 2", Test2Callback);
+		menu_first->SetFocused(); 
 	}
 
-	EXTERN int main() 
-	{ 
-		InitDisplay();
+	void OnCreate() override 
+	{
+		_SetupMenu();
+	}  
 
-		LibMenuManager mm;
-		mm.AddMenu(Main_Menu, "Main Menu", {40,40}, BLACK, WHITE);
-		mm[Main_Menu]->AddMenuItem(SubMenuId::SubM1, "Test ");
-		mm[Main_Menu]->AddMenuItem(SubMenuId::SubM2, "Test 2");  
-		mm[Main_Menu]->SetFocused();   
+	void FrameUpdate() override 
+	{
+		constexpr auto buttonPress = [&](const s8* button) 
+		{ 
+			printf(fmt::format("{} has been pressed.", button));  
+		}; 
 
-		constexpr auto buttonPress = [&](auto button) { fmt::print("{} has been pressed.", button); };
-		while (bRunning)
-		{
-			/*On Vertical Interrupt the code below will be called, making
-			* for little to no flicker.*/
-			SetVI_IntCallback([&] 
-			{
-				RDP::FillScreen(LibColor::GREY);
+		RDP::FillScreen(LibColor::GREY); 
 
-				mm[Main_Menu]->Show();
-				Controller::Read();
-				if (CPAD_DATA->A) { mm[Main_Menu]->WaitKeyPress(); buttonPress('A'); }
-				if (CPAD_DATA->B) { buttonPress('B'); } 
-				if (CPAD_DATA->Z) { buttonPress('Z'); }
-				if (CPAD_DATA->up) 
-				{ 
-					buttonPress("D-Up");
-					mm[0]->MoveSelectionUp();
-				}
+		menu_first->Show();  
 
-				if (CPAD_DATA->down) 
-				{
-					buttonPress("D-Down");
-					mm[0]->MoveSelectionDown();
-				}
-
-				if (CPAD_DATA->left) 
-				{
-					buttonPress("D-Left");
-				}
-
-				if (CPAD_DATA->right) 
-				{
-					buttonPress("D-Right");
-				}
-
-				if(mm[Main_Menu]->MenuItemIsSelected(SubM1)) 
-				{
-					printf("Menu option 1 selected");
-				}
-
-				if(mm[Main_Menu]->MenuItemIsSelected(SubM2)) 
-				{
-					printf("Menu option 2 selected");
-				}
-				});
-
-				ResetConsole();
+		Controller::Read();
+		if (CPAD_DATA->A) {
+			menu_first->WaitKeyPress();
+			buttonPress("A");
 		}
-		return 0;
+		if (CPAD_DATA->B) { buttonPress("B"); }
+		if (CPAD_DATA->Z) { buttonPress("Z"); }
+		if (CPAD_DATA->up) {
+			buttonPress("D-Up");
+			mm[0]->MoveSelectionUp();
+		}
+
+		if (CPAD_DATA->down) {
+			buttonPress("D-Down");
+			mm[0]->MoveSelectionDown();
+		} 
+
+		if (CPAD_DATA->left) { buttonPress("D-Left"); }
+
+		if (CPAD_DATA->right) { buttonPress("D-Right"); }
+
+		ResetConsole();
 	}
-} // namespace LibN64
+};
+
+EXTERN int main()
+{
+	MainApp instance({320,240}, Bitdepth::BD32BPP, AntiAliasing::AA_REPLICATE);
+	instance.Begin();
+	return 0;
+}

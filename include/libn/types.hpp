@@ -15,6 +15,9 @@ using s16       = short int;
 using s8        = char;
 using byte      = char;
 
+using f32       = float;
+using f64       = double;
+
 using u64_t     = uint64_t;
 using u32_t     = uint32_t;
 using u16_t     = uint16_t;

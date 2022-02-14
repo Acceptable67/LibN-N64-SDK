@@ -16,9 +16,9 @@ CreateGlobalRegister(DP, DP_REG);
 
 namespace LibN64::Display {
 
-std::array<u32, 2> buffer_list	       = {FRAMEBUFFER_ADDR, FRAMEBUFFER_ADDR + 0x01000000};
+std::array<u32, 2> buffer_list = {FRAMEBUFFER_ADDR, FRAMEBUFFER_ADDR + 0x01000000};
 
-Resolution global_res = {0, 0};
+Resolution global_res	       = {0, 0};
 static TextColor localColor;
 static int *active_buffer;
 static int *active_draw_buffer;
@@ -257,7 +257,7 @@ void Send() {
 	while (DP_REG->status & 0x600) {}
 
 	DP_REG->cmd_start = (reinterpret_cast<u32>(cBuffer.data()) | 0xA0000000);
-	DP_REG->cmd_end	  = (reinterpret_cast<u32>(cBuffer.data() + 285) | 0xA0000000);
+	DP_REG->cmd_end	  = (reinterpret_cast<u32>(cBuffer.data() + 1024) | 0xA0000000);
 	/*I have no idea why this works with + 285. It should just queue the
 	list then execute, but it doesn't work that way. It needs a very high
 	'magic' number to get the screen refresh perfect.*/
@@ -381,7 +381,10 @@ void DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color) {
 	RDP::SetBlendColor(color);
 	RDP::Sync();
 	RDP::DrawRectangle(tx, ty, bx, by);
+	RDP::Sync();
+	RDP::DrawRectangle(tx, ty, bx, by);
 	RDP::SendDisplayList();
+	RDP::Sync();
 }
 
 void FillScreen(u32 color) {
