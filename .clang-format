@@ -1,0 +1,41 @@
+AlignOperands: true
+PenaltyBreakAssignment: 20
+PenaltyBreakBeforeFirstCallParameter: 0
+AlignAfterOpenBracket: Align
+AlignConsecutiveMacros: AcrossEmptyLinesAndComments
+AlignConsecutiveAssignments: AcrossEmptyLinesAndComments
+AlignArrayOfStructures: Right
+AlignTrailingComments: true
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Always
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: OnlyFirstIf
+AllowShortLoopsOnASingleLine: true
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: false
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyNamespace: false
+  SplitEmptyRecord: true
+IndentWidth: 8
+IndentCaseLabels: true
+IndentPPDirectives: AfterHash
+UseTab: Always
+CompactNamespaces: false
+SortIncludes: true
+ColumnLimit: 120
+SpacesInContainerLiterals: true

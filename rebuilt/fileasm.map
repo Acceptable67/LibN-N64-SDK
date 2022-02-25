@@ -1,0 +1,116 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+mem              0x0000000080000000 0x0000000000400000
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000080000000                __kseg0_start = 0x80000000
+                0x0000000080000400                __libdragon_text_start = (__kseg0_start + 0x400)
+
+.text           0x0000000080000400     0x1050
+ *(.boot)
+                0x0000000080000400                . = ALIGN (0x10)
+                0x0000000080000400                __text_start = .
+ *(.text)
+ .text          0x0000000080000400     0x1044 file.fileasm
+                0x0000000080001400                start
+ *(.text.*)
+ *(.init)
+ *(.fini)
+ *(.gnu.linkonce.t.*)
+                0x0000000080001450                . = ALIGN (0x10)
+ *fill*         0x0000000080001444        0xc 
+                0x0000000080001450                __text_end = .
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table*)
+
+.jcr
+ *(.jcr)
+
+.rodata         0x0000000080001450        0x0
+ *(.rdata)
+ *(.rodata)
+ *(.rodata.*)
+ *(.gnu.linkonce.r.*)
+                0x0000000080001450                . = ALIGN (0x8)
+
+.MIPS.abiflags  0x0000000080001450       0x18
+ .MIPS.abiflags
+                0x0000000080001450       0x18 file.fileasm
+                0x0000000080001468                . = ALIGN (0x4)
+
+.ctors          0x0000000080001468        0x0
+                0x0000000080001468                __CTOR_LIST__ = .
+ *(.ctors)
+                0x0000000080001468                __CTOR_END__ = .
+                0x0000000080001468                . = ALIGN (0x8)
+
+.data           0x0000000080001468     0x1000
+                0x0000000080001468                __data_start = .
+ *(.data)
+ .data          0x0000000080001468     0x1000 file.fileasm
+ *(.data.*)
+ *(.gnu.linkonce.d.*)
+                0x0000000080002468                . = ALIGN (0x8)
+
+.sdata          0x0000000080002468        0x0
+                0x000000008000a468                _gp = (. + 0x8000)
+ *(.sdata)
+ *(.sdata.*)
+ *(.gnu.linkonce.s.*)
+                0x0000000080002468                . = ALIGN (0x8)
+
+.lit8           0x0000000080002468        0x0
+ *(.lit8)
+                0x0000000080002468                . = ALIGN (0x8)
+
+.lit4           0x0000000080002468        0x0
+ *(.lit4)
+                0x0000000080002468                . = ALIGN (0x8)
+                0x0000000080002468                __data_end = .
+
+.sbss           0x0000000080002468        0x0
+                0x0000000080002468                __bss_start = .
+ *(.sbss)
+ *(.sbss.*)
+ *(.gnu.linkonce.sb.*)
+ *(.scommon)
+ *(.scommon.*)
+                0x0000000080002468                . = ALIGN (0x8)
+
+.bss            0x0000000080002468        0x0
+ *(.bss)
+ .bss           0x0000000080002468        0x0 file.fileasm
+ *(.bss*)
+ *(.gnu.linkonce.b.*)
+ *(COMMON)
+                0x0000000080002468                . = ALIGN (0x8)
+                0x0000000080002468                __bss_end = .
+                0x0000000080002468                . = ALIGN (0x8)
+                0x0000000080002468                end = .
+LOAD file.fileasm
+OUTPUT(file.elf elf32-bigmips)
+
+.reginfo        0x0000000000000000       0x18
+ .reginfo       0x0000000000000000       0x18 file.fileasm
+
+.pdr            0x0000000000000000        0x0
+ .pdr           0x0000000000000000        0x0 file.fileasm
+
+.code           0x0000000000000000   0x106030
+ .code          0x0000000000000000   0x106030 file.fileasm
+
+.gnu.attributes
+                0x0000000000000000       0x10
+ .gnu.attributes
+                0x0000000000000000       0x10 file.fileasm
