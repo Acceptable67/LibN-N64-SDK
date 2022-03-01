@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
         "string": "cpp",
@@ -83,4 +84,7 @@
         "stddef.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
+=======
+    "makefile.extensionOutputFolder": "./.vscode"
+>>>>>>> Stashed changes
 }
