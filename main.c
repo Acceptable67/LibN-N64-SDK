@@ -31,15 +31,23 @@ void CheckController() {
 }
 
 Vector vec;
+LibSprite *testerSpr;
 
 void main_func() {
 	RDP_FillScreen(GREY_SMOOTH);
 
-	const s8 *name = (const s8 *)Vector_At(&vec, 1);
-	printf("%s", name);
+	s32 pos = 0;
+	while(pos < Vector_Size(&vec)) {
+		s32 num = (s32)Vector_At(&vec, pos);
+		printf("%d", num);
+		++pos;
+	}
 
+	LibSprite_Draw(testerSpr, 40,20);
+
+	LibPrint("Vector and Sprite working.");
 	Display_DrawText(40 + x, 40 + y, "MOVE ME");
-
+ 
 	CheckController();
 }
 
@@ -49,11 +57,11 @@ void VecAddItem(void *item) {
 
 int main() {
 	InitDisplay();
+	testerSpr  = LibSprite_Load(0xB0101000);
 
-	VecAddItem((void *)0x12345678);
-	VecAddItem("tester");
-	VecAddItem("tester2");
-
+	for(s32 index = 0; index < 10; ++index) {
+		Vector_Pushback(&vec, (void*)index);
+	}
 	while (bRunning) {
 		Display_SetVI_IntCallback(&main_func);
 		ResetConsole();

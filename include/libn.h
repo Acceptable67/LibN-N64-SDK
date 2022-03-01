@@ -2,6 +2,7 @@
 #define LIBN_H
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 #include <string.h>
 
@@ -18,6 +19,9 @@
 
 #define HALT() while(1)
 #define MainLoop while(true)
+
+#define LibPrintf(format, ...) printf(format, __VA_ARGS__)
+#define LibPrint(text) printf(text)
 
 #include <libn/types.h>
 #include <libn/font.h>

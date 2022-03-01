@@ -84,7 +84,7 @@
         "stddef.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
-=======
+=======test pushing
     "makefile.extensionOutputFolder": "./.vscode"
 >>>>>>> Stashed changes
 }

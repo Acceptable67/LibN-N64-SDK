@@ -1,10 +1,7 @@
 /*handle everything visual*/
 #include <math.h>
 #include <stdint.h>
-#include <libn/font.h>
-#include <libn/regs.h>
-#include <libn/sprite.h>
-#include <libn/vi_display.h>
+#include <libn.h>
 #include <string.h>
 
 CreateGlobalRegister(VI, VI_REG);
@@ -38,9 +35,9 @@ void Display_SetDrawingBuffer(s32 x) {
 	active_draw_buffer = (s32 *)(buffer_list[x]);
 }
 
-void Display_SetVI_IntCallback(void (*func)(void)) {
+void Display_SetVI_IntCallback(void (*function_callback)(void)) {
 	if ((MI_REG->intr & MI_REG->mask) & 0x08) {
-		func();
+		function_callback();
 		VI_REG->currentvl = VI_REG->currentvl;
 	}
 }
@@ -51,13 +48,9 @@ void Display_SetVI_Intterupt(u32 line) {
 }
 
 void Display_SwapBuffers() {
-	if (Display_GetActiveBuffer() == Display_GetBuffer(DISPLAY)) {
-		Display_SetActiveBuffer(BACKUP);
-		Display_SetDrawingBuffer(DISPLAY);
-	} else {
-		Display_SetActiveBuffer(DISPLAY);
-		Display_SetDrawingBuffer(BACKUP);
-	}
+	bool buffer_condition = Display_GetActiveBuffer() == Display_GetBuffer(DISPLAY);
+	Display_SetActiveBuffer((buffer_condition) ? BACKUP : DISPLAY);
+	Display_SetDrawingBuffer((buffer_condition) ? DISPLAY : BACKUP);
 }
 
 // clang-format off
@@ -114,18 +107,19 @@ void Display_DrawRect(LibPos pos, const u16 xd, const u16 yd, const u32 color, b
 }
 
 void Display_DrawCircle(LibPos pos, u32 scale, const u32 color, bool isFilled, float cStepSize) {
+	float PI = 3.1415f;
 	if (isFilled) {
 		for (float scaler = 0; scaler <= scale; scaler += 0.3) {
 			for (float angles = 0; angles < 25 * scaler;
 			     angles += cStepSize) {
-				Display_DrawPixel((u32)(pos.x + cosf(angles) * 3.1415f * scaler),
-				(u32)(pos.y + sinf(angles) * 3.1415f * scaler), color);
+				Display_DrawPixel((u32)(pos.x + cosf(angles) * PI * scaler),
+				(u32)(pos.y + sinf(angles) * PI * scaler), color);
 			}
 		}
 	} else {
 		for (float angles = 0; angles < 25 * scale;
 		     angles += cStepSize) {
-			Display_DrawPixel((u32)(pos.x + cosf(angles) * 3.1415f * scale), (u32)(pos.y + sinf(angles) * 3.1415f * scale),color);
+			Display_DrawPixel((u32)(pos.x + cosf(angles) * PI * scale), (u32)(pos.y + sinf(angles) * PI * scale),color);
 		}
 	}
 }
@@ -161,7 +155,7 @@ void Display_DrawCharacter(const LibPos pos, const u8 ch) {
 
 void Display_DrawText(s32 x, s32 y, const char* text) {
 	LibPos toffset = {0, 0};
-	for (const char* c = text; *c != '\0'; c++) {
+	for (const char* c = text; *c != '\0'; ++c) {
 		if ((x + toffset.x) >= global_res.width || *c == '\n') {
 			y += font_height;
 			toffset.x = 0;
@@ -244,30 +238,43 @@ TextColor GetColors() {
 	return localColor;
 }
 
-u32 cBuffer[48];
+/*I had my own method but LibDragon's method is the best way of dealing with this
+  so I added my own implementation.*/
+#define RDP_BUF_SIZE 4096
+s32 cBuffer[RDP_BUF_SIZE / 4];
 
-u32 spot;
+u32 spot, start;
 void RDP_AddCommand(u32 command) {
-	if (spot >= 48) { 
-		spot = 0; 
+	if((spot * sizeof(s32) - start) >= RDP_BUF_SIZE / 4) { 
+		return; 
 	}
 	cBuffer[spot] = command;
-
-	spot++;
+	++spot;
 }
 
 void RDP_Send() {
-
+	if(spot == 0 ) { return; }
 	while (DP_REG->status & 0x600) {};
 
-	DP_REG->status = 0x15; // 0b00010101
+	DP_REG->status = 0b00010101; //0x15
 
 	while (DP_REG->status & 0x600) {}
 
-	DP_REG->cmd_start = ((u32)(cBuffer) | 0xA0000000);
-	DP_REG->cmd_end	  = ((u32)(cBuffer + (spot * sizeof(s32))) | 0xA0000000);
+	DP_REG->cmd_start = (u32)(UncachedAddr(cBuffer)) + start;
+	DP_REG->cmd_end	  = (u32)(UncachedAddr(cBuffer)) + (spot * sizeof(s32));
+
+	if (spot >= RDP_BUF_SIZE / 4) { 
+		spot = 0; 
+		start = 0;
+	} else {
+		start = spot;
+	}
+
 }
 
+void RDP_Debug() {
+	LibPrintf("cBuffer %08X\ncBuffer+spot: %08X\nspot %d", ((u32)(cBuffer)) + start, ((u32)(cBuffer) | 0xA0000000) + (spot * sizeof(s32)), spot);
+}
 
 void RDP_SendDisplayList() {
 	RDP_Send();
@@ -373,7 +380,7 @@ void RDP_Sync() {
 }
 
 void RDP_DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color) {
-
+	RDP_Init();
 	RDP_Attach();
 	RDP_SetDefaultClipping();
 	RDP_Sync();
@@ -382,8 +389,10 @@ void RDP_DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color) {
 	RDP_SetBlendColor(color);
 	RDP_Sync();
 	RDP_DrawRectangle(tx, ty, bx, by);
+	RDP_Sync();
 	RDP_Send();
 	RDP_Sync();
+	RDP_Close();
 }
 
 void RDP_FillScreen(u32 color) {

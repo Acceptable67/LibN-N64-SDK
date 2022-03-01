@@ -14,6 +14,10 @@ void Vector_Pushback(Vector *vector, void *item)
 	++vector->pos;
 }
 
+s32 Vector_Size(Vector *vector) {
+    return vector->pos;
+}
+
 void* Vector_At(Vector *vector, s32 position) {
 	return vector->element[position];
 }

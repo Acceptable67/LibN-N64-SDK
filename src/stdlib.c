@@ -84,9 +84,8 @@ int printf(const s8 *format, ...) {
 	va_list va;
 	va_start(va, format);
 
-	u32 alloc_size = sizeof(format) + sizeof(va);
-	s8 *buffer = calloc(0, alloc_size);
-	vsnprintf(buffer, alloc_size, format, va);
+	s8 buffer[256];
+	vsnprintf(buffer, sizeof(buffer), format, va);
 	Display_DrawText(consolex, consoley, buffer);
 	
 	va_end(va);

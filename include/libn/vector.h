@@ -12,5 +12,6 @@ void  Vector_Pushback(Vector *vector, void *item);
 void* Vector_At(Vector *vector, s32 position);
 void  Vector_EraseAt(Vector *vector, s32 position);
 void  Vector_Clear(Vector *vector);
+s32   Vector_Size(Vector *vector);
 
 #endif

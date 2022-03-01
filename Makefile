@@ -5,10 +5,10 @@ N64_INST=/usr/local/bin
 TOOLS=/home/spencer/libdragon/NEW/libdragon/tools
 
 INCS =  -I/usr/local/mips64-elf/include -Iinclude/
-WRNGS = -Wall -Wextra -O3
+WRNGS = -Wall -Wextra -O2
 CFLAGS = -std=c99 -march=vr4300 -mtune=vr4300 -c $(WRNGS) $(INCS) 
 
-DEPS = $(BDIR)/main.o $(BDIR)/timer.o $(BDIR)/stdlib.o $(BDIR)/pi.o $(BDIR)/sprite.o $(BDIR)/vi.o $(BDIR)/si_controller.o $(BDIR)/mempak.o $(BDIR)/vector.o $(BDIR)/frame.o $(BDIR)/entry.o
+DEPS = $(BDIR)/main.o $(BDIR)/timer.o $(BDIR)/stdlib.o $(BDIR)/pi.o $(BDIR)/sprite.o $(BDIR)/vi.o $(BDIR)/si_controller.o $(BDIR)/mempak.o $(BDIR)/vector.o $(BDIR)/sprite.o $(BDIR)/frame.o $(BDIR)/entry.o
 BUILD = $(N64_INST)/mips64-elf-gcc $(CFLAGS) $< -o $@
 N64TOOL_FILE = -s 1M sky.sprite
 

@@ -1,19 +1,5 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/spencer/Desktop/romfromreverse_c'
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  main.c -o build/main.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/timer.c -o build/timer.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/stdlib.c -o build/stdlib.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/pi.c -o build/pi.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/sprite.c -o build/sprite.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/vi.c -o build/vi.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/si_controller.c -o build/si_controller.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/mempak.c -o build/mempak.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/vector.c -o build/vector.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/frame.c -o build/frame.o
-/usr/local/bin/mips64-elf-gcc -std=c99 -march=vr4300 -mtune=vr4300 -c -Wall -Wextra -O3 -I/usr/local/mips64-elf/include -Iinclude/  src/entry.S -o build/entry.o
-/usr/local/bin/mips64-elf-g++ -o build/c_rom.elf -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -lm -lc -lgcc -Tinclude/n64.ld build/*.o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
-/usr/local/bin/mips64-elf-objcopy build/c_rom.elf build/c_rom.bin -O binary
-/home/spencer/libdragon/NEW/libdragon/tools/n64tool -l 2M -t "LibN Test" -h /home/spencer/libdragon/NEW/libdragon/header -o c_rom.z64 build/c_rom.bin -s 1M sky.sprite 
-/home/spencer/libdragon/NEW/libdragon/tools/chksum64 c_rom.z64
-make: Leaving directory '/home/spencer/Desktop/romfromreverse_c'
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/spencer/Desktop/romfromreverse_c/LibN-N64-SDK'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home/spencer/Desktop/romfromreverse_c/LibN-N64-SDK'
  

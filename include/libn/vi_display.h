@@ -109,7 +109,7 @@ enum RDP_Command {
 	DL_NULL_CMD	  = 0x00000000
 };
 
-void RDP_DebugAddr();
+void RDP_Debug();
 void RDP_SendDisplayList();
 void RDP_AddCommand(u32);
 void RDP_Send(); 
