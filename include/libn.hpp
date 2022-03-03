@@ -52,6 +52,7 @@
 #include <libn/sprite.hpp>
 #include <libn/stdlib.hpp>
 #include <libn/timer.hpp>
+#include <libn/rdp.hpp>
 
 EXTERN int begin();
 
