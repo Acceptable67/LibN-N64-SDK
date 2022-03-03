@@ -71,60 +71,28 @@ typedef struct {
 } LibPos;
 
 extern Resolution global_res;
-extern u32 buffer_list[NUMBER_BUFFERS];
+extern u32 buffer_list[NUMBER_BUFFERS];	
 
 s32 *Display_GetBuffer(s32 frameBuffer);
 void Display_SetActiveBuffer(s32 frameBuffer);
 void Display_SetDrawingBuffer(s32 frameBuffer);
 s32 *Display_GetActiveBuffer();
-void Display_SetVI_IntCallback(void (*callbackFunction)());
-void Display_SetVI_Intterupt(u32 vline);
 void Display_SwapBuffers();
 void Display_Initialize(Resolution res, Bitdepth bd, AntiAliasing aa,
 		Gamma gamma);
-
+s32 Display_FrameWidth();
+s32 Display_FrameHeight();
 void Display_FillScreen(u32 color);
 void Display_SetColors(const u32 foreground, const u32 background);
 TextColor Display_GetColors();
-void Display_DrawRect(LibPos boxPosition, const u16 xd, const u16 yd, const u32 color, bool filled);
+void Display_DrawRect(const u16 bx, const u16 by, const u16 xd, const u16 yd, const u32 color, bool filled);
 void Display_DrawLine(s32 x1, s32 y1, s32 x2, s32 y2, const u32 color);
-void Display_DrawTri(LibPos point1, LibPos point2, LibPos point3, const u32 color);
-void Display_DrawCircle(LibPos circlePosition, u32 scale, const u32 color, bool filled, float stepSize);
+void Display_DrawTri(u32 pos1x, u32 pos1y, u32 pos2x, u32 pos2y, u32 pos3x, u32 pos3y, const u32 color);
+void Display_DrawCircle(const u16 cx, const u16 cy, u32 scale, const u32 color, bool filled, float stepSize);
 void Display_DrawPixel(s32 x, s32 y, const u32 color);
 void Display_DrawText(s32, s32, const char* text);
 void Display_DrawCharacter(const LibPos textPosition, const unsigned char ch);
 void Display_DrawTextFormat(const LibPos textPosition, const char* format, ...);
-
-enum RDP_Command {
-	DL_ENABLE_PRIM	  = 0xEFB000FF,
-	DL_ENABLE_PRIM_2  = 0x00004000,
-	DL_ENABLE_BLEND_2 = 0x80000000,
-	DL_ENABLE_BLEND	  = 0xEF0000FF,
-	DL_SET_PRIM_COL	  = 0xF7000000,
-	DL_SET_BLEND_COL  = 0xF9000000,
-	DL_DRAW_RECT	  = 0xF6000000,
-	DL_ATTACH_FB	  = 0x3F000000,
-	DL_SET_CLIP_AREA  = 0xED000000,
-	DL_SYNC_PIPE	  = 0xE7000000,
-	DL_NULL_CMD	  = 0x00000000
-};
-
-void RDP_Debug();
-void RDP_SendDisplayList();
-void RDP_AddCommand(u32);
-void RDP_Send(); 
-void RDP_Sync();
-void RDP_Attach();
-void RDP_EnableBlend();
-void RDP_EnablePrimitive();
-void RDP_SetDefaultClipping();
-void RDP_SetClipping(u32, u32, u32, u32);
-void RDP_SetBlendColor(const u32);
-void RDP_SetPrimitiveColor(const u32);
-void RDP_DrawRectangle(u32 point1, u32 point2, u32 width, u32 heiht);
-void RDP_DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color);
-void RDP_Close();
-void RDP_FillScreen(u32 color);
-void RDP_Init();
+void Display_InitInterrupts();
 
 #endif

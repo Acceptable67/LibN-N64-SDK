@@ -1,5 +1,15 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/spencer/Desktop/romfromreverse_c/LibN-N64-SDK'
-make: Nothing to be done for 'all'.
+mkdir -p build
+echo "[BUILD] src/interrupt.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/interrupt.c -o build/interrupt.o
+ 
+echo "[LINK] build/c_rom.elf"
+/usr/local/bin/mips64-elf-g++ -o build/c_rom.elf -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -lc -lm -lgcc -Tinclude/n64.ld build/*.o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
+echo "[COPY] build/c_rom.bin"
+/usr/local/bin/mips64-elf-objcopy build/c_rom.elf build/c_rom.bin -O binary
+echo "[ROM] c_rom.z64"
+/home/spencer/libdragon/NEW/libdragon/tools/n64tool -l 2M -t "c_rom" -h /home/spencer/libdragon/NEW/libdragon/header -o c_rom.z64 build/c_rom.bin -s 1M sky.sprite 
+/home/spencer/libdragon/NEW/libdragon/tools/chksum64 c_rom.z64
 make: Leaving directory '/home/spencer/Desktop/romfromreverse_c/LibN-N64-SDK'
  

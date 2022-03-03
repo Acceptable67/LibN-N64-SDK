@@ -4,7 +4,7 @@
 
 extern u64 MillisecondsSinceStartup() {
 	u64 ticks = 0;
-	//asm("mfc0 %0, $9\n" : "=r"(ticks));
+	__asm__("mfc0 %0, $9\n" : "=r"(ticks));
 	return ticks / ((93750000 / 2) /
 			   1000); // take vr4300 clock speed and divide by two
 }

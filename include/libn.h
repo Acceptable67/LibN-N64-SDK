@@ -1,38 +1,39 @@
 #ifndef LIBN_H
 #define LIBN_H
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 
-#define EXTERN extern "C"
-#define NUMBER_BUFFERS	2
+#define NUMBER_BUFFERS	       2
 
-#define CachedAddr(X) \
-    ((void *)(((unsigned long)(X))&~0x20000000))
-    
-#define UncachedAddr(X) \
-    ((void *)(((unsigned long)(X)) |0x20000000))
+#define CachedAddr(X)	       ((void *)(((unsigned long)(X)) & ~0x20000000))
+#define UncachedAddr(X)	       ((void *)(((unsigned long)(X)) | 0x20000000))
+#define MEMORY_BARRIER()       __asm__("" : : : "memory")
 
-#define HALT() while(1)
-#define MainLoop while(true)
+#define HALT()		       while (1)
+#define MainLoop	       while (true)
 
 #define LibPrintf(format, ...) printf(format, __VA_ARGS__)
-#define LibPrint(text) printf(text)
+#define LibPrint(text)	       printf(text)
 
-#include <libn/types.h>
-#include <libn/font.h>
-#include <libn/regs.h>
 #include <libn/controller.h>
+#include <libn/font.h>
+#include <libn/frame.h>
 #include <libn/mempak.h>
 #include <libn/pi_dma.h>
-#include <libn/frame.h>
-#include <libn/vi_display.h>
+#include <libn/regs.h>
 #include <libn/sprite.h>
 #include <libn/stdlib.h>
 #include <libn/timer.h>
+#include <libn/types.h>
+#include <libn/vector.h>
+#include <libn/vi_display.h>
+#include <libn/rdp.h>
+#include <libn/interrupt.h>
+#include <libn/cop0.h>
 
 #endif

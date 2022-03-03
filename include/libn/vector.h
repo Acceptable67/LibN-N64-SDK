@@ -6,12 +6,12 @@
 typedef struct {
 	void **element;
 	s32 pos;
-} Vector;
+} LibVector;
 
-void  Vector_Pushback(Vector *vector, void *item);
-void* Vector_At(Vector *vector, s32 position);
-void  Vector_EraseAt(Vector *vector, s32 position);
-void  Vector_Clear(Vector *vector);
-s32   Vector_Size(Vector *vector);
+void  LibVector_Pushback(LibVector *vector, void *item);
+void* LibVector_At(LibVector *vector, s32 position);
+void  LibVector_EraseAt(LibVector *vector, s32 position);
+void  LibVector_Clear(LibVector *vector);
+s32   LibVector_Size(LibVector *vector);
 
 #endif

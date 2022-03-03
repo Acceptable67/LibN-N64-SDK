@@ -14,8 +14,8 @@ u32 buffer_list[2] =
 	FRAMEBUFFER_ADDR + 0x01000000
 };
 
-Resolution global_res = {0, 0};
 static TextColor localColor;
+Resolution global_res = {0, 0};
 static s32 *active_buffer;
 static s32 *active_draw_buffer;
 
@@ -35,17 +35,6 @@ void Display_SetDrawingBuffer(s32 x) {
 	active_draw_buffer = (s32 *)(buffer_list[x]);
 }
 
-void Display_SetVI_IntCallback(void (*function_callback)(void)) {
-	if ((MI_REG->intr & MI_REG->mask) & 0x08) {
-		function_callback();
-		VI_REG->currentvl = VI_REG->currentvl;
-	}
-}
-
-void Display_SetVI_Intterupt(u32 line) {
-	MI_REG->mask = 0x0080;
-	VI_REG->vint = line;
-}
 
 void Display_SwapBuffers() {
 	bool buffer_condition = Display_GetActiveBuffer() == Display_GetBuffer(DISPLAY);
@@ -53,19 +42,26 @@ void Display_SwapBuffers() {
 	Display_SetDrawingBuffer((buffer_condition) ? DISPLAY : BACKUP);
 }
 
+s32 Display_FrameWidth() {
+	return global_res.width;
+}
+
+s32 Display_FrameHeight() {
+	return global_res.height;
+}
+
 // clang-format off
 void Display_Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamma) {
 	localColor.Foreground = WHITE;
 	localColor.Background = BLACK;
 
-	res.width	      = res.width;
-	res.height	      = res.height;
+	global_res.width	      = res.width;
+	global_res.height	      = res.height;
 
 	active_buffer	      = Display_GetBuffer(DISPLAY);
 	active_draw_buffer    = Display_GetBuffer(BACKUP);
 
 	VI_REG->origin	      = (u32)(active_buffer);
-
 	VI_REG->status	      = (bd) | (aa) |(gamma);
 	VI_REG->width	      = res.width;
 	VI_REG->vint	      = 0x200;
@@ -81,55 +77,50 @@ void Display_Initialize(Resolution res, Bitdepth bd, AntiAliasing aa, Gamma gamm
 	VI_REG->yscale	      = (0x100 * res.height) / 60;
 
 	*(u32 *)(((PIF_RAM) - sizeof(s32)) + 0x3c) = 0x8;
-
-	global_res						   = res;
 }
 
 void Display_DrawPixel(s32 x, s32 y, const u32 color) {
 	*(Display_GetBuffer(DISPLAY) + (y * global_res.width + x)) = color;
 }
 
-void Display_DrawRect(LibPos pos, const u16 xd, const u16 yd, const u32 color, bool bFilled) {
+void Display_DrawRect(const u16 bx, const u16 by, const u16 xd, const u16 yd, const u32 color, bool bFilled) {
 	if(bFilled) 
 	{
 		for (u32 i = 0; i < xd; i++) {
 			for (u32 d = 0; d < yd; d++) {
-				Display_DrawPixel(pos.x + i, pos.y + d, color);
+				Display_DrawPixel(bx + i, by + d, color);
 			}
 		}
 	} else {
-		Display_DrawLine(pos.x, pos.y, pos.x + xd, pos.y, color); 
-		Display_DrawLine(pos.x + xd, pos.y, pos.x+xd, pos.y + yd, color);
-		Display_DrawLine(pos.x+xd, pos.y + yd, pos.x, pos.y + yd, color); 
-		Display_DrawLine(pos.x, pos.y + yd, pos.x, pos.y, color);
+		Display_DrawLine(bx, by, bx + xd, by, color); 
+		Display_DrawLine(bx + xd, by, bx+xd, by + yd, color);
+		Display_DrawLine(bx+xd, by + yd, bx, by + yd, color); 
+		Display_DrawLine(bx, by + yd, bx, by, color);
 	}
 	
 }
 
-void Display_DrawCircle(LibPos pos, u32 scale, const u32 color, bool isFilled, float cStepSize) {
+void Display_DrawCircle(const u16 cx, const u16 cy, u32 scale, const u32 color, bool isFilled, float cStepSize) {
 	float PI = 3.1415f;
 	if (isFilled) {
 		for (float scaler = 0; scaler <= scale; scaler += 0.3) {
 			for (float angles = 0; angles < 25 * scaler;
 			     angles += cStepSize) {
-				Display_DrawPixel((u32)(pos.x + cosf(angles) * PI * scaler),
-				(u32)(pos.y + sinf(angles) * PI * scaler), color);
+				Display_DrawPixel((u32)(cx + cosf(angles) * scaler),
+				(u32)(cy + sinf(angles) * scaler), color);
 			}
 		}
 	} else {
 		for (float angles = 0; angles < 25 * scale;
 		     angles += cStepSize) {
-			Display_DrawPixel((u32)(pos.x + cosf(angles) * PI * scale), (u32)(pos.y + sinf(angles) * PI * scale),color);
+			Display_DrawPixel((u32)(cx + cosf(angles) * PI * scale), (u32)(cy + sinf(angles) * scale),color);
 		}
 	}
 }
 // clang-format on
 
 void Display_FillScreen(u32 color) {
-	LibPos pos;
-	pos.x = 0;
-	pos.y = 0;
-	Display_DrawRect(pos, global_res.width, global_res.height, color, true);
+	Display_DrawRect(0,0, global_res.width, global_res.height, color, true);
 }
 
 /*8x8 taken from LibDragon*/
@@ -218,11 +209,11 @@ void Display_DrawLine(s32 x1, s32 y1, s32 x2, s32 y2, const u32 color) {
 	}
 }
 
-//void Display_DrawTri(LibPos pos1, LibPos pos2, LibPos pos3, const u32 color) {
-//	DrawLine({pos1.x, pos1.y}, {pos2.x, pos2.y}, color);
-//	DrawLine({pos2.x, pos2.y}, {pos3.x, pos3.y}, color);
-//	DrawLine({pos3.x, pos3.y}, {pos1.x, pos1.y}, color);
-//}
+void Display_DrawTri(u32 pos1x, u32 pos1y, u32 pos2x, u32 pos2y, u32 pos3x, u32 pos3y, const u32 color) {
+	Display_DrawLine(pos1x, pos1y, pos2x, pos2y, color);
+	Display_DrawLine(pos2x, pos2y, pos3x, pos3y, color);
+	Display_DrawLine(pos3x, pos3y, pos1x, pos1y, color);
+}
 
 /*void Display_DrawSprite(LibPos pos, LibSprite& spr)
 {
@@ -234,167 +225,6 @@ void Display_SetColors(const u32 foreground, const u32 background) {
 	localColor.Background = background;
 }
 
-TextColor GetColors() {
+TextColor Display_GetColors() {
 	return localColor;
-}
-
-/*I had my own method but LibDragon's method is the best way of dealing with this
-  so I added my own implementation.*/
-#define RDP_BUF_SIZE 4096
-s32 cBuffer[RDP_BUF_SIZE / 4];
-
-u32 spot, start;
-void RDP_AddCommand(u32 command) {
-	if((spot * sizeof(s32) - start) >= RDP_BUF_SIZE / 4) { 
-		return; 
-	}
-	cBuffer[spot] = command;
-	++spot;
-}
-
-void RDP_Send() {
-	if(spot == 0 ) { return; }
-	while (DP_REG->status & 0x600) {};
-
-	DP_REG->status = 0b00010101; //0x15
-
-	while (DP_REG->status & 0x600) {}
-
-	DP_REG->cmd_start = (u32)(UncachedAddr(cBuffer)) + start;
-	DP_REG->cmd_end	  = (u32)(UncachedAddr(cBuffer)) + (spot * sizeof(s32));
-
-	if (spot >= RDP_BUF_SIZE / 4) { 
-		spot = 0; 
-		start = 0;
-	} else {
-		start = spot;
-	}
-
-}
-
-void RDP_Debug() {
-	LibPrintf("cBuffer %08X\ncBuffer+spot: %08X\nspot %d", ((u32)(cBuffer)) + start, ((u32)(cBuffer) | 0xA0000000) + (spot * sizeof(s32)), spot);
-}
-
-void RDP_SendDisplayList() {
-	RDP_Send();
-}
-
-void RDP_SetOtherModes() {
-	RDP_AddCommand(0x2F102800);
-	RDP_AddCommand(0x00000000);
-}
-
-void RDP_SetClipping(u32 tx, u32 ty, u32 bx, u32 by) {
-	RDP_AddCommand((DL_SET_CLIP_AREA | (tx << 14) | (ty << 2)));
-	RDP_AddCommand(((bx << 14) | (by << 2)));
-}
-
-void RDP_SetDefaultClipping(void) {
-	RDP_SetClipping(0, 0, global_res.width, global_res.height);
-}
-
-void RDP_EnablePrimitive(void) {
-	RDP_AddCommand(DL_ENABLE_PRIM);
-	RDP_AddCommand(DL_ENABLE_PRIM_2);
-}
-
-/*void RDP_LoadTexture(LibSprite *spr, u32 tslot) {
-	auto RoundToPower = [](u32 number) {
-		if (number <= 4) { return 4; }
-		if (number <= 8) { return 8; }
-		if (number <= 16) { return 16; }
-		if (number <= 32) { return 32; }
-		if (number <= 64) { return 64; }
-		if (number <= 128) { return 128; }
-		return 256;
-	};
-
-	auto Log2 = [](u32 number) {
-		switch (number) {
-			case 4: return 2;
-			case 8: return 3;
-			case 16: return 4;
-			case 32: return 5;
-			case 64: return 6;
-			case 128: return 7;
-			default: return 8;
-		}
-	};
-
-	AddCommand(0xFD000000 | 0x180000 | (spr->Width() - 1));
-	AddCommand((u32)(spr->Data()));
-
-    auto tw = (spr->Width() - 1) - 0 + 1;
-    auto th = (spr->Height() - 1) - 0 + 1;
-
-	auto _rw   = RoundToPower(tw);
-	auto _rh   = RoundToPower(th);
-	auto wbits = Log2(_rw);
-	auto hbits = Log2(_rh);
-
-	AddCommand(0xF5000000 | 0x180000 |
-		(((((_rw / 8) + ((_rw % 8) ? 1 : 0)) * 3) & 0x1FF) << 9) |
-		((tslot / 8) & 0x1FF));
-	AddCommand(((tslot & 0x7) << 24) | 0 | (hbits << 14) | (wbits << 4));
-	Send();
-}
-*/
-
-void RDP_Init() {
-	MI_REG->mask = 0x0800;
-}
-
-void RDP_Close() {
-	MI_REG->mask = 0x0400;
-}
-
-void RDP_EnableBlend() {
-	RDP_AddCommand(DL_ENABLE_BLEND);
-	RDP_AddCommand(DL_ENABLE_BLEND_2);
-}
-
-void RDP_SetPrimitiveColor(u32 color) {
-	RDP_AddCommand(DL_SET_PRIM_COL);
-	RDP_AddCommand(color);
-}
-
-void RDP_SetBlendColor(u32 color) {
-	RDP_AddCommand(DL_SET_BLEND_COL);
-	RDP_AddCommand(color);
-}
-
-void RDP_DrawRectangle(u32 tx, u32 ty, u32 bx, u32 by) {
-	RDP_AddCommand((DL_DRAW_RECT | (bx << 14) | (by << 2)));
-	RDP_AddCommand((tx << 14) | (ty << 2));
-}
-
-void RDP_Attach() {
-	RDP_AddCommand((DL_ATTACH_FB | 0x00180000 | (global_res.width - 1)));
-	RDP_AddCommand((u32)(active_buffer));
-}
-
-void RDP_Sync() {
-	RDP_AddCommand(DL_SYNC_PIPE); // PIPE
-	RDP_AddCommand(DL_NULL_CMD);
-}
-
-void RDP_DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color) {
-	RDP_Init();
-	RDP_Attach();
-	RDP_SetDefaultClipping();
-	RDP_Sync();
-	RDP_EnableBlend();
-	RDP_Sync();
-	RDP_SetBlendColor(color);
-	RDP_Sync();
-	RDP_DrawRectangle(tx, ty, bx, by);
-	RDP_Sync();
-	RDP_Send();
-	RDP_Sync();
-	RDP_Close();
-}
-
-void RDP_FillScreen(u32 color) {
-	RDP_DrawRectangleSetup(0, 0, global_res.width, global_res.height, color);
 }

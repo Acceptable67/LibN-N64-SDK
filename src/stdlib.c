@@ -70,7 +70,7 @@ void ResetConsole() {
 	consoley = 10;
 }
 
-void _prnt_advance(const s8 * str)
+void _prnt_advance(const s8 *str)
 {
 	u32 lines		= 1;
 
@@ -96,9 +96,10 @@ int printf(const s8 *format, ...) {
 
 void __assert_func(const char *file, int line,  [[maybe_unused]] const char *function, const char *e) {
 	printf("ASSERTION FAILED");
-	printf("File %s", file);
-	printf("Line %d", line);
-	printf("%s", e);
+	printf("File\t\t%s", file);
+	printf("Line\t\t%d", line);
+	printf("Function\t%s", function);
+	printf("\nExpression: \n%s", e);
 	while (1) {}
 }
 
@@ -123,8 +124,8 @@ int __atoi(char *str) {
 	return res;
 }
 
-void __memcpy(char *a, char *b, size_t size) {
-	for (size_t i = 0; i < size; i++) { a[i] = b[i]; }
+void __memcpy(char *dest, char *src, size_t size) {
+	for (size_t i = 0; i < size; i++) { dest[i] = src[i]; }
 }
 
 void __memset(void *arr, char value, size_t size) {

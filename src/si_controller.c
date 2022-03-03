@@ -1,8 +1,8 @@
 
-#include <stdint.h>
 #include <libn/controller.h>
 #include <libn/regs.h>
 #include <libn/types.h>
+
 /*controller + SI handling*/
 
 u64 SI_READ_MSG[8] = {0xff010401ffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff,
@@ -17,8 +17,7 @@ s8 si_status_data[64];
 CreateGlobalRegister(SI, SI_REG);
 
 void _SI_Busy() {
-	while (SI_REG->status & 3)
-		;
+	while (SI_REG->status & 3);
 }
 
 void SI_Write(void *dram_address) {

@@ -5,9 +5,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Tue Mar  1 09:13:24 2022
+# Make data base, printed on Thu Mar  3 12:20:33 2022
 
 # Variables
 
@@ -17,14 +16,20 @@ GDK_BACKEND = x11
 LC_ALL = C
 # environment
 SNAP_INSTANCE_KEY = 
+# makefile (from 'Makefile', line 11)
+OBJC = $(N64_INST)/mips64-elf-objcopy
 # environment
 VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4d8cd19a-2837-4ba1-a9e9-9f24a8fdb4ce.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/xubuntu.mandatory.path
-# makefile (from 'Makefile', line 1)
+# makefile (from 'Makefile', line 5)
 ROM_NAME = c_rom
+# makefile (from 'Makefile', line 34)
+N64TOOL_ARGS = -s 1M sky.sprite
 # environment
 VSCODE_CWD = /home/spencer
+# makefile (from 'Makefile', line 17)
+LIBS = -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -lc -lm -lgcc
 # environment
 GDM_LANG = en_US
 # default
@@ -85,6 +90,7 @@ SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 .SHELLFLAGS := -c
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-xubuntu:/etc/xdg:/etc/xdg
+ 
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -99,6 +105,8 @@ SNAP_REEXEC =
 @F = $(notdir $@)
 # environment
 VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 6)
+ROM_SIZE = 2M
 # environment
 VSCODE_PID = 2269
 # environment
@@ -109,6 +117,8 @@ XDG_SESSION_TYPE = x11
 CLUTTER_BACKEND = x11
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
+# makefile (from 'Makefile', line 33)
+BCXX = $(CXX) -c $(CXXFLAGS) $< -o $@
 # environment
 SESSION_MANAGER = local/spencer-B450M-DS3H:@/tmp/.ICE-unix/1244,unix/spencer-B450M-DS3H:/tmp/.ICE-unix/1244
 # automatic
@@ -147,17 +157,19 @@ MAKEFILES :=
 LANGUAGE = en_US
 # automatic
 ^F = $(notdir $^)
+# makefile (from 'Makefile', line 13)
+N64_TOOL = $(TOOLS)/n64tool
 # environment
 SNAP_USER_COMMON = /home/spencer/snap/code/common
 # environment
 SNAP = /snap/code/88
-# makefile (from 'Makefile', line 7)
+# makefile (from 'Makefile', line 16)
 INCS = -I/usr/local/mips64-elf/include -Iinclude/
 # environment
 SNAP_REVISION = 88
 # environment
 SNAP_REAL_HOME = /home/spencer
-# makefile (from 'Makefile', line 2)
+# makefile (from 'Makefile', line 7)
 BDIR = build
 # environment
 VSCODE_LOG_NATIVE = false
@@ -167,6 +179,8 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 ?F = $(notdir $?)
 # environment
 XDG_SEAT = seat0
+# makefile (from 'Makefile', line 14)
+CHKSUM = $(TOOLS)/chksum64
 # environment
 XDG_CURRENT_DESKTOP = XFCE
 # environment
@@ -177,8 +191,10 @@ LS_COLORS =
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
 DESKTOP_SESSION = xubuntu
-# makefile (from 'Makefile', line 4)
+# makefile (from 'Makefile', line 1)
 N64_INST = /usr/local/bin
+# makefile (from 'Makefile', line 3)
+ROM_HEADER = /home/spencer/libdragon/NEW/libdragon/header
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = XFCE
 # 'override' directive
@@ -199,26 +215,28 @@ USER = spencer
 DEFAULTS_PATH = /usr/share/gconf/xubuntu.default.path
 # default
 MAKE_VERSION := 4.3
+# makefile (from 'Makefile', line 22)
+SRC_FILES = $(BDIR)/main.o
 # environment
 DISABLE_WAYLAND = 1
 # environment
 SNAP_DATA = /var/snap/code/88
 # environment
 SNAP_CONTEXT = 8iVusK_UudP7suPRQenBwEFbwKUcsEIeVW6bJy6AEF4pkr2K0EbD
-# makefile (from 'Makefile', line 12)
-BUILD = $(N64_INST)/mips64-elf-gcc $(CFLAGS) $< -o $@
-# makefile (from 'Makefile', line 13)
-N64TOOL_FILE = -s 1M sky.sprite
-# makefile (from 'Makefile', line 5)
+# makefile (from 'Makefile', line 32)
+BUILD = $(GCC) -c $(CFLAGS) $< -o $@
+# makefile (from 'Makefile', line 2)
 TOOLS = /home/spencer/libdragon/NEW/libdragon/tools
 # environment
 _ = /snap/code/88/usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from 'Makefile', line 9)
-CFLAGS = -std=c99 -march=vr4300 -mtune=vr4300 -c $(WRNGS) $(INCS) 
+# makefile (from 'Makefile', line 19)
+CFLAGS = -std=c99 -march=vr4300 -mtune=vr4300 $(WRNGS) $(INCS) 
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# makefile (from 'Makefile', line 9)
+GCC = $(N64_INST)/mips64-elf-gcc
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/spencer/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
@@ -245,22 +263,28 @@ PANEL_GDK_CORE_DEVICE_EVENTS = 0
 .RECIPEPREFIX := 
 # automatic
 <F = $(notdir $<)
-# makefile (from 'Makefile', line 11)
-DEPS = $(BDIR)/main.o $(BDIR)/timer.o $(BDIR)/stdlib.o $(BDIR)/pi.o $(BDIR)/sprite.o $(BDIR)/vi.o $(BDIR)/si_controller.o $(BDIR)/mempak.o $(BDIR)/vector.o $(BDIR)/sprite.o $(BDIR)/frame.o $(BDIR)/entry.o
+# makefile (from 'Makefile', line 24)
+DEPS = $(SRC_FILES) $(BDIR)/timer.o $(BDIR)/stdlib.o $(BDIR)/pi.o $(BDIR)/sprite.o $(BDIR)/vi.o $(BDIR)/si_controller.o $(BDIR)/mempak.o $(BDIR)/vector.o $(BDIR)/sprite.o $(BDIR)/frame.o $(BDIR)/entry.o $(BDIR)/rdp.o $(BDIR)/interrupt.o 
 # environment
 SNAP_VERSION = f80445ac
 # default
 SUFFIXES := 
+# makefile (from 'Makefile', line 12)
+LD = $(N64_INST)/mips64-elf-ld 
 # environment
 VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 SNAP_COMMON = /var/snap/code/common
+# makefile (from 'Makefile', line 20)
+CXXFLAGS = -std=c++20 -march=vr4300 -mtune=vr4300 $(WRNGS) $(INCS) 
 # environment
 XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/spencer
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 10)
+CXX = $(N64_INST)/mips64-elf-g++
 # environment
 SNAP_USER_DATA = /home/spencer/snap/code/88
 # environment
@@ -269,10 +293,10 @@ XDG_MENU_PREFIX = xfce-
 GDMSESSION = xubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
-# makefile (from 'Makefile', line 8)
+# makefile (from 'Makefile', line 18)
 WRNGS = -Wall -Wextra -O2
 # variable set hash-table stats:
-# Load=130/1024=13%, Rehash=0, Collisions=30/190=16%
+# Load=142/1024=14%, Rehash=0, Collisions=37/215=17%
 
 # Pattern-specific Variable Values
 
@@ -280,61 +304,81 @@ WRNGS = -Wall -Wextra -O2
 
 # Directories
 
-# src (device 2066, inode 3784813): 13 files, no impossibilities.
-# . (device 2066, inode 3784792): 18 files, no impossibilities.
+# src (device 2066, inode 3784813): 15 files, no impossibilities.
+# . (device 2066, inode 3784792): 20 files, no impossibilities.
 
-# 31 files, no impossibilities in 2 directories.
+# 35 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
+build/%.o: %.c
+#  recipe to execute (from 'Makefile', line 40):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
+
 build/%.o: src/%.S
-#  recipe to execute (from 'Makefile', line 23):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 46):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 build/%.o: src/%.c
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
-# 2 implicit rules, 0 (0.0%) terminal.
+build/%.o: src/%.cpp
+#  recipe to execute (from 'Makefile', line 56):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BCXX)
+
+# 4 implicit rules, 0 (0.0%) terminal.
 # Files
 
 # Not a target:
 src/stdlib.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-01 09:10:05.184506609
+#  Last modified 2022-03-01 09:37:09.76895093
 #  File has been updated.
 #  Successfully updated.
 
 build/frame.o: src/frame.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'frame'
-#  Last modified 2022-03-01 09:12:35.610988142
+#  Last modified 2022-03-03 11:32:49.077344396
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 build/c_rom.bin: build/c_rom.elf
 #  Implicit rule search has not been done.
- 
-#  Last modified 2022-03-01 09:13:07.167511839
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 32):
-	$(N64_INST)/mips64-elf-objcopy $< $@ -O binary
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 65):
+	@echo "[COPY] $@"
+	@$(OBJC) $< $@ -O binary
 
 build/sprite.o: src/sprite.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'sprite'
-#  Last modified 2022-03-01 09:12:35.414984892
+#  Last modified 2022-03-03 11:32:48.873340417
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 # Not a target:
 src/frame.c:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-02-25 17:28:48.341147943
 #  File has been updated.
 #  Successfully updated.
@@ -342,82 +386,140 @@ src/frame.c:
 # Not a target:
 src/si_controller.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-25 17:28:48.341147943
+#  Last modified 2022-03-01 10:28:45.573972041
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-01 09:13:06.831506255
+#  Last modified 2022-03-03 12:10:34.755205384
 #  File has been updated.
 #  Successfully updated.
 
 build/entry.o: src/entry.S
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'entry'
-#  Last modified 2022-03-01 09:12:35.614988208
+#  Last modified 2022-03-03 11:32:49.085344552
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 23):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 46):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 # Not a target:
 src/vi.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-01 09:10:50.73725525
+#  Last modified 2022-03-03 12:00:45.527646714
 #  File has been updated.
 #  Successfully updated.
 
 build/vector.o: src/vector.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'vector'
-#  Last modified 2022-03-01 09:12:35.602988009
+#  Last modified 2022-03-03 11:32:49.073344318
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
+
+build/rdp.o: src/rdp.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rdp'
+#  Last modified 2022-03-03 11:57:24.879859076
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 build/si_controller.o: src/si_controller.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'si_controller'
-#  Last modified 2022-03-01 09:12:35.554987213
+#  Last modified 2022-03-03 11:32:49.017343226
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
+
+# Not a target:
+src/rdp.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-03 11:57:24.591853648
+#  File has been updated.
+#  Successfully updated.
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 39):
-	rm -f $(BDIR)/*.bin $(BDIR)/*.o *.z64 $(BDIR)/*.elf
+#  recipe to execute (from 'Makefile', line 74):
+	rm -f $(BDIR)/*.bin $(BDIR)/*.o *.z64 $(BDIR)/*.elf *.map 
 
 build/pi.o: src/pi.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'pi'
-#  Last modified 2022-03-01 09:12:35.39498456
+#  Last modified 2022-03-03 11:32:48.853340027
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
+
+build/interrupt.o: src/interrupt.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'interrupt'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+ 
+# @ := build/interrupt.o
+# automatic
+# * := interrupt
+# automatic
+# < := src/interrupt.c
+# automatic
+# + := src/interrupt.c
+# automatic
+# % := 
+# automatic
+# ^ := src/interrupt.c
+# automatic
+# ? := src/interrupt.c
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=3/20=15%
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 # Not a target:
 src/sprite.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-01 09:11:30.797915745
+#  Last modified 2022-03-01 09:25:02.25154828
 #  File has been updated.
 #  Successfully updated.
 
 build/timer.o: src/timer.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'timer'
-#  Last modified 2022-03-01 09:12:35.322983366
+#  Last modified 2022-03-03 11:32:48.777338545
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 # Not a target:
 src/entry.S:
@@ -429,18 +531,21 @@ src/entry.S:
 # Not a target:
 src/vector.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-25 17:28:48.341147943
+#  Last modified 2022-03-01 09:26:39.737203942
 #  File has been updated.
 #  Successfully updated.
 
 build/vi.o: src/vi.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'vi'
-#  Last modified 2022-03-01 09:12:35.526986748
+#  Last modified 2022-03-03 12:00:45.72365042
+ 
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 # Not a target:
 .DEFAULT:
@@ -448,28 +553,32 @@ build/vi.o: src/vi.c
 #  Modification time never checked.
 #  File has not been updated.
 
-all: src/entry.S build/c_rom.elf build/c_rom.bin c_rom.z64
+all: src/frame.c src/interrupt.c src/mempak.c src/pi.c src/rdp.c src/si_controller.c src/sprite.c src/stdlib.c src/timer.c src/vector.c src/vi.c src/entry.S build/c_rom.elf build/c_rom.bin c_rom.z64
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
 
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-01 09:07:33.158029741
+#  Last modified 2022-03-03 12:02:02.76910772
 #  File has been updated.
 #  Successfully updated.
 
 build/stdlib.o: src/stdlib.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'stdlib'
-#  Last modified 2022-03-01 09:12:35.382984361
+#  Last modified 2022-03-03 11:32:48.837339715
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 # Not a target:
 src/mempak.c:
@@ -477,30 +586,43 @@ src/mempak.c:
 #  Last modified 2022-02-25 17:28:48.341147943
 #  File has been updated.
 #  Successfully updated.
+ 
 
 # Not a target:
 src/timer.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-25 17:28:48.341147943
+#  Last modified 2022-03-01 10:14:38.370442079
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/interrupt.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-03 12:01:20.280303882
 #  File has been updated.
 #  Successfully updated.
 
 build/mempak.o: src/mempak.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'mempak'
-#  Last modified 2022-03-01 09:12:35.586987743
+#  Last modified 2022-03-03 11:32:49.04934385
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 26):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 51):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 build/main.o: main.c
-#  Implicit rule search has not been done.
-#  Last modified 2022-03-01 09:12:35.298982968
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'main'
+#  Last modified 2022-03-03 12:02:03.89312899
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 19):
-	$(BUILD)
+#  recipe to execute (from 'Makefile', line 40):
+	@mkdir -p build
+	@echo "[BUILD] $<"
+	@$(BUILD)
 
 # Not a target:
 src/pi.c:
@@ -511,36 +633,40 @@ src/pi.c:
 
 c_rom.z64: build/c_rom.bin
 #  Implicit rule search has not been done.
-#  Last modified 2022-03-01 09:13:07.171511904
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 35):
-	$(TOOLS)/n64tool -l 2M -t "LibN Test" -h /home/spencer/libdragon/NEW/libdragon/header -o $@ $< $(N64TOOL_FILE) 
-	$(TOOLS)/chksum64 $@
+#  Modification time never checked.
+ 
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 69):
+	@echo "[ROM] $@"
+	@$(N64_TOOL) -l $(ROM_SIZE) -t "$(ROM_NAME)" -h $(ROM_HEADER) -o $@ $< $(N64TOOL_ARGS) 
+	@$(CHKSUM) $@
 	
 
-build/c_rom.elf: build/main.o build/timer.o build/stdlib.o build/pi.o build/sprite.o build/vi.o build/si_controller.o build/mempak.o build/vector.o build/sprite.o build/frame.o build/entry.o
+build/c_rom.elf: build/main.o build/timer.o build/stdlib.o build/pi.o build/sprite.o build/vi.o build/si_controller.o build/mempak.o build/vector.o build/sprite.o build/frame.o build/entry.o build/rdp.o build/interrupt.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-03-01 09:13:07.167511839
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 29):
-	$(N64_INST)/mips64-elf-g++ -o $@ -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -lm -lc -lgcc -Tinclude/n64.ld $(BDIR)/*.o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+#  recipe to execute (from 'Makefile', line 61):
+	@echo "[LINK] $@"
+	@$(CXX) -o $@ $(LIBS) -Tinclude/n64.ld $(BDIR)/*.o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
 
 # files hash-table stats:
-# Load=30/1024=3%, Rehash=0, Collisions=0/102=0%
+# Load=34/1024=3%, Rehash=0, Collisions=1/141=1%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 80 / storage = 825 B / avg = 10 B
-# current buf: size = 8162 B / used = 825 B / count = 80 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 96 / storage = 985 B / avg = 10 B
+# current buf: size = 8162 B / used = 985 B / count = 96 / avg = 10 B
 
-# strcache performance: lookups = 115 / hit rate = 30%
+# strcache performance: lookups = 156 / hit rate = 38%
 # hash-table stats:
-# Load=80/8192=1%, Rehash=0, Collisions=1/115=1%
-# Finished Make data base on Tue Mar  1 09:13:24 2022
+# Load=96/8192=1%, Rehash=0, Collisions=1/156=1%
+# Finished Make data base on Thu Mar  3 12:20:33 2022
 
  
