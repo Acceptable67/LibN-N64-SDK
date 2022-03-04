@@ -52,11 +52,6 @@ $(BDIR)/%.o: src/%.c
 	@echo "[BUILD] $<"
 	@$(BUILD)
 
-$(BDIR)/%.o: src/%.cpp
-	@mkdir -p build
-	@echo "[BUILD] $<"
-	@$(BCXX)
-
 $(BDIR)/$(ROM_NAME).elf: $(DEPS)
 	@echo "[LINK] $@"
 	@$(CXX) -o $@ $(LIBS) -Tinclude/n64.ld $(BDIR)/*.o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map

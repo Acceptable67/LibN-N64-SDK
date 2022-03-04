@@ -5,8 +5,6 @@
 #include <string.h>
 
 CreateGlobalRegister(VI, VI_REG);
-CreateGlobalRegister(MI, MI_REG);
-CreateGlobalRegister(DP, DP_REG);
 
 u32 buffer_list[2] = 
 { 
@@ -93,8 +91,8 @@ void Display_DrawRect(const u16 bx, const u16 by, const u16 xd, const u16 yd, co
 		}
 	} else {
 		Display_DrawLine(bx, by, bx + xd, by, color); 
-		Display_DrawLine(bx + xd, by, bx+xd, by + yd, color);
-		Display_DrawLine(bx+xd, by + yd, bx, by + yd, color); 
+		Display_DrawLine(bx + xd, by, bx + xd, by + yd, color);
+		Display_DrawLine(bx + xd, by + yd, bx, by + yd, color); 
 		Display_DrawLine(bx, by + yd, bx, by, color);
 	}
 	
@@ -113,7 +111,7 @@ void Display_DrawCircle(const u16 cx, const u16 cy, u32 scale, const u32 color, 
 	} else {
 		for (float angles = 0; angles < 25 * scale;
 		     angles += cStepSize) {
-			Display_DrawPixel((u32)(cx + cosf(angles) * PI * scale), (u32)(cy + sinf(angles) * scale),color);
+			Display_DrawPixel((u32)(cx + cosf(angles) * PI * scale), (u32)(cy + sinf(angles) * PI * scale),color);
 		}
 	}
 }

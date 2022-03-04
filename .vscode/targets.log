@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Thu Mar  3 12:20:33 2022
+# Make data base, printed on Thu Mar  3 17:39:55 2022
 
 # Variables
 
@@ -90,7 +91,6 @@ SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 .SHELLFLAGS := -c
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-xubuntu:/etc/xdg:/etc/xdg
- 
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -296,7 +296,7 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # makefile (from 'Makefile', line 18)
 WRNGS = -Wall -Wextra -O2
 # variable set hash-table stats:
-# Load=142/1024=14%, Rehash=0, Collisions=37/215=17%
+# Load=142/1024=14%, Rehash=0, Collisions=33/205=16%
 
 # Pattern-specific Variable Values
 
@@ -305,6 +305,7 @@ WRNGS = -Wall -Wextra -O2
 # Directories
 
 # src (device 2066, inode 3784813): 15 files, no impossibilities.
+ 
 # . (device 2066, inode 3784792): 20 files, no impossibilities.
 
 # 35 files, no impossibilities in 2 directories.
@@ -329,13 +330,7 @@ build/%.o: src/%.c
 	@echo "[BUILD] $<"
 	@$(BUILD)
 
-build/%.o: src/%.cpp
-#  recipe to execute (from 'Makefile', line 56):
-	@mkdir -p build
-	@echo "[BUILD] $<"
-	@$(BCXX)
-
-# 4 implicit rules, 0 (0.0%) terminal.
+# 3 implicit rules, 0 (0.0%) terminal.
 # Files
 
 # Not a target:
@@ -358,16 +353,17 @@ build/frame.o: src/frame.c
 
 build/c_rom.bin: build/c_rom.elf
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 65):
+#  Last modified 2022-03-03 17:09:11.182282595
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 60):
 	@echo "[COPY] $@"
 	@$(OBJC) $< $@ -O binary
 
 build/sprite.o: src/sprite.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'sprite'
-#  Last modified 2022-03-03 11:32:48.873340417
+#  Last modified 2022-03-03 17:07:09.672027601
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 51):
@@ -378,7 +374,6 @@ build/sprite.o: src/sprite.c
 # Not a target:
 src/frame.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2022-02-25 17:28:48.341147943
 #  File has been updated.
 #  Successfully updated.
@@ -393,7 +388,7 @@ src/si_controller.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-03 12:10:34.755205384
+#  Last modified 2022-03-03 17:03:35.524053259
 #  File has been updated.
 #  Successfully updated.
 
@@ -411,7 +406,7 @@ build/entry.o: src/entry.S
 # Not a target:
 src/vi.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-03 12:00:45.527646714
+#  Last modified 2022-03-03 16:52:32.587746978
 #  File has been updated.
 #  Successfully updated.
 
@@ -429,7 +424,7 @@ build/vector.o: src/vector.c
 build/rdp.o: src/rdp.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'rdp'
-#  Last modified 2022-03-03 11:57:24.879859076
+#  Last modified 2022-03-03 17:09:11.170282372
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 51):
@@ -451,7 +446,7 @@ build/si_controller.o: src/si_controller.c
 # Not a target:
 src/rdp.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-03 11:57:24.591853648
+#  Last modified 2022-03-03 17:09:10.902277399
 #  File has been updated.
 #  Successfully updated.
 
@@ -459,7 +454,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 74):
+#  recipe to execute (from 'Makefile', line 69):
 	rm -f $(BDIR)/*.bin $(BDIR)/*.o *.z64 $(BDIR)/*.elf *.map 
 
 build/pi.o: src/pi.c
@@ -476,28 +471,9 @@ build/pi.o: src/pi.c
 build/interrupt.o: src/interrupt.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'interrupt'
-#  File does not exist.
+#  Last modified 2022-03-03 12:54:09.738340111
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
- 
-# @ := build/interrupt.o
-# automatic
-# * := interrupt
-# automatic
-# < := src/interrupt.c
-# automatic
-# + := src/interrupt.c
-# automatic
-# % := 
-# automatic
-# ^ := src/interrupt.c
-# automatic
-# ? := src/interrupt.c
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=3/20=15%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 51):
 	@mkdir -p build
 	@echo "[BUILD] $<"
@@ -506,7 +482,7 @@ build/interrupt.o: src/interrupt.c
 # Not a target:
 src/sprite.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-01 09:25:02.25154828
+#  Last modified 2022-03-03 17:06:59.81984476
 #  File has been updated.
 #  Successfully updated.
 
@@ -538,8 +514,7 @@ src/vector.c:
 build/vi.o: src/vi.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'vi'
-#  Last modified 2022-03-03 12:00:45.72365042
- 
+#  Last modified 2022-03-03 16:54:35.046020734
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 51):
@@ -558,14 +533,13 @@ all: src/frame.c src/interrupt.c src/mempak.c src/pi.c src/rdp.c src/si_controll
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+#  Successfully updated.
+ 
 
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-03 12:02:02.76910772
+#  Last modified 2022-03-03 17:08:30.24152282
 #  File has been updated.
 #  Successfully updated.
 
@@ -586,7 +560,6 @@ src/mempak.c:
 #  Last modified 2022-02-25 17:28:48.341147943
 #  File has been updated.
 #  Successfully updated.
- 
 
 # Not a target:
 src/timer.c:
@@ -598,7 +571,7 @@ src/timer.c:
 # Not a target:
 src/interrupt.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-03 12:01:20.280303882
+#  Last modified 2022-03-03 12:54:09.558336632
 #  File has been updated.
 #  Successfully updated.
 
@@ -616,7 +589,7 @@ build/mempak.o: src/mempak.c
 build/main.o: main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'main'
-#  Last modified 2022-03-03 12:02:03.89312899
+#  Last modified 2022-03-03 17:08:30.485527348
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 40):
@@ -633,10 +606,10 @@ src/pi.c:
 
 c_rom.z64: build/c_rom.bin
 #  Implicit rule search has not been done.
-#  Modification time never checked.
- 
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 69):
+#  Last modified 2022-03-03 17:09:11.186282668
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 64):
 	@echo "[ROM] $@"
 	@$(N64_TOOL) -l $(ROM_SIZE) -t "$(ROM_NAME)" -h $(ROM_HEADER) -o $@ $< $(N64TOOL_ARGS) 
 	@$(CHKSUM) $@
@@ -644,12 +617,10 @@ c_rom.z64: build/c_rom.bin
 
 build/c_rom.elf: build/main.o build/timer.o build/stdlib.o build/pi.o build/sprite.o build/vi.o build/si_controller.o build/mempak.o build/vector.o build/sprite.o build/frame.o build/entry.o build/rdp.o build/interrupt.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-03-03 17:09:11.17828252
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
-#  recipe to execute (from 'Makefile', line 61):
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 56):
 	@echo "[LINK] $@"
 	@$(CXX) -o $@ $(LIBS) -Tinclude/n64.ld $(BDIR)/*.o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
 
@@ -661,12 +632,12 @@ build/c_rom.elf: build/main.o build/timer.o build/stdlib.o build/pi.o build/spri
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 96 / storage = 985 B / avg = 10 B
-# current buf: size = 8162 B / used = 985 B / count = 96 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 95 / storage = 975 B / avg = 10 B
+# current buf: size = 8162 B / used = 975 B / count = 95 / avg = 10 B
 
-# strcache performance: lookups = 156 / hit rate = 38%
+# strcache performance: lookups = 154 / hit rate = 38%
 # hash-table stats:
-# Load=96/8192=1%, Rehash=0, Collisions=1/156=1%
-# Finished Make data base on Thu Mar  3 12:20:33 2022
+# Load=95/8192=1%, Rehash=0, Collisions=1/154=1%
+# Finished Make data base on Thu Mar  3 17:39:55 2022
 
  

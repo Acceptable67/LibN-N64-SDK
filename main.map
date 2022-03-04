@@ -120,6 +120,12 @@ Discarded input sections
  .comment       0x0000000000000000       0x13 build/frame.o
  .gnu.attributes
                 0x0000000000000000       0x10 build/frame.o
+ .data          0x0000000000000000        0x0 build/interrupt.o
+ .bss           0x0000000000000000        0x0 build/interrupt.o
+ .reginfo       0x0000000000000000       0x18 build/interrupt.o
+ .MIPS.abiflags
+                0x0000000000000000       0x18 build/interrupt.o
+ .pdr           0x0000000000000000       0x40 build/interrupt.o
  .data          0x0000000000000000        0x0 build/main.o
  .bss           0x0000000000000000        0x0 build/main.o
  .reginfo       0x0000000000000000       0x18 build/main.o
@@ -527,6 +533,7 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
 LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a
 LOAD build/entry.o
 LOAD build/frame.o
+LOAD build/interrupt.o
 LOAD build/main.o
 LOAD build/mempak.o
 LOAD build/pi.o
@@ -548,200 +555,202 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/crtn.o
                 0x0000000080000000                __kseg0_start = 0x80000000
                 0x0000000080000400                __libdragon_text_start = (__kseg0_start + 0x400)
 
-.text           0x0000000080000400     0xab30
+.text           0x0000000080000400     0xac20
  *(.boot)
  .boot          0x0000000080000400       0x70 build/entry.o
                 0x0000000080000400                _start
                 0x0000000080000470                . = ALIGN (0x10)
                 0x0000000080000470                __text_start = .
  *(.text)
- .text          0x0000000080000470      0x1c0 build/main.o
-                0x0000000080000470                InitDisplay
-                0x00000000800004e0                CheckController
-                0x00000000800005c8                Begin
- .text          0x0000000080000630      0x980 build/rdp.o
-                0x0000000080000630                RDP_AddCommand
-                0x0000000080000668                RDP_Send
-                0x00000000800006e8                RDP_Debug
-                0x0000000080000718                RDP_SendDisplayList
-                0x0000000080000720                RDP_SetOtherModes
-                0x0000000080000788                RDP_SetClipping
-                0x0000000080000808                RDP_SetDefaultClipping
-                0x0000000080000880                RDP_EnablePrimitive
-                0x00000000800008e8                RDP_Init
-                0x0000000080000900                RDP_Close
-                0x0000000080000918                RDP_EnableBlend
-                0x0000000080000980                RDP_SetPrimitiveColor
-                0x00000000800009e0                RDP_SetBlendColor
-                0x0000000080000a40                RDP_DrawRectangle
-                0x0000000080000ac0                RDP_Attach
-                0x0000000080000b50                RDP_Sync
-                0x0000000080000bb0                RDP_DrawRectangleSetup
-                0x0000000080000f80                RDP_FillScreen
- .text          0x0000000080000fb0      0x1c0 build/si_controller.o
-                0x0000000080000fb0                _SI_Busy
-                0x0000000080000fd0                SI_Write
-                0x0000000080001010                SI_Read
-                0x0000000080001050                Controller_WriteStatus
-                0x0000000080001098                SI_GetData
-                0x00000000800010e0                Controller_Write
-                0x0000000080001128                Controller_Read
- .text          0x0000000080001170      0x590 build/stdlib.o
-                0x0000000080001170                lseek
-                0x0000000080001178                open
-                0x0000000080001180                read
-                0x0000000080001188                _exit
-                0x0000000080001198                close
-                0x00000000800011a0                getpid
-                0x00000000800011a8                isatty
-                0x00000000800011b0                kill
-                0x00000000800011d8                link
-                0x00000000800011e0                unlink
-                0x00000000800011e8                write
-                0x00000000800011f0                ResetConsole
-                0x0000000080001200                _prnt_advance
-                0x0000000080001258                printf
-                0x0000000080001318                __assert_func
-                0x0000000080001390                __strlen
-                0x00000000800013d0                __malloc
-                0x0000000080001440                __atoi
-                0x0000000080001480                __memcpy
-                0x00000000800014a8                __memset
-                0x00000000800014c0                __strncmp
-                0x0000000080001520                __strcmp
-                0x0000000080001580                __toupper
-                0x00000000800015a8                __tolower
-                0x00000000800015d0                sbrk
-                0x0000000080001640                __strdup
- .text          0x0000000080001700      0x9a8 build/vi.o
-                0x0000000080001700                Display_GetBuffer
-                0x0000000080001718                Display_GetActiveBuffer
-                0x0000000080001720                Display_SetActiveBuffer
-                0x0000000080001738                Display_SetDrawingBuffer
-                0x0000000080001740                Display_SwapBuffers
-                0x0000000080001768                Display_FrameWidth
-                0x0000000080001770                Display_FrameHeight
-                0x0000000080001778                Display_Initialize
-                0x0000000080001898                Display_DrawPixel
-                0x00000000800018c0                Display_DrawCircle
-                0x0000000080001c10                Display_FillScreen
-                0x0000000080001c70                Display_DrawCharacter
-                0x0000000080001d50                Display_DrawText
-                0x0000000080001e20                Display_DrawLine
-                0x0000000080001f18                Display_DrawRect
-                0x0000000080002000                Display_DrawTri
-                0x0000000080002080                Display_SetColors
-                0x0000000080002090                Display_GetColors
- .text          0x00000000800020a8       0xf8 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
-                0x00000000800020a8                cosf
- .text          0x00000000800021a0      0x100 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
-                0x00000000800021a0                sinf
- .text          0x00000000800022a0      0x358 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
-                0x00000000800022a0                __ieee754_rem_pio2f
- .text          0x00000000800025f8      0x190 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
-                0x00000000800025f8                __kernel_cosf
- .text          0x0000000080002788      0x988 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
-                0x0000000080002788                __kernel_rem_pio2f
- .text          0x0000000080003110       0xd8 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
-                0x0000000080003110                __kernel_sinf
- .text          0x00000000800031e8       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
-                0x00000000800031e8                fabsf
- .text          0x0000000080003208      0x108 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
-                0x0000000080003208                floorf
- .text          0x0000000080003310      0x178 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
-                0x0000000080003310                scalbnf
- .text          0x0000000080003488      0x118 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
-                0x0000000080003488                _calloc_r
- .text          0x00000000800035a0        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
-                0x00000000800035a0                __errno
- .text          0x00000000800035a8       0x38 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
-                0x00000000800035a8                exit
- .text          0x00000000800035e0      0x898 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x00000000800035e0                _malloc_r
- .text          0x0000000080003e78      0x11c /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
-                0x0000000080003e78                memset
- *fill*         0x0000000080003f94        0x4 
- .text          0x0000000080003f98       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
-                0x0000000080003f98                __malloc_lock
-                0x0000000080003fa0                __malloc_unlock
- .text          0x0000000080003fa8      0x5f8 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
-                0x0000000080003fa8                _realloc_r
- .text          0x00000000800045a0       0x50 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
-                0x00000000800045a0                _sbrk_r
- .text          0x00000000800045f0      0x1a8 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
-                0x00000000800045f0                vsnprintf
-                0x00000000800046c0                _vsnprintf_r
- .text          0x0000000080004798      0x150 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
-                0x0000000080004798                __call_exitprocs
- .text          0x00000000800048e8      0x480 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
-                0x00000000800048e8                _malloc_trim_r
-                0x0000000080004a18                _free_r
- .text          0x0000000080004d68      0x150 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
-                0x0000000080004d68                memmove
- .text          0x0000000080004eb8     0x1f30 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
-                0x0000000080004eb8                _svfprintf_r
- .text          0x0000000080006de8     0x1678 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
-                0x0000000080007038                _dtoa_r
- .text          0x0000000080008460       0x28 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
-                0x0000000080008460                __localeconv_l
-                0x0000000080008468                _localeconv_r
-                0x0000000080008478                localeconv
- .text          0x0000000080008488       0x70 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
-                0x0000000080008488                _mbtowc_r
-                0x0000000080008498                __ascii_mbtowc
- .text          0x00000000800084f8       0xf0 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
-                0x00000000800084f8                memchr
- .text          0x00000000800085e8      0x370 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
-                0x00000000800085e8                memcpy
- .text          0x0000000080008958     0x1410 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
-                0x0000000080008958                _Balloc
-                0x0000000080008a08                _Bfree
-                0x0000000080008a38                __multadd
-                0x0000000080008b98                __s2b
-                0x0000000080008d18                __hi0bits
-                0x0000000080008d98                __lo0bits
-                0x0000000080008e60                __i2b
-                0x0000000080008f38                __multiply
-                0x00000000800091c8                __pow5mult
-                0x0000000080009338                __lshift
-                0x00000000800094f0                __mcmp
-                0x0000000080009558                __mdiff
-                0x00000000800097c0                __ulp
-                0x0000000080009870                __b2d
-                0x00000000800099f8                __d2b
-                0x0000000080009b60                __ratio
-                0x0000000080009c20                _mprec_log10
-                0x0000000080009c60                __copybits
-                0x0000000080009ce8                __any_on
- .text          0x0000000080009d68       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
-                0x0000000080009d68                strlen
- .text          0x0000000080009d80     0x1100 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
-                0x0000000080009d80                __ssprint_r
-                0x0000000080009fc0                _svfiprintf_r
- .text          0x000000008000ae80       0x48 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
-                0x000000008000ae80                _wctomb_r
-                0x000000008000ae90                __ascii_wctomb
+ .text          0x0000000080000470       0x80 build/interrupt.o
+                0x0000000080000470                Interrupt_VI_SetCallback
+                0x00000000800004c0                Interrupt_VI_Toggle
+ .text          0x00000000800004f0      0x1e8 build/main.o
+                0x00000000800004f0                InitDisplay
+                0x0000000080000560                CheckController
+                0x0000000080000648                Begin
+ .text          0x00000000800006d8      0x9d0 build/rdp.o
+                0x00000000800006d8                RDP_AddCommand
+                0x0000000080000710                RDP_Send
+                0x0000000080000790                RDP_Debug
+                0x00000000800007c0                RDP_SendDisplayList
+                0x00000000800007c8                RDP_SetOtherModes
+                0x0000000080000830                RDP_SetClipping
+                0x00000000800008b0                RDP_SetDefaultClipping
+                0x0000000080000940                RDP_EnablePrimitive
+                0x00000000800009a8                RDP_Init
+                0x00000000800009c0                RDP_Close
+                0x00000000800009d8                RDP_EnableBlend
+                0x0000000080000a40                RDP_SetPrimitiveColor
+                0x0000000080000aa0                RDP_SetBlendColor
+                0x0000000080000b00                RDP_DrawRectangle
+                0x0000000080000b80                RDP_Attach
+                0x0000000080000c10                RDP_Sync
+                0x0000000080000c70                RDP_DrawRectangleSetup
+                0x0000000080001060                RDP_FillScreen
+ .text          0x00000000800010a8      0x1c0 build/si_controller.o
+                0x00000000800010a8                _SI_Busy
+                0x00000000800010c8                SI_Write
+                0x0000000080001108                SI_Read
+                0x0000000080001148                Controller_WriteStatus
+                0x0000000080001190                SI_GetData
+                0x00000000800011d8                Controller_Write
+                0x0000000080001220                Controller_Read
+ .text          0x0000000080001268      0x590 build/stdlib.o
+                0x0000000080001268                lseek
+                0x0000000080001270                open
+                0x0000000080001278                read
+                0x0000000080001280                _exit
+                0x0000000080001290                close
+                0x0000000080001298                getpid
+                0x00000000800012a0                isatty
+                0x00000000800012a8                kill
+                0x00000000800012d0                link
+                0x00000000800012d8                unlink
+                0x00000000800012e0                write
+                0x00000000800012e8                ResetConsole
+                0x00000000800012f8                _prnt_advance
+                0x0000000080001350                printf
+                0x0000000080001410                __assert_func
+                0x0000000080001488                __strlen
+                0x00000000800014c8                __malloc
+                0x0000000080001538                __atoi
+                0x0000000080001578                __memcpy
+                0x00000000800015a0                __memset
+                0x00000000800015b8                __strncmp
+                0x0000000080001618                __strcmp
+                0x0000000080001678                __toupper
+                0x00000000800016a0                __tolower
+                0x00000000800016c8                sbrk
+                0x0000000080001738                __strdup
+ .text          0x00000000800017f8      0x9a8 build/vi.o
+                0x00000000800017f8                Display_GetBuffer
+                0x0000000080001810                Display_GetActiveBuffer
+                0x0000000080001818                Display_SetActiveBuffer
+                0x0000000080001830                Display_SetDrawingBuffer
+                0x0000000080001838                Display_SwapBuffers
+                0x0000000080001860                Display_FrameWidth
+                0x0000000080001868                Display_FrameHeight
+                0x0000000080001870                Display_Initialize
+                0x0000000080001990                Display_DrawPixel
+                0x00000000800019b8                Display_DrawCircle
+                0x0000000080001d08                Display_FillScreen
+                0x0000000080001d68                Display_DrawCharacter
+                0x0000000080001e48                Display_DrawText
+                0x0000000080001f18                Display_DrawLine
+                0x0000000080002010                Display_DrawRect
+                0x00000000800020f8                Display_DrawTri
+                0x0000000080002178                Display_SetColors
+                0x0000000080002188                Display_GetColors
+ .text          0x00000000800021a0       0xf8 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
+                0x00000000800021a0                cosf
+ .text          0x0000000080002298      0x100 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
+                0x0000000080002298                sinf
+ .text          0x0000000080002398      0x358 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
+                0x0000000080002398                __ieee754_rem_pio2f
+ .text          0x00000000800026f0      0x190 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
+                0x00000000800026f0                __kernel_cosf
+ .text          0x0000000080002880      0x988 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
+                0x0000000080002880                __kernel_rem_pio2f
+ .text          0x0000000080003208       0xd8 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
+                0x0000000080003208                __kernel_sinf
+ .text          0x00000000800032e0       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
+                0x00000000800032e0                fabsf
+ .text          0x0000000080003300      0x108 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
+                0x0000000080003300                floorf
+ .text          0x0000000080003408      0x178 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
+                0x0000000080003408                scalbnf
+ .text          0x0000000080003580      0x118 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
+                0x0000000080003580                _calloc_r
+ .text          0x0000000080003698        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
+                0x0000000080003698                __errno
+ .text          0x00000000800036a0       0x38 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
+                0x00000000800036a0                exit
+ .text          0x00000000800036d8      0x898 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x00000000800036d8                _malloc_r
+ .text          0x0000000080003f70      0x11c /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
+                0x0000000080003f70                memset
+ *fill*         0x000000008000408c        0x4 
+ .text          0x0000000080004090       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
+                0x0000000080004090                __malloc_lock
+                0x0000000080004098                __malloc_unlock
+ .text          0x00000000800040a0      0x5f8 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
+                0x00000000800040a0                _realloc_r
+ .text          0x0000000080004698       0x50 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
+                0x0000000080004698                _sbrk_r
+ .text          0x00000000800046e8      0x1a8 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
+                0x00000000800046e8                vsnprintf
+                0x00000000800047b8                _vsnprintf_r
+ .text          0x0000000080004890      0x150 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
+                0x0000000080004890                __call_exitprocs
+ .text          0x00000000800049e0      0x480 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
+                0x00000000800049e0                _malloc_trim_r
+                0x0000000080004b10                _free_r
+ .text          0x0000000080004e60      0x150 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
+                0x0000000080004e60                memmove
+ .text          0x0000000080004fb0     0x1f30 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
+                0x0000000080004fb0                _svfprintf_r
+ .text          0x0000000080006ee0     0x1678 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
+                0x0000000080007130                _dtoa_r
+ .text          0x0000000080008558       0x28 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
+                0x0000000080008558                __localeconv_l
+                0x0000000080008560                _localeconv_r
+                0x0000000080008570                localeconv
+ .text          0x0000000080008580       0x70 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
+                0x0000000080008580                _mbtowc_r
+                0x0000000080008590                __ascii_mbtowc
+ .text          0x00000000800085f0       0xf0 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
+                0x00000000800085f0                memchr
+ .text          0x00000000800086e0      0x370 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
+                0x00000000800086e0                memcpy
+ .text          0x0000000080008a50     0x1410 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+                0x0000000080008a50                _Balloc
+                0x0000000080008b00                _Bfree
+                0x0000000080008b30                __multadd
+                0x0000000080008c90                __s2b
+                0x0000000080008e10                __hi0bits
+                0x0000000080008e90                __lo0bits
+                0x0000000080008f58                __i2b
+                0x0000000080009030                __multiply
+                0x00000000800092c0                __pow5mult
+                0x0000000080009430                __lshift
+                0x00000000800095e8                __mcmp
+                0x0000000080009650                __mdiff
+                0x00000000800098b8                __ulp
+                0x0000000080009968                __b2d
+                0x0000000080009af0                __d2b
+                0x0000000080009c58                __ratio
+                0x0000000080009d18                _mprec_log10
+                0x0000000080009d58                __copybits
+                0x0000000080009de0                __any_on
+ .text          0x0000000080009e60       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
+                0x0000000080009e60                strlen
+ .text          0x0000000080009e78     0x1100 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
+                0x0000000080009e78                __ssprint_r
+                0x000000008000a0b8                _svfiprintf_r
+ .text          0x000000008000af78       0x48 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
+                0x000000008000af78                _wctomb_r
+                0x000000008000af88                __ascii_wctomb
  *(.text.*)
- .text.startup  0x000000008000aec8       0x50 build/main.o
-                0x000000008000aec8                main
+ .text.startup  0x000000008000afc0       0x50 build/main.o
+                0x000000008000afc0                main
  *(.init)
- .init          0x000000008000af18        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
-                0x000000008000af18                _init
+ .init          0x000000008000b010        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x000000008000b010                _init
  *(.fini)
- .fini          0x000000008000af20        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
-                0x000000008000af20                _fini
+ .fini          0x000000008000b018        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x000000008000b018                _fini
  *(.gnu.linkonce.t.*)
-                0x000000008000af30                . = ALIGN (0x10)
- *fill*         0x000000008000af28        0x8 
-                0x000000008000af30                __text_end = .
+                0x000000008000b020                . = ALIGN (0x10)
+                0x000000008000b020                __text_end = .
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x000000008000af30        0x4
+.eh_frame       0x000000008000b020        0x4
  *(.eh_frame)
- .eh_frame      0x000000008000af30        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
- .eh_frame      0x000000008000af30        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+ .eh_frame      0x000000008000b020        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
+ .eh_frame      0x000000008000b020        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
 .gcc_except_table
  *(.gcc_except_table*)
@@ -749,160 +758,162 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/crtn.o
 .jcr
  *(.jcr)
 
-.rodata         0x000000008000af38     0x1448
+.rodata         0x000000008000b028     0x1448
  *(.rdata)
  *(.rodata)
- .rodata        0x000000008000af38      0x800 build/vi.o
- .rodata        0x000000008000b738      0x398 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .rodata        0x000000008000bad0       0x3c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- *fill*         0x000000008000bb0c        0x4 
- .rodata        0x000000008000bb10      0x188 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .rodata        0x000000008000bc98      0x128 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
-                0x000000008000bca8                __mprec_tinytens
-                0x000000008000bcd0                __mprec_bigtens
-                0x000000008000bcf8                __mprec_tens
- .rodata        0x000000008000bdc0      0x188 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
- .rodata        0x000000008000bf48      0x288 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
-                0x000000008000bf48                _ctype_
-                0x000000008000c050                _ctype_b
+ .rodata        0x000000008000b028      0x800 build/vi.o
+ .rodata        0x000000008000b828      0x398 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
+ .rodata        0x000000008000bbc0       0x3c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
+ *fill*         0x000000008000bbfc        0x4 
+ .rodata        0x000000008000bc00      0x188 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
+ .rodata        0x000000008000bd88      0x128 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+                0x000000008000bd98                __mprec_tinytens
+                0x000000008000bdc0                __mprec_bigtens
+                0x000000008000bde8                __mprec_tens
+ .rodata        0x000000008000beb0      0x188 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
+ .rodata        0x000000008000c038      0x288 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+                0x000000008000c038                _ctype_
+                0x000000008000c140                _ctype_b
  *(.rodata.*)
  .rodata.str1.8
-                0x000000008000c1d0       0x28 build/main.o
+                0x000000008000c2c0       0x28 build/main.o
  .rodata.str1.8
-                0x000000008000c1f8       0x28 build/rdp.o
+                0x000000008000c2e8       0x28 build/rdp.o
  .rodata.str1.8
-                0x000000008000c220       0x59 build/stdlib.o
- *fill*         0x000000008000c279        0x7 
+                0x000000008000c310       0x59 build/stdlib.o
+ *fill*         0x000000008000c369        0x7 
  .rodata.str1.8
-                0x000000008000c280       0x5a /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- *fill*         0x000000008000c2da        0x6 
+                0x000000008000c370       0x5a /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
+ *fill*         0x000000008000c3ca        0x6 
  .rodata.str1.8
-                0x000000008000c2e0       0x58 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
+                0x000000008000c3d0       0x58 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
                                          0x60 (size before relaxing)
  .rodata.str1.8
-                0x000000008000c338       0x12 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
+                0x000000008000c428       0x12 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
                                          0x1a (size before relaxing)
- *fill*         0x000000008000c34a        0x6 
+ *fill*         0x000000008000c43a        0x6 
  .rodata.str1.8
-                0x000000008000c350       0x29 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+                0x000000008000c440       0x29 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
                                          0x41 (size before relaxing)
  .rodata.str1.8
-                0x000000008000c379       0x37 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
+                0x000000008000c469       0x37 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
  *(.gnu.linkonce.r.*)
-                0x000000008000c3b0                . = ALIGN (0x8)
- *fill*         0x000000008000c379        0x7 
+                0x000000008000c4a0                . = ALIGN (0x8)
+ *fill*         0x000000008000c469        0x7 
 
-.MIPS.abiflags  0x000000008000c380       0x18
+.MIPS.abiflags  0x000000008000c470       0x18
  .MIPS.abiflags
-                0x000000008000c380       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x000000008000c470       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
 
-.rel.dyn        0x000000008000c398        0x0
- .rel.dyn       0x000000008000c398        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000c398                . = ALIGN (0x4)
+.rel.dyn        0x000000008000c488        0x0
+ .rel.dyn       0x000000008000c488        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x000000008000c488                . = ALIGN (0x4)
 
-.ctors          0x000000008000c398        0x8
-                0x000000008000c398                __CTOR_LIST__ = .
+.ctors          0x000000008000c488        0x8
+                0x000000008000c488                __CTOR_LIST__ = .
  *(.ctors)
- .ctors         0x000000008000c398        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
- .ctors         0x000000008000c39c        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
-                0x000000008000c3a0                __CTOR_END__ = .
-                0x000000008000c3a0                . = ALIGN (0x8)
+ .ctors         0x000000008000c488        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
+ .ctors         0x000000008000c48c        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+                0x000000008000c490                __CTOR_END__ = .
+                0x000000008000c490                . = ALIGN (0x8)
 
-.data           0x000000008000c3a0      0xa20
-                0x000000008000c3a0                __data_start = .
+.data           0x000000008000c490      0xa20
+                0x000000008000c490                __data_start = .
  *(.data)
- .data          0x000000008000c3a0       0x80 build/si_controller.o
-                0x000000008000c3a0                SI_CTRLR_STATUS
-                0x000000008000c3e0                SI_READ_MSG
- .data          0x000000008000c420      0x428 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
- .data          0x000000008000c848      0x408 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000c848                __malloc_av_
- .data          0x000000008000cc50      0x16c /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
-                0x000000008000cc50                __global_locale
+ .data          0x000000008000c490       0x80 build/si_controller.o
+                0x000000008000c490                SI_CTRLR_STATUS
+                0x000000008000c4d0                SI_READ_MSG
+ .data          0x000000008000c510      0x428 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
+ .data          0x000000008000c938      0x408 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x000000008000c938                __malloc_av_
+ .data          0x000000008000cd40      0x16c /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
+                0x000000008000cd40                __global_locale
  *(.data.*)
  *(.gnu.linkonce.d.*)
-                0x000000008000cdc0                . = ALIGN (0x8)
- *fill*         0x000000008000cdbc        0x4 
+                0x000000008000ceb0                . = ALIGN (0x8)
+ *fill*         0x000000008000ceac        0x4 
 
-.sdata          0x000000008000cdc0      0x140
-                0x0000000080014dc0                _gp = (. + 0x8000)
+.sdata          0x000000008000ceb0      0x148
+                0x0000000080014eb0                _gp = (. + 0x8000)
  *(.sdata)
- .sdata         0x000000008000cdc0        0x8 build/stdlib.o
-                0x000000008000cdc0                consoley
-                0x000000008000cdc4                consolex
- .sdata         0x000000008000cdc8       0x20 build/vi.o
-                0x000000008000cdc8                buffer_list
- .sdata         0x000000008000cde8       0x24 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .sdata         0x000000008000ce0c       0x28 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
- .sdata         0x000000008000ce34       0x1c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- .sdata         0x000000008000ce50       0x1c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
- .sdata         0x000000008000ce6c        0x8 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
- .sdata         0x000000008000ce74       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
- .sdata         0x000000008000ce8c        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
-                0x000000008000ce8c                _global_impure_ptr
-                0x000000008000ce90                _impure_ptr
- .sdata         0x000000008000ce94        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000ce94                __malloc_sbrk_base
-                0x000000008000ce98                __malloc_trim_threshold
- *fill*         0x000000008000ce9c        0x4 
- .sdata         0x000000008000cea0        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .sdata         0x000000008000cea8       0x48 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
- .sdata         0x000000008000cef0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+ .sdata         0x000000008000ceb0        0x4 build/main.o
+ .sdata         0x000000008000ceb4        0x8 build/stdlib.o
+                0x000000008000ceb4                consoley
+                0x000000008000ceb8                consolex
+ *fill*         0x000000008000cebc        0x4 
+ .sdata         0x000000008000cec0       0x20 build/vi.o
+                0x000000008000cec0                buffer_list
+ .sdata         0x000000008000cee0       0x24 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
+ .sdata         0x000000008000cf04       0x28 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
+ .sdata         0x000000008000cf2c       0x1c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
+ .sdata         0x000000008000cf48       0x1c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
+ .sdata         0x000000008000cf64        0x8 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
+ .sdata         0x000000008000cf6c       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
+ .sdata         0x000000008000cf84        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
+                0x000000008000cf84                _global_impure_ptr
+                0x000000008000cf88                _impure_ptr
+ .sdata         0x000000008000cf8c        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x000000008000cf8c                __malloc_sbrk_base
+                0x000000008000cf90                __malloc_trim_threshold
+ *fill*         0x000000008000cf94        0x4 
+ .sdata         0x000000008000cf98        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
+ .sdata         0x000000008000cfa0       0x48 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
+ .sdata         0x000000008000cfe8       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
  *(.sdata.*)
  *(.gnu.linkonce.s.*)
-                0x000000008000cf00                . = ALIGN (0x8)
+                0x000000008000cff8                . = ALIGN (0x8)
 
-.lit8           0x000000008000cf00        0x0
+.lit8           0x000000008000cff8        0x0
  *(.lit8)
-                0x000000008000cf00                . = ALIGN (0x8)
+                0x000000008000cff8                . = ALIGN (0x8)
 
-.lit4           0x000000008000cf00        0x0
+.lit4           0x000000008000cff8        0x0
  *(.lit4)
-                0x000000008000cf00                . = ALIGN (0x8)
-                0x000000008000cf00                __data_end = .
+                0x000000008000cff8                . = ALIGN (0x8)
+                0x000000008000cff8                __data_end = .
 
-.sbss           0x000000008000cf00       0x48
-                0x000000008000cf00                __bss_start = .
+.sbss           0x000000008000cff8       0x48
+                0x000000008000cff8                __bss_start = .
  *(.sbss)
- .sbss          0x000000008000cf00        0x9 build/main.o
-                0x000000008000cf00                y
-                0x000000008000cf04                x
- *fill*         0x000000008000cf09        0x3 
- .sbss          0x000000008000cf0c        0x8 build/rdp.o
-                0x000000008000cf0c                start
-                0x000000008000cf10                spot
- .sbss          0x000000008000cf14        0x8 build/stdlib.o
- *fill*         0x000000008000cf1c        0x4 
- .sbss          0x000000008000cf20       0x18 build/vi.o
-                0x000000008000cf20                global_res
- .sbss          0x000000008000cf38        0xc /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000cf38                __malloc_max_total_mem
-                0x000000008000cf3c                __malloc_max_sbrked_mem
-                0x000000008000cf40                __malloc_top_pad
- .sbss          0x000000008000cf44        0x4 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
-                0x000000008000cf44                errno
+ .sbss          0x000000008000cff8        0x9 build/main.o
+                0x000000008000cff8                y
+                0x000000008000cffc                x
+ *fill*         0x000000008000d001        0x3 
+ .sbss          0x000000008000d004        0x8 build/rdp.o
+                0x000000008000d004                start
+                0x000000008000d008                spot
+ .sbss          0x000000008000d00c        0x8 build/stdlib.o
+ *fill*         0x000000008000d014        0x4 
+ .sbss          0x000000008000d018       0x18 build/vi.o
+                0x000000008000d018                global_res
+ .sbss          0x000000008000d030        0xc /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x000000008000d030                __malloc_max_total_mem
+                0x000000008000d034                __malloc_max_sbrked_mem
+                0x000000008000d038                __malloc_top_pad
+ .sbss          0x000000008000d03c        0x4 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
+                0x000000008000d03c                errno
  *(.sbss.*)
  *(.gnu.linkonce.sb.*)
  *(.scommon)
  *(.scommon.*)
-                0x000000008000cf48                . = ALIGN (0x8)
+                0x000000008000d040                . = ALIGN (0x8)
 
-.bss            0x000000008000cf48     0x10a8
+.bss            0x000000008000d040     0x10a8
  *(.bss)
- .bss           0x000000008000cf48     0x1000 build/rdp.o
-                0x000000008000cf48                cBuffer
- .bss           0x000000008000df48       0x80 build/si_controller.o
-                0x000000008000df48                si_status_data
-                0x000000008000df88                si_data
- .bss           0x000000008000dfc8       0x28 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000dfc8                __malloc_current_mallinfo
+ .bss           0x000000008000d040     0x1000 build/rdp.o
+                0x000000008000d040                cBuffer
+ .bss           0x000000008000e040       0x80 build/si_controller.o
+                0x000000008000e040                si_status_data
+                0x000000008000e080                si_data
+ .bss           0x000000008000e0c0       0x28 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x000000008000e0c0                __malloc_current_mallinfo
  *(.bss*)
  *(.gnu.linkonce.b.*)
  *(COMMON)
-                0x000000008000dff0                . = ALIGN (0x8)
-                0x000000008000dff0                __bss_end = .
-                0x000000008000dff0                . = ALIGN (0x8)
-                0x000000008000dff0                end = .
+                0x000000008000e0e8                . = ALIGN (0x8)
+                0x000000008000e0e8                __bss_end = .
+                0x000000008000e0e8                . = ALIGN (0x8)
+                0x000000008000e0e8                end = .
 OUTPUT(build/c_rom.elf elf32-bigmips)
 
 .reginfo        0x0000000000000000       0x18
@@ -922,91 +933,95 @@ OUTPUT(build/c_rom.elf elf32-bigmips)
  .gnu.attributes
                 0x0000000000000010       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
  .gnu.attributes
-                0x0000000000000020       0x10 build/main.o
+                0x0000000000000020       0x10 build/interrupt.o
  .gnu.attributes
-                0x0000000000000030       0x10 build/rdp.o
+                0x0000000000000030       0x10 build/main.o
  .gnu.attributes
-                0x0000000000000040       0x10 build/si_controller.o
+                0x0000000000000040       0x10 build/rdp.o
  .gnu.attributes
-                0x0000000000000050       0x10 build/stdlib.o
+                0x0000000000000050       0x10 build/si_controller.o
  .gnu.attributes
-                0x0000000000000060       0x10 build/vi.o
+                0x0000000000000060       0x10 build/stdlib.o
  .gnu.attributes
-                0x0000000000000070       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
+                0x0000000000000070       0x10 build/vi.o
  .gnu.attributes
-                0x0000000000000080       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
+                0x0000000000000080       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
  .gnu.attributes
-                0x0000000000000090       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
+                0x0000000000000090       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
  .gnu.attributes
-                0x00000000000000a0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
+                0x00000000000000a0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
  .gnu.attributes
-                0x00000000000000b0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
+                0x00000000000000b0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
  .gnu.attributes
-                0x00000000000000c0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
+                0x00000000000000c0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
  .gnu.attributes
-                0x00000000000000d0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
+                0x00000000000000d0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
  .gnu.attributes
-                0x00000000000000e0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
+                0x00000000000000e0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
  .gnu.attributes
-                0x00000000000000f0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
+                0x00000000000000f0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
  .gnu.attributes
-                0x0000000000000100       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
+                0x0000000000000100       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
  .gnu.attributes
-                0x0000000000000110       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
+                0x0000000000000110       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
  .gnu.attributes
-                0x0000000000000120       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
+                0x0000000000000120       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
  .gnu.attributes
-                0x0000000000000130       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
+                0x0000000000000130       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
  .gnu.attributes
-                0x0000000000000140       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x0000000000000140       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
  .gnu.attributes
-                0x0000000000000150       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
+                0x0000000000000150       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
  .gnu.attributes
-                0x0000000000000160       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
+                0x0000000000000160       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
  .gnu.attributes
-                0x0000000000000170       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
+                0x0000000000000170       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
  .gnu.attributes
-                0x0000000000000180       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
+                0x0000000000000180       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
  .gnu.attributes
-                0x0000000000000190       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
+                0x0000000000000190       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
  .gnu.attributes
-                0x00000000000001a0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
+                0x00000000000001a0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
  .gnu.attributes
-                0x00000000000001b0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
+                0x00000000000001b0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
  .gnu.attributes
-                0x00000000000001c0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
+                0x00000000000001c0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
  .gnu.attributes
-                0x00000000000001d0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
+                0x00000000000001d0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
  .gnu.attributes
-                0x00000000000001e0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
+                0x00000000000001e0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
  .gnu.attributes
-                0x00000000000001f0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
+                0x00000000000001f0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
  .gnu.attributes
-                0x0000000000000200       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
+                0x0000000000000200       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
  .gnu.attributes
-                0x0000000000000210       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
+                0x0000000000000210       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
  .gnu.attributes
-                0x0000000000000220       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
+                0x0000000000000220       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
  .gnu.attributes
-                0x0000000000000230       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
+                0x0000000000000230       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
  .gnu.attributes
-                0x0000000000000240       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
+                0x0000000000000240       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
  .gnu.attributes
-                0x0000000000000250       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+                0x0000000000000250       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
  .gnu.attributes
-                0x0000000000000260       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
+                0x0000000000000260       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
  .gnu.attributes
-                0x0000000000000270       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
+                0x0000000000000270       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
  .gnu.attributes
-                0x0000000000000280       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
+                0x0000000000000280       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
  .gnu.attributes
-                0x0000000000000290       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+                0x0000000000000290       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
  .gnu.attributes
-                0x00000000000002a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+                0x00000000000002a0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+ .gnu.attributes
+                0x00000000000002b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
 .mdebug.abiO64  0x0000000000000000        0x0
  .mdebug.abiO64
                 0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
+ .mdebug.abiO64
+                0x0000000000000000        0x0 build/interrupt.o
  .mdebug.abiO64
                 0x0000000000000000        0x0 build/main.o
  .mdebug.abiO64
@@ -1091,6 +1106,8 @@ OUTPUT(build/c_rom.elf elf32-bigmips)
  .gcc_compiled_long32
                 0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
  .gcc_compiled_long32
+                0x0000000000000000        0x0 build/interrupt.o
+ .gcc_compiled_long32
                 0x0000000000000000        0x0 build/main.o
  .gcc_compiled_long32
                 0x0000000000000000        0x0 build/rdp.o
@@ -1172,6 +1189,7 @@ OUTPUT(build/c_rom.elf elf32-bigmips)
 .comment        0x0000000000000000       0x12
  .comment       0x0000000000000000       0x12 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
                                          0x13 (size before relaxing)
+ .comment       0x0000000000000012       0x13 build/interrupt.o
  .comment       0x0000000000000012       0x13 build/main.o
  .comment       0x0000000000000012       0x13 build/rdp.o
  .comment       0x0000000000000012       0x13 build/si_controller.o

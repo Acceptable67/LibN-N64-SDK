@@ -7,11 +7,12 @@
 CreateControllerHandle(CPAD_DATA);
 
 static bool bRunning = false;
+static const u8 inc_amount = 4;
+s32 x, y;
 
 void Begin();
 void InitDisplay();
-
-s32 x, y;
+void CheckController();
 
 void InitDisplay() {
 	Resolution default_res = {VWIDTH, VHEIGHT};
@@ -26,8 +27,8 @@ void InitDisplay() {
 
 	bRunning = true;
 }
- 
-static const u8 inc_amount = 2;
+
+
 void CheckController()
 {
 	Controller_Read();
@@ -39,15 +40,14 @@ void CheckController()
 	if (CPAD_DATA->left) { x -= inc_amount; }
 	if (CPAD_DATA->right) { x += inc_amount; }
 }
-
  
 void Begin() {
-	
+		
 	RDP_FillScreen(GREY_SMOOTH);
 	LibPrint("tester1\ntester2");
 	//RDP_Debug();
 	Display_DrawRect(20 + x, 20 + y, 40, 40, RED, false);
-
+	Display_DrawCircle(40, 40, 6, ORANGE, false, 0.1);
 	CheckController();
 	ResetConsole();
 
@@ -55,7 +55,6 @@ void Begin() {
 
 int main() {
 	InitDisplay();
-
 	while (bRunning) {
 		Interrupt_VI_SetCallback(&Begin);
 		Display_SwapBuffers();

@@ -1,5 +1,8 @@
 #include <libn/interrupt.h>
 
+CreateGlobalRegister(VI, VI_REG);
+CreateGlobalRegister(MI, MI_REG);
+
 void Interrupt_VI_SetCallback(void (*callbackFunction)()) {
 	if ((MI_REG->intr & MI_REG->mask) & 0x08) {
 		callbackFunction();

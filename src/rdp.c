@@ -60,7 +60,7 @@ void RDP_SetClipping(u32 tx, u32 ty, u32 bx, u32 by) {
 }
 
 void RDP_SetDefaultClipping(void) {
-	RDP_SetClipping(0, 0, global_res.width, global_res.height);
+	RDP_SetClipping(0, 0, Display_FrameWidth(),Display_FrameHeight());
 }
 
 void RDP_EnablePrimitive(void) {
@@ -139,7 +139,7 @@ void RDP_DrawRectangle(u32 tx, u32 ty, u32 bx, u32 by) {
 }
 
 void RDP_Attach() {
-	RDP_AddCommand((DL_ATTACH_FB | 0x00180000 | (global_res.width - 1)));
+	RDP_AddCommand((DL_ATTACH_FB | 0x00180000 | (Display_FrameWidth() - 1)));
 	RDP_AddCommand((u32)(Display_GetActiveBuffer()));
 }
 
@@ -165,5 +165,5 @@ void RDP_DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color) {
 }
 
 void RDP_FillScreen(u32 color) {
-	RDP_DrawRectangleSetup(0, 0, global_res.width, global_res.height, color);
+	RDP_DrawRectangleSetup(0, 0, Display_FrameWidth(), Display_FrameHeight(), color);
 }
