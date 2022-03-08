@@ -9,7 +9,6 @@ void DMA_Wait() {
 		;
 }
 
-// we have to void* this, std::any or templates wont work
 void DMA_Read(AnyType RAM, AnyType CART, u32 length) {
 	DMA_Wait();
 	PI_REG->dram	= (u32)(RAM);

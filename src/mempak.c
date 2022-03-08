@@ -3,7 +3,8 @@
 #include <stdbool.h>
 #include <libn/regs.h>
 #include <libn/timer.h>
-#include <libn/vi_display.h>
+#include <libn/vi.h>
+#include <libn/si.h>
 
 s8 SI_READ_MEMPK[64] = {0xFF, 0x03, 0x21, 0x02, 0x00, 0x00, 0x00, 0x00, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
@@ -97,7 +98,7 @@ bool MemPak_ReadAddress(const u16 address, void *output) {
 bool MemPak_isInserted() {
     Controller_WriteStatus();
 
-    if (SI_GetData()[6] == 0x1) {
+    if (Controller_GetData()[6] == 0x1) {
         __reset_ctrl();
         return true;
     }

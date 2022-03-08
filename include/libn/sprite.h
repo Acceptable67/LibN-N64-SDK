@@ -2,8 +2,8 @@
 #define LIBN_SPRITE_H
 
 #include <libn/types.h>
-#include <libn/vi_display.h>
-#include <libn/pi_dma.h>
+#include <libn/vi.h>
+#include <libn/pi.h>
 
 typedef struct {
     u32 width, height;

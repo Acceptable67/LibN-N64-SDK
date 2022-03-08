@@ -8,7 +8,7 @@
 #include <errno.h>
 #include <libn/stdlib.h>
 #include <libn/types.h>
-#include <libn/vi_display.h>
+#include <libn/vi.h>
 #include <limits.h>
 #include <malloc.h>
 #include <stdarg.h>

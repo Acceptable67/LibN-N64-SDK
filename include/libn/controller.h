@@ -8,13 +8,12 @@
 #define CreateControllerHandle(X)                                              \
     static const Cpad* X = (Cpad *)(PIF_RAM)
 
-void SI_Write(AnyType dram_address);
-void SI_Read(AnyType dram_address);
-s8*  SI_GetData();
+#define Controller_Enable() Controller_Write()
 
 void Controller_Write();
 void Controller_Read();
 void Controller_WriteStatus();
+s8*  Controller_GetData();
 
 typedef enum {
     JoyUp    = 0x00000072,

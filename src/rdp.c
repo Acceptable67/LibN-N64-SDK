@@ -11,7 +11,7 @@ CreateGlobalRegister(DP, DP_REG);
 s32 cBuffer[RDP_BUF_SIZE];
 u32 spot, start;
 
-void RDP_AddCommand(u32 command) {
+static void RDP_AddCommand(u32 command) {
 	if(((SPOT_SCALED - start)) >= RDP_BUF_SIZE) { 
 		return; 
 	}

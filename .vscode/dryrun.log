@@ -1,5 +1,53 @@
-make all --dry-run --keep-going --print-directory
+make all --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/spencer/Desktop/romfromreverse_c/LibN-N64-SDK'
-make: Nothing to be done for 'all'.
+mkdir -p build
+echo "[BUILD] main.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  main.c -o build/main.o
+mkdir -p build
+echo "[BUILD] src/timer.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/timer.c -o build/timer.o
+mkdir -p build
+echo "[BUILD] src/stdlib.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/stdlib.c -o build/stdlib.o
+mkdir -p build
+echo "[BUILD] src/pi.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/pi.c -o build/pi.o
+mkdir -p build
+echo "[BUILD] src/sprite.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/sprite.c -o build/sprite.o
+mkdir -p build
+echo "[BUILD] src/vi.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/vi.c -o build/vi.o
+mkdir -p build
+echo "[BUILD] src/si.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/si.c -o build/si.o
+mkdir -p build
+echo "[BUILD] src/mempak.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/mempak.c -o build/mempak.o
+mkdir -p build
+echo "[BUILD] src/vector.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/vector.c -o build/vector.o
+mkdir -p build
+echo "[BUILD] src/frame.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/frame.c -o build/frame.o
+mkdir -p build
+echo "[BUILD] src/entry.S"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/entry.S -o build/entry.o
+mkdir -p build
+echo "[BUILD] src/rdp.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/rdp.c -o build/rdp.o
+mkdir -p build
+echo "[BUILD] src/interrupt.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/interrupt.c -o build/interrupt.o
+mkdir -p build
+echo "[BUILD] src/controller.c"
+/usr/local/bin/mips64-elf-gcc -c -std=c99 -march=vr4300 -mtune=vr4300 -Wall -Wextra -O2 -I/usr/local/mips64-elf/include -Iinclude/  src/controller.c -o build/controller.o
+echo "[LINK] build/c_rom.elf"
+/usr/local/bin/mips64-elf-g++ -o build/c_rom.elf -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -lc -lm -lgcc -Tinclude/n64.ld build/*.o -Wl,--wrap __do_global_ctors -Wl,--gc-sections -Wl,-Map=main.map
+echo "[COPY] build/c_rom.bin"
+/usr/local/bin/mips64-elf-objcopy build/c_rom.elf build/c_rom.bin -O binary
+echo "[ROM] c_rom.z64"
+/home/spencer/libdragon/NEW/libdragon/tools/n64tool -l 2M -t "c_rom" -h /home/spencer/libdragon/NEW/libdragon/header -o c_rom.z64 build/c_rom.bin -s 1M sky.sprite 
+/home/spencer/libdragon/NEW/libdragon/tools/chksum64 c_rom.z64
 make: Leaving directory '/home/spencer/Desktop/romfromreverse_c/LibN-N64-SDK'
  

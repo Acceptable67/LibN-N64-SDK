@@ -21,7 +21,7 @@ enum RDP_Command {
 
 void RDP_Debug();
 void RDP_SendDisplayList();
-void RDP_AddCommand(u32);
+static void RDP_AddCommand(u32);
 void RDP_Send(); 
 void RDP_Sync();
 void RDP_Attach();

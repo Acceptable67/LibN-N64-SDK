@@ -1,5 +1,5 @@
 #include <libn/vector.h>
-#include <libn/vi_display.h>
+#include <libn/vi.h>
 
 void LibVector_Pushback(LibVector *vector, void *item) 
 {

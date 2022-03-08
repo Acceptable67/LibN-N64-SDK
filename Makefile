@@ -24,10 +24,11 @@ SRC_FILES = $(BDIR)/main.o
 DEPS 	= 	$(SRC_FILES) $(BDIR)/timer.o \
 			$(BDIR)/stdlib.o $(BDIR)/pi.o \
 			$(BDIR)/sprite.o $(BDIR)/vi.o \
-			$(BDIR)/si_controller.o $(BDIR)/mempak.o \
+			$(BDIR)/si.o $(BDIR)/mempak.o \
 			$(BDIR)/vector.o $(BDIR)/sprite.o \
 			$(BDIR)/frame.o $(BDIR)/entry.o \
 			$(BDIR)/rdp.o $(BDIR)/interrupt.o \
+			$(BDIR)/controller.o \
 
 BUILD 	= $(GCC) -c $(CFLAGS) $< -o $@
 BCXX	= $(CXX) -c $(CXXFLAGS) $< -o $@
