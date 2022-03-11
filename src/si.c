@@ -9,7 +9,7 @@ s8 si_status_data[64];
 CreateGlobalRegister(SI, SI_REG);
 
 s8* _SI_Data() {
-	return &si_data;
+	return si_data;
 }
 
 void _SI_Busy() {

@@ -2,7 +2,7 @@
 #define LIBN_RDP_H
 
 #define SPOT_SCALED  spot * sizeof(s32)
-#define RDP_BUF_SIZE 1024
+#define RDP_BUF_SIZE 480
 #define RDP_WAIT() while (DP_REG->status & 0x600) {}
 
 enum RDP_Command {
@@ -21,7 +21,7 @@ enum RDP_Command {
 
 void RDP_Debug();
 void RDP_SendDisplayList();
-static void RDP_AddCommand(u32);
+void RDP_AddCommand(u32);
 void RDP_Send(); 
 void RDP_Sync();
 void RDP_Attach();

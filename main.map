@@ -1,83 +1,83 @@
 Archive member included to satisfy reference by file (symbol)
 
-/usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
                               build/vi.o (cosf)
-/usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
                               build/vi.o (sinf)
-/usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
-                              /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o) (__ieee754_rem_pio2f)
-/usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
-                              /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o) (__kernel_cosf)
-/usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
-                              /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o) (__kernel_rem_pio2f)
-/usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
-                              /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o) (__kernel_sinf)
-/usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
-                              /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o) (fabsf)
-/usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
-                              /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o) (floorf)
-/usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
-                              /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o) (scalbnf)
-/usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o) (__ieee754_rem_pio2f)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o) (__kernel_cosf)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o) (__kernel_rem_pio2f)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o) (__kernel_sinf)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o) (fabsf)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o) (floorf)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o) (scalbnf)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
                               build/vector.o (calloc)
-/usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o) (_calloc_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o) (__errno)
-/usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o) (_calloc_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o) (__errno)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
                               build/stdlib.o (exit)
-/usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o) (_global_impure_ptr)
-/usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
-                              build/sprite.o (malloc)
-/usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o) (_malloc_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
-                              build/stdlib.o (memset)
-/usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o) (__malloc_lock)
-/usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o) (_global_impure_ptr)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+                              build/main.o (malloc)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o) (_malloc_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
+                              build/rdp.o (memset)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o) (__malloc_lock)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
                               build/vector.o (realloc)
-/usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o) (_realloc_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o) (_sbrk_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o) (_realloc_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o) (_sbrk_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
                               build/stdlib.o (vsnprintf)
-/usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o) (__call_exitprocs)
-/usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o) (_free_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o) (memmove)
-/usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o) (errno)
-/usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o) (_svfprintf_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o) (_dtoa_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o) (_localeconv_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o) (__global_locale)
-/usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o) (__ascii_mbtowc)
-/usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o) (memchr)
-/usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o) (memcpy)
-/usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o) (_Balloc)
-/usr/local/mips64-elf/lib//libc.a(lib_a-strcmp.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o) (strcmp)
-/usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o) (strlen)
-/usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o) (__ssprint_r)
-/usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o) (__ascii_wctomb)
-/usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
-                              /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o) (_ctype_b)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o) (__call_exitprocs)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o) (_free_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o) (memmove)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o) (errno)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o) (_svfprintf_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o) (_dtoa_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o) (_localeconv_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o) (__global_locale)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o) (__ascii_mbtowc)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o) (memchr)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o) (memcpy)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o) (_Balloc)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o) (strcmp)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o) (strlen)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o) (__ssprint_r)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o) (__ascii_wctomb)
+/usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
+                              /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o) (_ctype_b)
 
 Discarded input sections
 
@@ -111,31 +111,17 @@ Discarded input sections
  .code          0x0000000000000000        0x0 build/entry.o
  .gnu.attributes
                 0x0000000000000000       0x10 build/entry.o
- .text          0x0000000000000000        0x0 build/frame.o
- .data          0x0000000000000000        0x0 build/frame.o
- .bss           0x0000000000000000        0x0 build/frame.o
- .reginfo       0x0000000000000000       0x18 build/frame.o
- .MIPS.abiflags
-                0x0000000000000000       0x18 build/frame.o
- .pdr           0x0000000000000000        0x0 build/frame.o
- .mdebug.abiO64
-                0x0000000000000000        0x0 build/frame.o
- .gcc_compiled_long32
-                0x0000000000000000        0x0 build/frame.o
- .comment       0x0000000000000000       0x13 build/frame.o
- .gnu.attributes
-                0x0000000000000000       0x10 build/frame.o
  .data          0x0000000000000000        0x0 build/interrupt.o
  .reginfo       0x0000000000000000       0x18 build/interrupt.o
  .MIPS.abiflags
                 0x0000000000000000       0x18 build/interrupt.o
- .pdr           0x0000000000000000       0xa0 build/interrupt.o
+ .pdr           0x0000000000000000       0x80 build/interrupt.o
  .data          0x0000000000000000        0x0 build/main.o
  .bss           0x0000000000000000        0x0 build/main.o
  .reginfo       0x0000000000000000       0x18 build/main.o
  .MIPS.abiflags
                 0x0000000000000000       0x18 build/main.o
- .pdr           0x0000000000000000       0xa0 build/main.o
+ .pdr           0x0000000000000000       0x60 build/main.o
  .text          0x0000000000000000      0x318 build/mempak.o
  .data          0x0000000000000000       0x80 build/mempak.o
  .bss           0x0000000000000000       0x40 build/mempak.o
@@ -168,13 +154,13 @@ Discarded input sections
  .reginfo       0x0000000000000000       0x18 build/rdp.o
  .MIPS.abiflags
                 0x0000000000000000       0x18 build/rdp.o
- .pdr           0x0000000000000000      0x220 build/rdp.o
+ .pdr           0x0000000000000000      0x240 build/rdp.o
  .data          0x0000000000000000        0x0 build/si.o
  .reginfo       0x0000000000000000       0x18 build/si.o
  .MIPS.abiflags
                 0x0000000000000000       0x18 build/si.o
  .pdr           0x0000000000000000       0x80 build/si.o
- .text          0x0000000000000000      0x158 build/sprite.o
+ .text          0x0000000000000000      0x150 build/sprite.o
  .data          0x0000000000000000        0x0 build/sprite.o
  .bss           0x0000000000000000        0x0 build/sprite.o
  .reginfo       0x0000000000000000       0x18 build/sprite.o
@@ -193,302 +179,261 @@ Discarded input sections
  .reginfo       0x0000000000000000       0x18 build/stdlib.o
  .MIPS.abiflags
                 0x0000000000000000       0x18 build/stdlib.o
- .pdr           0x0000000000000000      0x340 build/stdlib.o
- .text          0x0000000000000000      0x220 build/timer.o
+ .pdr           0x0000000000000000      0x380 build/stdlib.o
  .data          0x0000000000000000        0x0 build/timer.o
  .bss           0x0000000000000000        0x0 build/timer.o
  .reginfo       0x0000000000000000       0x18 build/timer.o
  .MIPS.abiflags
                 0x0000000000000000       0x18 build/timer.o
- .pdr           0x0000000000000000      0x160 build/timer.o
- .mdebug.abiO64
-                0x0000000000000000        0x0 build/timer.o
- .gcc_compiled_long32
-                0x0000000000000000        0x0 build/timer.o
- .sdata         0x0000000000000000       0x14 build/timer.o
- .comment       0x0000000000000000       0x13 build/timer.o
- .gnu.attributes
-                0x0000000000000000       0x10 build/timer.o
- .text          0x0000000000000000      0x150 build/vector.o
+ .pdr           0x0000000000000000      0x180 build/timer.o
  .data          0x0000000000000000        0x0 build/vector.o
  .bss           0x0000000000000000        0x0 build/vector.o
  .reginfo       0x0000000000000000       0x18 build/vector.o
  .MIPS.abiflags
                 0x0000000000000000       0x18 build/vector.o
  .pdr           0x0000000000000000       0xa0 build/vector.o
- .mdebug.abiO64
-                0x0000000000000000        0x0 build/vector.o
- .gcc_compiled_long32
-                0x0000000000000000        0x0 build/vector.o
- .comment       0x0000000000000000       0x13 build/vector.o
- .gnu.attributes
-                0x0000000000000000       0x10 build/vector.o
  .data          0x0000000000000000        0x0 build/vi.o
  .bss           0x0000000000000000        0x0 build/vi.o
  .reginfo       0x0000000000000000       0x18 build/vi.o
  .MIPS.abiflags
                 0x0000000000000000       0x18 build/vi.o
  .pdr           0x0000000000000000      0x240 build/vi.o
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
- .text          0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
- .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
- .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
- .comment       0x0000000000000000       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
+ .text          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+ .text          0x0000000000000000      0x1f0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+ .pdr           0x0000000000000000       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+ .text          0x0000000000000000      0x120 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+ .pdr           0x0000000000000000       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+ .sbss          0x0000000000000000        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+ .pdr           0x0000000000000000      0x260 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+ .text          0x0000000000000000      0x240 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
  .gnu.attributes
-                0x0000000000000000       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-calloc.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
+                0x0000000000000000       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+ .pdr           0x0000000000000000       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
- .text          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+ .pdr           0x0000000000000000       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+ .text          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
+ .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
+ .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
+ .reginfo       0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
  .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
- .text          0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .comment       0x0000000000000000       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .gnu.attributes
-                0x0000000000000000       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-malloc.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
- .text          0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .comment       0x0000000000000000       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .gnu.attributes
-                0x0000000000000000       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-realloc.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
- .text          0x0000000000000000      0x1f0 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
- .pdr           0x0000000000000000       0x60 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
- .text          0x0000000000000000      0x120 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
- .pdr           0x0000000000000000       0x60 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
- .sbss          0x0000000000000000        0x4 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
- .pdr           0x0000000000000000      0x260 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
- .text          0x0000000000000000      0x240 /usr/local/mips64-elf/lib//libc.a(lib_a-strcmp.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-strcmp.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-strcmp.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-strcmp.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-strcmp.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-strcmp.o)
- .gnu.attributes
-                0x0000000000000000       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-strcmp.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
- .pdr           0x0000000000000000       0x20 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
- .pdr           0x0000000000000000       0x40 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
- .text          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
- .data          0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
- .bss           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
- .reginfo       0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
- .MIPS.abiflags
-                0x0000000000000000       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+                0x0000000000000000       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
  .text          0x0000000000000000       0x78 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
  .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
  .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
@@ -524,7 +469,6 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
 LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a
 LOAD build/controller.o
 LOAD build/entry.o
-LOAD build/frame.o
 LOAD build/interrupt.o
 LOAD build/main.o
 LOAD build/mempak.o
@@ -536,9 +480,9 @@ LOAD build/stdlib.o
 LOAD build/timer.o
 LOAD build/vector.o
 LOAD build/vi.o
-LOAD /usr/local/mips64-elf/lib//libstdc++.a
-LOAD /usr/local/mips64-elf/lib//libm.a
-LOAD /usr/local/mips64-elf/lib//libc.a
+LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a
+LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a
+LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a
 LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a
 LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a
 LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
@@ -546,7 +490,7 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/crtn.o
                 0x0000000080000000                __kseg0_start = 0x80000000
                 0x0000000080000400                __libdragon_text_start = (__kseg0_start + 0x400)
 
-.text           0x0000000080000400     0xacb0
+.text           0x0000000080000400     0xbca0
  *(.boot)
  .boot          0x0000000080000400       0x70 build/entry.o
                 0x0000000080000400                _start
@@ -558,196 +502,221 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/crtn.o
                 0x0000000080000498                Controller_Write
                 0x00000000800004a8                Controller_Read
                 0x00000000800004c8                Controller_WriteStatus
- .text          0x00000000800004d8      0x238 build/interrupt.o
-                0x00000000800004d8                Interrupts_Clear
-                0x00000000800004f0                Interrupts_Disable
-                0x0000000080000508                Interrupts_SetCallback
-                0x0000000080000520                Interrupts_Handle
-                0x0000000080000610                Interrupts_Toggle
- .text          0x0000000080000710      0x1c0 build/main.o
-                0x0000000080000710                InitDisplay
-                0x0000000080000780                CheckController
-                0x0000000080000858                Begin
-                0x00000000800008c0                tester
- .text          0x00000000800008d0      0x998 build/rdp.o
-                0x00000000800008d0                RDP_Send
-                0x0000000080000950                RDP_Debug
-                0x0000000080000980                RDP_SendDisplayList
-                0x0000000080000988                RDP_SetOtherModes
-                0x00000000800009f0                RDP_SetClipping
-                0x0000000080000a70                RDP_SetDefaultClipping
-                0x0000000080000b00                RDP_EnablePrimitive
-                0x0000000080000b68                RDP_Init
-                0x0000000080000b80                RDP_Close
-                0x0000000080000b98                RDP_EnableBlend
-                0x0000000080000c00                RDP_SetPrimitiveColor
-                0x0000000080000c60                RDP_SetBlendColor
-                0x0000000080000cc0                RDP_DrawRectangle
-                0x0000000080000d40                RDP_Attach
-                0x0000000080000dd0                RDP_Sync
-                0x0000000080000e30                RDP_DrawRectangleSetup
-                0x0000000080001220                RDP_FillScreen
- .text          0x0000000080001268       0xb0 build/si.o
-                0x0000000080001268                _SI_Data
-                0x0000000080001278                _SI_Busy
-                0x0000000080001298                SI_Write
-                0x00000000800012d8                SI_Read
- .text          0x0000000080001318      0x590 build/stdlib.o
-                0x0000000080001318                lseek
-                0x0000000080001320                open
-                0x0000000080001328                read
-                0x0000000080001330                _exit
-                0x0000000080001340                close
-                0x0000000080001348                getpid
-                0x0000000080001350                isatty
-                0x0000000080001358                kill
-                0x0000000080001380                link
-                0x0000000080001388                unlink
-                0x0000000080001390                write
-                0x0000000080001398                ResetConsole
-                0x00000000800013a8                _prnt_advance
-                0x0000000080001400                printf
-                0x00000000800014c0                __assert_func
-                0x0000000080001538                __strlen
-                0x0000000080001578                __malloc
-                0x00000000800015e8                __atoi
-                0x0000000080001628                __memcpy
-                0x0000000080001650                __memset
-                0x0000000080001668                __strncmp
-                0x00000000800016c8                __strcmp
-                0x0000000080001728                __toupper
-                0x0000000080001750                __tolower
-                0x0000000080001778                sbrk
-                0x00000000800017e8                __strdup
- .text          0x00000000800018a8      0x9a8 build/vi.o
-                0x00000000800018a8                Display_GetBuffer
-                0x00000000800018c0                Display_GetActiveBuffer
-                0x00000000800018c8                Display_SetActiveBuffer
-                0x00000000800018e0                Display_SetDrawingBuffer
-                0x00000000800018e8                Display_SwapBuffers
-                0x0000000080001910                Display_FrameWidth
-                0x0000000080001918                Display_FrameHeight
-                0x0000000080001920                Display_Initialize
-                0x0000000080001a40                Display_DrawPixel
-                0x0000000080001a68                Display_DrawCircle
-                0x0000000080001db8                Display_FillScreen
-                0x0000000080001e18                Display_DrawCharacter
-                0x0000000080001ef8                Display_DrawText
-                0x0000000080001fc8                Display_DrawLine
-                0x00000000800020c0                Display_DrawRect
-                0x00000000800021a8                Display_DrawTri
-                0x0000000080002228                Display_SetColors
-                0x0000000080002238                Display_GetColors
- .text          0x0000000080002250       0xf8 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
-                0x0000000080002250                cosf
- .text          0x0000000080002348      0x100 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
-                0x0000000080002348                sinf
- .text          0x0000000080002448      0x358 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
-                0x0000000080002448                __ieee754_rem_pio2f
- .text          0x00000000800027a0      0x190 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
-                0x00000000800027a0                __kernel_cosf
- .text          0x0000000080002930      0x988 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
-                0x0000000080002930                __kernel_rem_pio2f
- .text          0x00000000800032b8       0xd8 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
-                0x00000000800032b8                __kernel_sinf
- .text          0x0000000080003390       0x20 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
-                0x0000000080003390                fabsf
- .text          0x00000000800033b0      0x108 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
-                0x00000000800033b0                floorf
- .text          0x00000000800034b8      0x178 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
-                0x00000000800034b8                scalbnf
- .text          0x0000000080003630      0x118 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
-                0x0000000080003630                _calloc_r
- .text          0x0000000080003748        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
-                0x0000000080003748                __errno
- .text          0x0000000080003750       0x38 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
-                0x0000000080003750                exit
- .text          0x0000000080003788      0x898 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x0000000080003788                _malloc_r
- .text          0x0000000080004020      0x11c /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
-                0x0000000080004020                memset
- *fill*         0x000000008000413c        0x4 
- .text          0x0000000080004140       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
-                0x0000000080004140                __malloc_lock
-                0x0000000080004148                __malloc_unlock
- .text          0x0000000080004150      0x5f8 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
-                0x0000000080004150                _realloc_r
- .text          0x0000000080004748       0x50 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
-                0x0000000080004748                _sbrk_r
- .text          0x0000000080004798      0x1a8 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
-                0x0000000080004798                vsnprintf
-                0x0000000080004868                _vsnprintf_r
- .text          0x0000000080004940      0x150 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
-                0x0000000080004940                __call_exitprocs
- .text          0x0000000080004a90      0x480 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
-                0x0000000080004a90                _malloc_trim_r
-                0x0000000080004bc0                _free_r
- .text          0x0000000080004f10      0x150 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
-                0x0000000080004f10                memmove
- .text          0x0000000080005060     0x1f30 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
-                0x0000000080005060                _svfprintf_r
- .text          0x0000000080006f90     0x1678 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
-                0x00000000800071e0                _dtoa_r
- .text          0x0000000080008608       0x28 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
-                0x0000000080008608                __localeconv_l
-                0x0000000080008610                _localeconv_r
-                0x0000000080008620                localeconv
- .text          0x0000000080008630       0x70 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
-                0x0000000080008630                _mbtowc_r
-                0x0000000080008640                __ascii_mbtowc
- .text          0x00000000800086a0       0xf0 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
-                0x00000000800086a0                memchr
- .text          0x0000000080008790      0x370 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
-                0x0000000080008790                memcpy
- .text          0x0000000080008b00     0x1410 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
-                0x0000000080008b00                _Balloc
-                0x0000000080008bb0                _Bfree
-                0x0000000080008be0                __multadd
-                0x0000000080008d40                __s2b
-                0x0000000080008ec0                __hi0bits
-                0x0000000080008f40                __lo0bits
-                0x0000000080009008                __i2b
-                0x00000000800090e0                __multiply
-                0x0000000080009370                __pow5mult
-                0x00000000800094e0                __lshift
-                0x0000000080009698                __mcmp
-                0x0000000080009700                __mdiff
-                0x0000000080009968                __ulp
-                0x0000000080009a18                __b2d
-                0x0000000080009ba0                __d2b
-                0x0000000080009d08                __ratio
-                0x0000000080009dc8                _mprec_log10
-                0x0000000080009e08                __copybits
-                0x0000000080009e90                __any_on
- .text          0x0000000080009f10       0x18 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
-                0x0000000080009f10                strlen
- .text          0x0000000080009f28     0x1100 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
-                0x0000000080009f28                __ssprint_r
-                0x000000008000a168                _svfiprintf_r
- .text          0x000000008000b028       0x48 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
-                0x000000008000b028                _wctomb_r
-                0x000000008000b038                __ascii_wctomb
+ .text          0x00000000800004d8      0x210 build/interrupt.o
+                0x00000000800004d8                Interrupts_ClearCallbacks
+                0x00000000800004f8                Interrupts_SetCallback
+                0x0000000080000510                Interrupts_Handle
+                0x0000000080000620                Interrupts_Toggle
+ .text          0x00000000800006e8      0x2b8 build/main.o
+                0x00000000800006e8                Begin
+                0x0000000080000918                InitDisplay
+ .text          0x00000000800009a0     0x1180 build/rdp.o
+                0x00000000800009a0                RDP_AddCommand
+                0x0000000080000a00                RDP_Send
+                0x0000000080000a58                RDP_SendDisplayList
+                0x0000000080000ab0                RDP_SetOtherModes
+                0x0000000080000b50                RDP_SetClipping
+                0x0000000080000c30                RDP_SetDefaultClipping
+                0x0000000080000d28                RDP_EnablePrimitive
+                0x0000000080000de0                RDP_Debug
+                0x0000000080000df8                RDP_Init
+                0x0000000080000e08                RDP_Close
+                0x0000000080000e18                RDP_EnableBlend
+                0x0000000080000ed0                RDP_SetPrimitiveColor
+                0x0000000080000f98                RDP_SetBlendColor
+                0x0000000080001060                RDP_DrawRectangle
+                0x0000000080001140                RDP_Attach
+                0x0000000080001220                RDP_Sync
+                0x00000000800012b8                RDP_DrawRectangleSetup
+                0x0000000080001ad8                RDP_FillScreen
+ .text          0x0000000080001b20       0xb0 build/si.o
+                0x0000000080001b20                _SI_Data
+                0x0000000080001b30                _SI_Busy
+                0x0000000080001b50                SI_Write
+                0x0000000080001b90                SI_Read
+ .text          0x0000000080001bd0      0x618 build/stdlib.o
+                0x0000000080001bd0                lseek
+                0x0000000080001bd8                open
+                0x0000000080001be0                read
+                0x0000000080001be8                _exit
+                0x0000000080001bf8                close
+                0x0000000080001c00                getpid
+                0x0000000080001c08                isatty
+                0x0000000080001c10                kill
+                0x0000000080001c38                __malloc_uncached
+                0x0000000080001cb0                __free_uncached
+                0x0000000080001cc0                link
+                0x0000000080001cc8                unlink
+                0x0000000080001cd0                write
+                0x0000000080001cd8                ResetConsole
+                0x0000000080001ce8                _prnt_advance
+                0x0000000080001d40                printf
+                0x0000000080001e00                __assert_func
+                0x0000000080001e78                __strlen
+                0x0000000080001eb8                __malloc
+                0x0000000080001f28                __atoi
+                0x0000000080001f68                __memcpy
+                0x0000000080001f90                __memset
+                0x0000000080001fa8                __strncmp
+                0x0000000080002008                __strcmp
+                0x0000000080002068                __toupper
+                0x0000000080002090                __tolower
+                0x00000000800020b8                sbrk
+                0x0000000080002128                __strdup
+ .text          0x00000000800021e8      0x330 build/timer.o
+                0x00000000800021e8                MillisecondsSinceStartup
+                0x0000000080002220                SecondsSinceStartup
+                0x0000000080002298                LibTimer_Setup
+                0x00000000800022a8                LibTimer_GetSecondsPassed
+                0x00000000800022b8                LibTimer_GetMinutesPassed
+                0x00000000800022d0                LibTimer_GetMsPassed
+                0x00000000800022e8                TimerCheckAndInc
+                0x0000000080002398                LibTimer_Fetch
+                0x0000000080002450                LibTimer_Update
+                0x00000000800024b8                LibTimer_ResetTicks
+                0x00000000800024c0                LibTimer_Start
+                0x0000000080002510                LibTimer_Stop
+ .text          0x0000000080002518      0x160 build/vector.o
+                0x0000000080002518                LibVector_Pushback
+                0x00000000800025c0                LibVector_Size
+                0x00000000800025c8                LibVector_At
+                0x00000000800025f0                LibVector_EraseAt
+                0x0000000080002610                LibVector_Clear
+ .text          0x0000000080002678      0x9a8 build/vi.o
+                0x0000000080002678                Display_GetBuffer
+                0x0000000080002690                Display_GetActiveBuffer
+                0x0000000080002698                Display_SetActiveBuffer
+                0x00000000800026b0                Display_SetDrawingBuffer
+                0x00000000800026b8                Display_SwapBuffers
+                0x00000000800026e0                Display_FrameWidth
+                0x00000000800026e8                Display_FrameHeight
+                0x00000000800026f0                Display_Initialize
+                0x0000000080002810                Display_DrawPixel
+                0x0000000080002838                Display_DrawCircle
+                0x0000000080002b88                Display_FillScreen
+                0x0000000080002be8                Display_DrawCharacter
+                0x0000000080002cc8                Display_DrawText
+                0x0000000080002d98                Display_DrawLine
+                0x0000000080002e90                Display_DrawRect
+                0x0000000080002f78                Display_DrawTri
+                0x0000000080002ff8                Display_SetColors
+                0x0000000080003008                Display_GetColors
+ .text          0x0000000080003020       0xf8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
+                0x0000000080003020                cosf
+ .text          0x0000000080003118      0x100 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
+                0x0000000080003118                sinf
+ .text          0x0000000080003218      0x358 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+                0x0000000080003218                __ieee754_rem_pio2f
+ .text          0x0000000080003570      0x190 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
+                0x0000000080003570                __kernel_cosf
+ .text          0x0000000080003700      0x988 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+                0x0000000080003700                __kernel_rem_pio2f
+ .text          0x0000000080004088       0xd8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
+                0x0000000080004088                __kernel_sinf
+ .text          0x0000000080004160       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
+                0x0000000080004160                fabsf
+ .text          0x0000000080004180      0x108 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
+                0x0000000080004180                floorf
+ .text          0x0000000080004288      0x178 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
+                0x0000000080004288                scalbnf
+ .text          0x0000000080004400       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
+                0x0000000080004400                calloc
+ .text          0x0000000080004418      0x118 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+                0x0000000080004418                _calloc_r
+ .text          0x0000000080004530        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+                0x0000000080004530                __errno
+ .text          0x0000000080004538       0x38 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
+                0x0000000080004538                exit
+ .text          0x0000000080004570       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+                0x0000000080004570                malloc
+                0x0000000080004580                free
+ .text          0x0000000080004590      0x898 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x0000000080004590                _malloc_r
+ .text          0x0000000080004e28      0x11c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
+                0x0000000080004e28                memset
+ *fill*         0x0000000080004f44        0x4 
+ .text          0x0000000080004f48       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+                0x0000000080004f48                __malloc_lock
+                0x0000000080004f50                __malloc_unlock
+ .text          0x0000000080004f58       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
+                0x0000000080004f58                realloc
+ .text          0x0000000080004f70      0x5f8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+                0x0000000080004f70                _realloc_r
+ .text          0x0000000080005568       0x50 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+                0x0000000080005568                _sbrk_r
+ .text          0x00000000800055b8      0x1a8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
+                0x00000000800055b8                vsnprintf
+                0x0000000080005688                _vsnprintf_r
+ .text          0x0000000080005760      0x150 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
+                0x0000000080005760                __call_exitprocs
+ .text          0x00000000800058b0      0x480 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+                0x00000000800058b0                _malloc_trim_r
+                0x00000000800059e0                _free_r
+ .text          0x0000000080005d30      0x150 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+                0x0000000080005d30                memmove
+ .text          0x0000000080005e80     0x1f30 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+                0x0000000080005e80                _svfprintf_r
+ .text          0x0000000080007db0     0x1678 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+                0x0000000080008000                _dtoa_r
+ .text          0x0000000080009428       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+                0x0000000080009428                __localeconv_l
+                0x0000000080009430                _localeconv_r
+                0x0000000080009440                localeconv
+ .text          0x0000000080009450       0x70 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+                0x0000000080009450                _mbtowc_r
+                0x0000000080009460                __ascii_mbtowc
+ .text          0x00000000800094c0       0xf0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+                0x00000000800094c0                memchr
+ .text          0x00000000800095b0      0x370 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
+                0x00000000800095b0                memcpy
+ .text          0x0000000080009920     0x1410 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+                0x0000000080009920                _Balloc
+                0x00000000800099d0                _Bfree
+                0x0000000080009a00                __multadd
+                0x0000000080009b60                __s2b
+                0x0000000080009ce0                __hi0bits
+                0x0000000080009d60                __lo0bits
+                0x0000000080009e28                __i2b
+                0x0000000080009f00                __multiply
+                0x000000008000a190                __pow5mult
+                0x000000008000a300                __lshift
+                0x000000008000a4b8                __mcmp
+                0x000000008000a520                __mdiff
+                0x000000008000a788                __ulp
+                0x000000008000a838                __b2d
+                0x000000008000a9c0                __d2b
+                0x000000008000ab28                __ratio
+                0x000000008000abe8                _mprec_log10
+                0x000000008000ac28                __copybits
+                0x000000008000acb0                __any_on
+ .text          0x000000008000ad30       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+                0x000000008000ad30                strlen
+ .text          0x000000008000ad48     0x1100 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+                0x000000008000ad48                __ssprint_r
+                0x000000008000af88                _svfiprintf_r
+ .text          0x000000008000be48       0x48 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+                0x000000008000be48                _wctomb_r
+                0x000000008000be58                __ascii_wctomb
  *(.text.*)
- .text.startup  0x000000008000b070       0x28 build/main.o
-                0x000000008000b070                main
+ .text.startup  0x000000008000be90      0x200 build/main.o
+                0x000000008000be90                main
  *(.init)
- .init          0x000000008000b098        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
-                0x000000008000b098                _init
+ .init          0x000000008000c090        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x000000008000c090                _init
  *(.fini)
- .fini          0x000000008000b0a0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
-                0x000000008000b0a0                _fini
+ .fini          0x000000008000c098        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x000000008000c098                _fini
  *(.gnu.linkonce.t.*)
-                0x000000008000b0b0                . = ALIGN (0x10)
- *fill*         0x000000008000b0a8        0x8 
-                0x000000008000b0b0                __text_end = .
+                0x000000008000c0a0                . = ALIGN (0x10)
+                0x000000008000c0a0                __text_end = .
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x000000008000b0b0        0x4
+.eh_frame       0x000000008000c0a0        0x4
  *(.eh_frame)
- .eh_frame      0x000000008000b0b0        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
- .eh_frame      0x000000008000b0b0        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+ .eh_frame      0x000000008000c0a0        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
+ .eh_frame      0x000000008000c0a0        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
 .gcc_except_table
  *(.gcc_except_table*)
@@ -755,163 +724,171 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/crtn.o
 .jcr
  *(.jcr)
 
-.rodata         0x000000008000b0b8     0x1470
+.rodata         0x000000008000c0a8     0x14e8
  *(.rdata)
  *(.rodata)
- .rodata        0x000000008000b0b8       0x1c build/interrupt.o
- *fill*         0x000000008000b0d4        0x4 
- .rodata        0x000000008000b0d8      0x800 build/vi.o
- .rodata        0x000000008000b8d8      0x398 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .rodata        0x000000008000bc70       0x3c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- *fill*         0x000000008000bcac        0x4 
- .rodata        0x000000008000bcb0      0x188 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .rodata        0x000000008000be38      0x128 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
-                0x000000008000be48                __mprec_tinytens
-                0x000000008000be70                __mprec_bigtens
-                0x000000008000be98                __mprec_tens
- .rodata        0x000000008000bf60      0x188 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
- .rodata        0x000000008000c0e8      0x288 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
-                0x000000008000c0e8                _ctype_
-                0x000000008000c1f0                _ctype_b
+ .rodata        0x000000008000c0a8       0x1c build/interrupt.o
+ *fill*         0x000000008000c0c4        0x4 
+ .rodata        0x000000008000c0c8      0x800 build/vi.o
+ .rodata        0x000000008000c8c8      0x398 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+ .rodata        0x000000008000cc60       0x3c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+ *fill*         0x000000008000cc9c        0x4 
+ .rodata        0x000000008000cca0      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .rodata        0x000000008000ce28      0x128 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+                0x000000008000ce38                __mprec_tinytens
+                0x000000008000ce60                __mprec_bigtens
+                0x000000008000ce88                __mprec_tens
+ .rodata        0x000000008000cf50      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .rodata        0x000000008000d0d8      0x288 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
+                0x000000008000d0d8                _ctype_
+                0x000000008000d1e0                _ctype_b
  *(.rodata.*)
  .rodata.str1.8
-                0x000000008000c370       0x30 build/main.o
+                0x000000008000d360       0xb6 build/main.o
+ *fill*         0x000000008000d416        0x2 
  .rodata.str1.8
-                0x000000008000c3a0       0x28 build/rdp.o
+                0x000000008000d418       0x14 build/rdp.o
+ *fill*         0x000000008000d42c        0x4 
  .rodata.str1.8
-                0x000000008000c3c8       0x59 build/stdlib.o
- *fill*         0x000000008000c421        0x7 
+                0x000000008000d430       0x59 build/stdlib.o
+ *fill*         0x000000008000d489        0x7 
  .rodata.str1.8
-                0x000000008000c428       0x5a /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- *fill*         0x000000008000c482        0x6 
+                0x000000008000d490       0x5a /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ *fill*         0x000000008000d4ea        0x6 
  .rodata.str1.8
-                0x000000008000c488       0x58 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
+                0x000000008000d4f0       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
                                          0x60 (size before relaxing)
  .rodata.str1.8
-                0x000000008000c4e0       0x12 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
+                0x000000008000d548       0x12 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
                                          0x1a (size before relaxing)
- *fill*         0x000000008000c4f2        0x6 
+ *fill*         0x000000008000d55a        0x6 
  .rodata.str1.8
-                0x000000008000c4f8       0x29 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+                0x000000008000d560       0x29 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
                                          0x41 (size before relaxing)
  .rodata.str1.8
-                0x000000008000c521       0x37 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
+                0x000000008000d589       0x37 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
  *(.gnu.linkonce.r.*)
-                0x000000008000c558                . = ALIGN (0x8)
- *fill*         0x000000008000c521        0x7 
+                0x000000008000d5c0                . = ALIGN (0x8)
+ *fill*         0x000000008000d589        0x7 
 
-.MIPS.abiflags  0x000000008000c528       0x18
+.MIPS.abiflags  0x000000008000d590       0x18
  .MIPS.abiflags
-                0x000000008000c528       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x000000008000d590       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
 
-.rel.dyn        0x000000008000c540        0x0
- .rel.dyn       0x000000008000c540        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000c540                . = ALIGN (0x4)
+.rel.dyn        0x000000008000d5a8        0x0
+ .rel.dyn       0x000000008000d5a8        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x000000008000d5a8                . = ALIGN (0x4)
 
-.ctors          0x000000008000c540        0x8
-                0x000000008000c540                __CTOR_LIST__ = .
+.ctors          0x000000008000d5a8        0x8
+                0x000000008000d5a8                __CTOR_LIST__ = .
  *(.ctors)
- .ctors         0x000000008000c540        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
- .ctors         0x000000008000c544        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
-                0x000000008000c548                __CTOR_END__ = .
-                0x000000008000c548                . = ALIGN (0x8)
+ .ctors         0x000000008000d5a8        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
+ .ctors         0x000000008000d5ac        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+                0x000000008000d5b0                __CTOR_END__ = .
+                0x000000008000d5b0                . = ALIGN (0x8)
 
-.data           0x000000008000c548      0xa20
-                0x000000008000c548                __data_start = .
+.data           0x000000008000d5b0      0xa20
+                0x000000008000d5b0                __data_start = .
  *(.data)
- .data          0x000000008000c548       0x80 build/controller.o
-                0x000000008000c548                SI_CTRLR_STATUS
-                0x000000008000c588                SI_READ_MSG
- .data          0x000000008000c5c8      0x428 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
- .data          0x000000008000c9f0      0x408 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000c9f0                __malloc_av_
- .data          0x000000008000cdf8      0x16c /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
-                0x000000008000cdf8                __global_locale
+ .data          0x000000008000d5b0       0x80 build/controller.o
+                0x000000008000d5b0                SI_CTRLR_STATUS
+                0x000000008000d5f0                SI_READ_MSG
+ .data          0x000000008000d630      0x428 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+ .data          0x000000008000da58      0x408 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x000000008000da58                __malloc_av_
+ .data          0x000000008000de60      0x16c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+                0x000000008000de60                __global_locale
  *(.data.*)
  *(.gnu.linkonce.d.*)
-                0x000000008000cf68                . = ALIGN (0x8)
- *fill*         0x000000008000cf64        0x4 
+                0x000000008000dfd0                . = ALIGN (0x8)
+ *fill*         0x000000008000dfcc        0x4 
 
-.sdata          0x000000008000cf68      0x140
-                0x0000000080014f68                _gp = (. + 0x8000)
+.sdata          0x000000008000dfd0      0x180
+                0x0000000080015fd0                _gp = (. + 0x8000)
  *(.sdata)
- .sdata         0x000000008000cf68        0x8 build/stdlib.o
-                0x000000008000cf68                consoley
-                0x000000008000cf6c                consolex
- .sdata         0x000000008000cf70       0x20 build/vi.o
-                0x000000008000cf70                buffer_list
- .sdata         0x000000008000cf90       0x24 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .sdata         0x000000008000cfb4       0x28 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
- .sdata         0x000000008000cfdc       0x1c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- .sdata         0x000000008000cff8       0x1c /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
- .sdata         0x000000008000d014        0x8 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
- .sdata         0x000000008000d01c       0x18 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
- .sdata         0x000000008000d034        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
-                0x000000008000d034                _global_impure_ptr
-                0x000000008000d038                _impure_ptr
- .sdata         0x000000008000d03c        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000d03c                __malloc_sbrk_base
-                0x000000008000d040                __malloc_trim_threshold
- *fill*         0x000000008000d044        0x4 
- .sdata         0x000000008000d048        0x8 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .sdata         0x000000008000d050       0x48 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
- .sdata         0x000000008000d098       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+ .sdata         0x000000008000dfd0       0x14 build/main.o
+ .sdata         0x000000008000dfe4        0x8 build/stdlib.o
+                0x000000008000dfe4                consoley
+                0x000000008000dfe8                consolex
+ *fill*         0x000000008000dfec        0x4 
+ .sdata         0x000000008000dff0       0x28 build/timer.o
+ .sdata         0x000000008000e018       0x20 build/vi.o
+                0x000000008000e018                buffer_list
+ .sdata         0x000000008000e038       0x24 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+ .sdata         0x000000008000e05c       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
+ .sdata         0x000000008000e084       0x1c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+ .sdata         0x000000008000e0a0       0x1c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
+ .sdata         0x000000008000e0bc        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
+ .sdata         0x000000008000e0c4       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
+ .sdata         0x000000008000e0dc        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+                0x000000008000e0dc                _global_impure_ptr
+                0x000000008000e0e0                _impure_ptr
+ .sdata         0x000000008000e0e4        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x000000008000e0e4                __malloc_sbrk_base
+                0x000000008000e0e8                __malloc_trim_threshold
+ *fill*         0x000000008000e0ec        0x4 
+ .sdata         0x000000008000e0f0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .sdata         0x000000008000e0f8       0x48 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+ .sdata         0x000000008000e140       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
  *(.sdata.*)
  *(.gnu.linkonce.s.*)
-                0x000000008000d0a8                . = ALIGN (0x8)
+                0x000000008000e150                . = ALIGN (0x8)
 
-.lit8           0x000000008000d0a8        0x0
+.lit8           0x000000008000e150        0x0
  *(.lit8)
-                0x000000008000d0a8                . = ALIGN (0x8)
+                0x000000008000e150                . = ALIGN (0x8)
 
-.lit4           0x000000008000d0a8        0x0
+.lit4           0x000000008000e150        0x0
  *(.lit4)
-                0x000000008000d0a8                . = ALIGN (0x8)
-                0x000000008000d0a8                __data_end = .
+                0x000000008000e150                . = ALIGN (0x8)
+                0x000000008000e150                __data_end = .
 
-.sbss           0x000000008000d0a8       0x40
-                0x000000008000d0a8                __bss_start = .
+.sbss           0x000000008000e150       0x50
+                0x000000008000e150                __bss_start = .
  *(.sbss)
- .sbss          0x000000008000d0a8        0x8 build/main.o
-                0x000000008000d0a8                y
-                0x000000008000d0ac                x
- .sbss          0x000000008000d0b0        0x8 build/rdp.o
-                0x000000008000d0b0                start
-                0x000000008000d0b4                spot
- .sbss          0x000000008000d0b8        0x8 build/stdlib.o
- .sbss          0x000000008000d0c0       0x18 build/vi.o
-                0x000000008000d0c0                global_res
- .sbss          0x000000008000d0d8        0xc /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000d0d8                __malloc_max_total_mem
-                0x000000008000d0dc                __malloc_max_sbrked_mem
-                0x000000008000d0e0                __malloc_top_pad
- .sbss          0x000000008000d0e4        0x4 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
-                0x000000008000d0e4                errno
+ .sbss          0x000000008000e150       0x19 build/main.o
+                0x000000008000e150                timer
+                0x000000008000e154                testerSpr
+                0x000000008000e158                vec
+                0x000000008000e160                y
+                0x000000008000e164                x
+ *fill*         0x000000008000e169        0x3 
+ .sbss          0x000000008000e16c        0x4 build/rdp.o
+                0x000000008000e16c                spot
+ .sbss          0x000000008000e170        0x8 build/stdlib.o
+ .sbss          0x000000008000e178       0x18 build/vi.o
+                0x000000008000e178                global_res
+ .sbss          0x000000008000e190        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x000000008000e190                __malloc_max_total_mem
+                0x000000008000e194                __malloc_max_sbrked_mem
+                0x000000008000e198                __malloc_top_pad
+ .sbss          0x000000008000e19c        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+                0x000000008000e19c                errno
  *(.sbss.*)
  *(.gnu.linkonce.sb.*)
  *(.scommon)
  *(.scommon.*)
-                0x000000008000d0e8                . = ALIGN (0x8)
+                0x000000008000e1a0                . = ALIGN (0x8)
 
-.bss            0x000000008000d0e8     0x10c8
+.bss            0x000000008000e1a0      0xfc8
  *(.bss)
- .bss           0x000000008000d0e8       0x1c build/interrupt.o
-                0x000000008000d0e8                callbackList
- *fill*         0x000000008000d104        0x4 
- .bss           0x000000008000d108     0x1000 build/rdp.o
-                0x000000008000d108                cBuffer
- .bss           0x000000008000e108       0x80 build/si.o
-                0x000000008000e108                si_status_data
-                0x000000008000e148                si_data
- .bss           0x000000008000e188       0x28 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
-                0x000000008000e188                __malloc_current_mallinfo
+ .bss           0x000000008000e1a0       0x1c build/interrupt.o
+                0x000000008000e1a0                callbackList
+ *fill*         0x000000008000e1bc        0x4 
+ .bss           0x000000008000e1c0      0xf00 build/rdp.o
+                0x000000008000e1c0                cBuffer
+ .bss           0x000000008000f0c0       0x80 build/si.o
+                0x000000008000f0c0                si_status_data
+                0x000000008000f100                si_data
+ .bss           0x000000008000f140       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x000000008000f140                __malloc_current_mallinfo
  *(.bss*)
  *(.gnu.linkonce.b.*)
  *(COMMON)
-                0x000000008000e1b0                . = ALIGN (0x8)
-                0x000000008000e1b0                __bss_end = .
-                0x000000008000e1b0                . = ALIGN (0x8)
-                0x000000008000e1b0                end = .
+                0x000000008000f168                . = ALIGN (0x8)
+                0x000000008000f168                __bss_end = .
+                0x000000008000f168                . = ALIGN (0x8)
+                0x000000008000f168                end = .
 OUTPUT(build/c_rom.elf elf32-bigmips)
 
 .reginfo        0x0000000000000000       0x18
@@ -920,8 +897,8 @@ OUTPUT(build/c_rom.elf elf32-bigmips)
 .pdr            0x0000000000000000        0x0
  .pdr           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
  .pdr           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
- .pdr           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
- .pdr           0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+ .pdr           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+ .pdr           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
  .pdr           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
 .gnu.attributes
@@ -943,79 +920,89 @@ OUTPUT(build/c_rom.elf elf32-bigmips)
  .gnu.attributes
                 0x0000000000000070       0x10 build/stdlib.o
  .gnu.attributes
-                0x0000000000000080       0x10 build/vi.o
+                0x0000000000000080       0x10 build/timer.o
  .gnu.attributes
-                0x0000000000000090       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
+                0x0000000000000090       0x10 build/vector.o
  .gnu.attributes
-                0x00000000000000a0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
+                0x00000000000000a0       0x10 build/vi.o
  .gnu.attributes
-                0x00000000000000b0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
+                0x00000000000000b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
  .gnu.attributes
-                0x00000000000000c0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
+                0x00000000000000c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
  .gnu.attributes
-                0x00000000000000d0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
+                0x00000000000000d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
  .gnu.attributes
-                0x00000000000000e0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
+                0x00000000000000e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
  .gnu.attributes
-                0x00000000000000f0       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
+                0x00000000000000f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
  .gnu.attributes
-                0x0000000000000100       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
+                0x0000000000000100       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
  .gnu.attributes
-                0x0000000000000110       0x10 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
+                0x0000000000000110       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
  .gnu.attributes
-                0x0000000000000120       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
+                0x0000000000000120       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
  .gnu.attributes
-                0x0000000000000130       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
+                0x0000000000000130       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
  .gnu.attributes
-                0x0000000000000140       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
+                0x0000000000000140       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
  .gnu.attributes
-                0x0000000000000150       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
+                0x0000000000000150       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
  .gnu.attributes
-                0x0000000000000160       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x0000000000000160       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
  .gnu.attributes
-                0x0000000000000170       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memset.o)
+                0x0000000000000170       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
  .gnu.attributes
-                0x0000000000000180       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
+                0x0000000000000180       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
  .gnu.attributes
-                0x0000000000000190       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
+                0x0000000000000190       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
  .gnu.attributes
-                0x00000000000001a0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
+                0x00000000000001a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
  .gnu.attributes
-                0x00000000000001b0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
+                0x00000000000001b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
  .gnu.attributes
-                0x00000000000001c0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
+                0x00000000000001c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
  .gnu.attributes
-                0x00000000000001d0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
+                0x00000000000001d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
  .gnu.attributes
-                0x00000000000001e0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
+                0x00000000000001e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
  .gnu.attributes
-                0x00000000000001f0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
+                0x00000000000001f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
  .gnu.attributes
-                0x0000000000000200       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
+                0x0000000000000200       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
  .gnu.attributes
-                0x0000000000000210       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
+                0x0000000000000210       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
  .gnu.attributes
-                0x0000000000000220       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
+                0x0000000000000220       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
  .gnu.attributes
-                0x0000000000000230       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
+                0x0000000000000230       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
  .gnu.attributes
-                0x0000000000000240       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
+                0x0000000000000240       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
  .gnu.attributes
-                0x0000000000000250       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
+                0x0000000000000250       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
  .gnu.attributes
-                0x0000000000000260       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-memcpy.o)
+                0x0000000000000260       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
  .gnu.attributes
-                0x0000000000000270       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+                0x0000000000000270       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
  .gnu.attributes
-                0x0000000000000280       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
+                0x0000000000000280       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
  .gnu.attributes
-                0x0000000000000290       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
+                0x0000000000000290       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
  .gnu.attributes
-                0x00000000000002a0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
+                0x00000000000002a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
  .gnu.attributes
-                0x00000000000002b0       0x10 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+                0x00000000000002b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
  .gnu.attributes
-                0x00000000000002c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+                0x00000000000002c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+ .gnu.attributes
+                0x00000000000002d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+ .gnu.attributes
+                0x00000000000002e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .gnu.attributes
+                0x00000000000002f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+ .gnu.attributes
+                0x0000000000000300       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
+ .gnu.attributes
+                0x0000000000000310       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
 .mdebug.abiO64  0x0000000000000000        0x0
  .mdebug.abiO64
@@ -1033,73 +1020,83 @@ OUTPUT(build/c_rom.elf elf32-bigmips)
  .mdebug.abiO64
                 0x0000000000000000        0x0 build/stdlib.o
  .mdebug.abiO64
+                0x0000000000000000        0x0 build/timer.o
+ .mdebug.abiO64
+                0x0000000000000000        0x0 build/vector.o
+ .mdebug.abiO64
                 0x0000000000000000        0x0 build/vi.o
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
  .mdebug.abiO64
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+ .mdebug.abiO64
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .mdebug.abiO64
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+ .mdebug.abiO64
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
  .mdebug.abiO64
                 0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
@@ -1120,73 +1117,83 @@ OUTPUT(build/c_rom.elf elf32-bigmips)
  .gcc_compiled_long32
                 0x0000000000000000        0x0 build/stdlib.o
  .gcc_compiled_long32
+                0x0000000000000000        0x0 build/timer.o
+ .gcc_compiled_long32
+                0x0000000000000000        0x0 build/vector.o
+ .gcc_compiled_long32
                 0x0000000000000000        0x0 build/vi.o
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
  .gcc_compiled_long32
-                0x0000000000000000        0x0 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+ .gcc_compiled_long32
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .gcc_compiled_long32
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+ .gcc_compiled_long32
+                0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
  .gcc_compiled_long32
                 0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
@@ -1199,38 +1206,43 @@ OUTPUT(build/c_rom.elf elf32-bigmips)
  .comment       0x0000000000000012       0x13 build/rdp.o
  .comment       0x0000000000000012       0x13 build/si.o
  .comment       0x0000000000000012       0x13 build/stdlib.o
+ .comment       0x0000000000000012       0x13 build/timer.o
+ .comment       0x0000000000000012       0x13 build/vector.o
  .comment       0x0000000000000012       0x13 build/vi.o
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_cos.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_sin.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-ef_rem_pio2.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_cos.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_rem_pio2.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-kf_sin.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_fabs.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_floor.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libm.a(lib_a-sf_scalbn.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-callocr.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-errno.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-exit.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-impure.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-mallocr.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-mlock.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-reallocr.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-sbrkr.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-vsnprintf.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-__call_atexit.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-freer.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-memmove.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-reent.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-svfprintf.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-dtoa.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-localeconv.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-locale.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-mbtowc_r.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-memchr.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-mprec.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-strlen.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-svfiprintf.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-wctomb_r.o)
- .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib//libc.a(lib_a-ctype_.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_cos.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_sin.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-ef_rem_pio2.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_cos.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_rem_pio2.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-kf_sin.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_fabs.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_floor.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a(lib_a-sf_scalbn.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-calloc.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-exit.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsnprintf.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-__call_atexit.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reent.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+ .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
  .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o

@@ -2,9 +2,6 @@
 #include <stdio.h>
 #include <dir.h>
 #include <errno.h>
-#include <libn/stdlib.h>
-#include <libn/types.h>
-#include <libn/vi.h>
 #include <limits.h>
 #include <malloc.h>
 #include <stdarg.h>
@@ -13,6 +10,7 @@
 #include <stdarg.h>
 #include <sys/types.h>
 
+#include <libn.h>
 u32 consolex = 10, consoley = 10;
 
 extern char end __attribute__((section(".data")));
@@ -48,6 +46,18 @@ int kill(int pid,  [[maybe_unused]] int sig) {
 	if (pid == 1001) exit(1);
 	else
 		return 0;
+}
+
+void* __malloc_uncached(size_t size)
+{
+    void *mem = sbrk(size);
+    if (!mem) return NULL;
+    return UncachedAddr(mem);
+}
+
+void __free_uncached(void *buf)
+{
+    free(CachedAddr(buf));
 }
 
 

@@ -17,7 +17,7 @@
 #define MEMORY_BARRIER()   __asm__("" : : : "memory")
 
 #define LibPrintf(format, ...) printf(format, __VA_ARGS__)
-#define LibPrint(text)	       printf(text)
+#define LibPrint(text)	       printf(text, NULL)
 
 #include <libn/controller.h>
 #include <libn/font.h>

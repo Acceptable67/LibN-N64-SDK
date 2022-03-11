@@ -16,7 +16,8 @@ typedef struct {
     TimerType localType;
     bool bCalled;
     bool bStarted;
-    f32 ticks;
+    f64 ticks;
+    f64 time_started; 
     f32 execute_at;
 } LibTimer;
 
@@ -28,5 +29,6 @@ void LibTimer_Setup(LibTimer *timer, TimerType type, float TickExecution);
 float LibTimer_GetSecondsPassed(LibTimer *timer);
 float LibTimer_GetMinutesPassed(LibTimer *timer);
 float LibTimer_GetMsPassed(LibTimer *timer);
+void LibTimer_Fetch(LibTimer *timer);
 
 #endif

@@ -6,7 +6,7 @@ void LibVector_Pushback(LibVector *vector, void *item)
 	s32 vec_pos = vector->pos;
 
     if(vec_pos == 0) {
-        vector->element = calloc(0, sizeof(vector->element) + sizeof(item));
+        vector->element = calloc(1, sizeof(vector->element) + sizeof(item));
     } else {
         vector->element = realloc(vector->element, sizeof(vector->element) + sizeof(item));
     }
@@ -19,7 +19,10 @@ s32 LibVector_Size(LibVector *vector) {
 }
 
 void* LibVector_At(LibVector *vector, s32 position) {
-	return vector->element[position];
+	if(position <= vector->pos)
+        return vector->element[position];
+
+    return NULL;
 }
 
 void LibVector_EraseAt(LibVector *vector, s32 position) {

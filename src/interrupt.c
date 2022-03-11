@@ -6,28 +6,27 @@ CreateGlobalRegister(SI, SI_REG);
 CreateGlobalRegister(DP, DP_REG);
 CreateGlobalRegister(PI, PI_REG);
 CreateGlobalRegister(SP, SP_REG);
+CreateGlobalRegister(AI, AI_REG);
 
 typedef struct {
 	void (*callback)();
 } int_callback;
 
-int_callback callbackList[7];
+int_callback callbackList[INT_COUNT];
 
-void Interrupts_Clear()
+void Interrupts_ClearCallbacks()
 {
 	callbackList[INT_VI].callback = 0;
 	callbackList[INT_DP].callback = 0;
 	callbackList[INT_SI].callback = 0;
 	callbackList[INT_PI].callback = 0;
+	callbackList[INT_SP].callback = 0;
+	callbackList[INT_AI].callback = 0;
 }
 
-void Interrupts_Disable()
+void Interrupts_SetCallback(IntType type, void (*callbackFunction)()) 
 {
-	__asm__("\tmfc0 $8,$12\n\tla $9,~1\n\tand $8,$9\n\tmtc0 $8,$12\n\tnop":::"$8","$9");
-}
-
-void Interrupts_SetCallback(IntType type, void (*callbackFunction)()) {
-		callbackList[type].callback = callbackFunction;
+	callbackList[type].callback = callbackFunction;
 }
 
 void Interrupts_Handle() 
@@ -54,7 +53,8 @@ void Interrupts_Handle()
 	}
 
 	if (reg_stat & 0x04) {
-		//callbackList[INT_AI].callback();
+		callbackList[INT_AI].callback();
+		AI_REG->status_reg = 0x00;
 	}
 
 	if (reg_stat & 0x01) {
@@ -64,50 +64,19 @@ void Interrupts_Handle()
 }
 
 
-void Interrupts_Toggle(IntType type, bool toggle) {
+void Interrupts_Toggle(IntType type, bool toggle) 
+{
     switch(type) 
     {
 		case INT_VI: 
-		{
-			if(toggle) {
-				MI_REG->mask = 0x0080;
-				VI_REG->vint = 0x200;
-			} else {
-				MI_REG->mask = 0x0040;
-			}	
-		} break;
-		case INT_PI: 
-		{
-			if (toggle) {
-				MI_REG->mask=0x200;
-			} else	{
-				MI_REG->mask=0x100;
-			}	
-		} break;
-		case INT_SI: 
-		{
-			if(toggle) {
-				MI_REG->mask = 0x8;
-			} else {
-				MI_REG->mask = 0x4;
-			}
-		} break;
-		case INT_DP: 
-		{
-			if(toggle) {
-				MI_REG->mask = 0x800;
-			} else {
-				MI_REG->mask = 0x400;
-			}
-		} break;
-	    case INT_SP: 
-		{
-			if(toggle) { 
-				MI_REG->mask = 0x2;
-			} else {
-				MI_REG->mask = 0x1;
-			}
-		} break;
+			MI_REG->mask = (toggle) ? 0x80 : 0x40; 
+			if(toggle) VI_REG->vint = 0x200;
+		 break;
+		case INT_PI: MI_REG->mask = (toggle) ? 0x200 : 0x100;  break;
+		case INT_SI: MI_REG->mask = (toggle) ? 0x8 	 : 0x4; 	  break;
+		case INT_DP: MI_REG->mask = (toggle) ? 0x800 : 0x400;  break;
+	    case INT_SP: MI_REG->mask = (toggle) ? 0x2 	 : 0x1; 	break;
+		case INT_AI: MI_REG->mask = (toggle) ? 0x20  : 0x10; break;
         default: break;
     };
 }

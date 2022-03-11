@@ -2,14 +2,14 @@
 #include <libn/timer.h>
 #include <libn/types.h>
 
-extern u64 MillisecondsSinceStartup() {
+u64 MillisecondsSinceStartup() {
 	u64 ticks = 0;
 	__asm__("mfc0 %0, $9\n" : "=r"(ticks));
 	return ticks / ((93750000 / 2) /
 			   1000); // take vr4300 clock speed and divide by two
 }
 
-extern u64 SecondsSinceStartup() {
+u64 SecondsSinceStartup() {
 	return MillisecondsSinceStartup() * 0.001f;
 }
 
@@ -52,6 +52,17 @@ void TimerCheckAndInc(LibTimer *timer, bool bSetCall, void (*callback)(void))
 			LibTimer_ResetTicks(timer);
 		}
 }
+
+void LibTimer_Fetch(LibTimer *timer)
+{
+	if(timer->bStarted) 
+	{
+		u64 local_time = MillisecondsSinceStartup();
+		u64 new_time = local_time - timer->time_started;
+		timer->ticks = new_time;
+	}
+}
+
 void LibTimer_Update(LibTimer *timer, void (*callback)()) {
 
 
@@ -72,6 +83,7 @@ void LibTimer_ResetTicks(LibTimer *timer) {
 
 void LibTimer_Start(LibTimer *timer) {
 	timer->bStarted = true;
+	timer->time_started = MillisecondsSinceStartup();
 }
 
 void LibTimer_Stop(LibTimer* timer) {

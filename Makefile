@@ -14,7 +14,7 @@ N64_TOOL= $(TOOLS)/n64tool
 CHKSUM  = $(TOOLS)/chksum64
 
 INCS 	= -I/usr/local/mips64-elf/include -Iinclude/
-LIBS 	= -L/usr/local/mips64-elf/lib/ -L/usr/local/mips64-elf/mips64-elf/lib/ -lc -lm -lgcc
+LIBS 	= -lc -lm -lgcc
 WRNGS 	= -Wall -Wextra -O2
 CFLAGS 	= -std=c99 -march=vr4300 -mtune=vr4300 $(WRNGS) $(INCS) 
 CXXFLAGS= -std=c++20 -march=vr4300 -mtune=vr4300 $(WRNGS) $(INCS) 
@@ -26,7 +26,7 @@ DEPS 	= 	$(SRC_FILES) $(BDIR)/timer.o \
 			$(BDIR)/sprite.o $(BDIR)/vi.o \
 			$(BDIR)/si.o $(BDIR)/mempak.o \
 			$(BDIR)/vector.o $(BDIR)/sprite.o \
-			$(BDIR)/frame.o $(BDIR)/entry.o \
+			$(BDIR)/entry.o \
 			$(BDIR)/rdp.o $(BDIR)/interrupt.o \
 			$(BDIR)/controller.o \
 
