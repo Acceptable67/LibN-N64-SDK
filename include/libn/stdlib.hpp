@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <libn/types.hpp>
-#include <libn/vi_display.hpp>
+#include <libn/vi.hpp>
 #include <string>
 
 using namespace LibN64;

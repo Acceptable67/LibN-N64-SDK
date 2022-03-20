@@ -19,7 +19,7 @@ class LibTimer {
     TimerType localType;
     bool bCalled  = false;
     bool bStarted = false;
-
+    f32 time_started;
     f32 ticks;
     f32 execute_at;
 
@@ -36,6 +36,7 @@ class LibTimer {
     We could just probe the COP0 for the time and subtract from
     that to get our value but this will do.*/
     void Update(std::function<void()> callback = [](void){});
+    void Fetch();
     void ResetTicks();
     void Start();
     void Stop();

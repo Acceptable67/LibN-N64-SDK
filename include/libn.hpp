@@ -38,6 +38,12 @@
 #define UncachedAddr(X) \
     ((void *)(((unsigned long)(X)) |0x20000000))
 
+#define MEMORY_BARRIER()   __asm__("" : : : "memory")
+
+#define LibPrintf(format, ...) printf(format, __VA_ARGS__)
+#define LibPrint(text)	       printf(text, NULL)
+
+
 #define HALT() while(1)
 #define MainLoop while(true)
 
@@ -46,9 +52,10 @@
 #include <libn/regs.hpp>
 #include <libn/controller.hpp>
 #include <libn/mempak.hpp>
-#include <libn/pi_dma.hpp>
+#include <libn/interrupts.hpp>
+#include <libn/pi.hpp>
 #include <libn/frame.hpp>
-#include <libn/vi_display.hpp>
+#include <libn/vi.hpp>
 #include <libn/sprite.hpp>
 #include <libn/stdlib.hpp>
 #include <libn/timer.hpp>

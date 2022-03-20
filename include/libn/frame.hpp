@@ -3,7 +3,7 @@
 #define LIBN_FRAME_H
 
 #include <libn/controller.hpp>
-#include <libn/vi_display.hpp>
+#include <libn/vi.hpp>
 
 namespace LibN64 {
 class Frame {
@@ -33,8 +33,8 @@ class Frame {
     virtual void KeyDLeftPressed();
     virtual void KeyDRightPressed();
     virtual void KeyStartPressed();
-    virtual void KeyJoyXPressed(int);
-    virtual void KeyJoyYPressed(int);
+    virtual void KeyJoyXPressed(u32);
+    virtual void KeyJoyYPressed(u32);
 
     void SetScreenClear();
     void ExitFrameLoop();

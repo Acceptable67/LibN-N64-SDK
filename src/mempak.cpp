@@ -2,7 +2,8 @@
 #include <libn/types.hpp>
 #include <libn/regs.hpp>
 #include <libn/timer.hpp>
-#include <libn/vi_display.hpp>
+#include <libn/vi.hpp>
+#include <libn/si.hpp>
 
 PakBuffer SI_READ_MEMPK = {0xFF, 0x03, 0x21, 0x02, 0x00, 0x00, 0x00, 0x00, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
@@ -72,8 +73,8 @@ void WriteAddress(const u16 address, void *data) {
 
     memcpy(&SI_WRITE_MEMPK[6], reinterpret_cast<void *>(data), 32);
 
-    Controller::SI_Write(std::addressof(SI_WRITE_MEMPK));
-    Controller::SI_Read(std::addressof(local));
+    SI::SI_Write(std::addressof(SI_WRITE_MEMPK));
+    SI::SI_Read(std::addressof(local));
     __reset_ctrl();
 }
 
@@ -83,8 +84,8 @@ bool ReadAddress(const u16 address, void *output) {
     SI_READ_MEMPK[4] = (address_crc >> 8) & 0xFF;
     SI_READ_MEMPK[5] = address_crc & 0xFF;
 
-    Controller::SI_Write(std::addressof(SI_READ_MEMPK));
-    Controller::SI_Read(std::addressof(local));
+    SI::SI_Write(std::addressof(SI_READ_MEMPK));
+    SI::SI_Read(std::addressof(local));
 
     __reset_ctrl();
     if (address_crc == local[5]) {
@@ -98,7 +99,7 @@ bool ReadAddress(const u16 address, void *output) {
 bool isInserted() {
     Controller::WriteStatus();
 
-    if (SI_GetData()[6] == 0x1) {
+    if (SI::SI_GetData()[6] == 0x1) {
         __reset_ctrl();
         return true;
     }

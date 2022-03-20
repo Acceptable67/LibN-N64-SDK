@@ -72,12 +72,24 @@ void LibTimer::Update(std::function<void()> callback) {
 	}
 }
 
+void LibTimer::Fetch()
+{
+	if(this->bStarted) 
+	{
+		u64 local_time = MillisecondsSinceStartup();
+		u64 new_time = local_time - this->time_started;
+		this->ticks = new_time;
+	}
+}
+
+
 void LibTimer::ResetTicks() {
 	ticks = 0;
 }
 
 void LibTimer::Start() {
 	bStarted = true;
+	this->time_started = MillisecondsSinceStartup() - 1.000f;
 }
 
 void LibTimer::Stop() {

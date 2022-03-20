@@ -5,10 +5,12 @@
 #include <libn/font.hpp>
 #include <libn/regs.hpp>
 #include <libn/sprite.hpp>
-#include <libn/vi_display.hpp>
+#include <libn/vi.hpp>
 #include <string>
 #include <type_traits>
 #include <utility>
+
+#define _PI 3.1415f
 
 CreateGlobalRegister(VI, VI_REG);
 CreateGlobalRegister(MI, MI_REG);
@@ -37,18 +39,6 @@ void SetActiveBuffer(Buffer x) {
 
 void SetDrawingBuffer(Buffer x) {
 	active_draw_buffer = reinterpret_cast<s32 *>(buffer_list[x]);
-}
-
-void SetVI_IntCallback(std::function<void()> func) {
-	if ((MI_REG->intr & MI_REG->mask) & 0x08) {
-		func();
-		VI_REG->currentvl = VI_REG->currentvl;
-	}
-}
-
-void SetVI_Intterupt(u32 line) {
-	MI_REG->mask = 0x0080;
-	VI_REG->vint = line;
 }
 
 void SwapBuffers() {
@@ -119,16 +109,16 @@ void DrawCircle(LibPos pos, u32 scale, const u32 color, bool isFilled, float cSt
 		for (float scaler = 0; scaler <= scale; scaler += 0.3) {
 			for (float angles = 0; angles < 25 * scaler;
 			     angles += cStepSize) {
-				DrawPixel({	static_cast<u32>(pos.x + cosf(angles) * 3.1415f * scaler),
-					 	  	static_cast<u32>(pos.y + sinf(angles) * 3.1415f * scaler)},
+				DrawPixel({	static_cast<u32>(pos.x + cosf(angles) * _PI * scaler),
+					 	  	static_cast<u32>(pos.y + sinf(angles) * _PI * scaler)},
 				    		color);
 			}
 		}
 	} else {
 		for (float angles = 0; angles < 25 * scale;
 		     angles += cStepSize) {
-			DrawPixel({	static_cast<u32>( pos.x + cosf(angles) * 3.1415f * scale),
-						static_cast<u32>( pos.y + sinf(angles) * 3.1415f * scale)},
+			DrawPixel({	static_cast<u32>( pos.x + cosf(angles) * _PI * scale),
+						static_cast<u32>( pos.y + sinf(angles) * _PI * scale)},
 			    		color);
 		}
 	}

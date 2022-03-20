@@ -11,26 +11,25 @@
 #define DP_ADDRESS       0xA4100000
 #define MI_ADDRESS       0xA4300000
 #define SP_ADDRESS       0xA4000000
+#define AI_ADDRESS       0xA4500000
 
 #define CreateGlobalRegister(GLOB, VARIABLE)                                   \
-    static volatile auto *VARIABLE =                                           \
-        reinterpret_cast<GLOB##_HANDLER *>(GLOB##_ADDRESS)
+    static volatile GLOB##_HANDLER *VARIABLE =                                           \
+        (GLOB##_HANDLER *)(GLOB##_ADDRESS)
 
 #include <any>
 #include <libn/types.hpp>
 
 struct SI_HANDLER {
-  public:
-    std::any *dram_addr;
-    std::any *pif_addr_r64;
+    void* dram_addr;
+    void* pif_addr_r64;
     u32 r1, r2;
-    std::any *pif_addr_w64;
+    void* pif_addr_w64;
     u32 r3;
     u32 status;
 };
 
 struct VI_HANDLER {
-  public:
     u32 status;
     u32 origin;
     u32 width;
@@ -48,7 +47,6 @@ struct VI_HANDLER {
 };
 
 struct PI_HANDLER {
-  public:
     u32 dram;
     u32 cart;
     u32 rlength;
@@ -57,12 +55,13 @@ struct PI_HANDLER {
 };
 
 struct MI_HANDLER {
-  public:
-    u32 mode, version, intr, mask;
+    u32 mode;
+    u32 version;
+    u32 intr; 
+    u32 mask;
 };
 
 struct DP_HANDLER {
-  public:
     u32 cmd_start;
     u32 cmd_end;
     u32 cur_address;
@@ -74,15 +73,25 @@ struct DP_HANDLER {
 };
 
 struct SP_HANDLER {
-    u32 SP_DMEM;
-    u32 SP_IMEM;
-    u32 SP_MEM_ADDR_REG;
-    u32 SP_DRAM_ADDR_REG; // for DMA
-    u32 SP_RD_LENGTH;
-    u32 SP_WRITE_LENGTH;
-    u32 SP_STATUS;
-    u32 SP_DMA_FULL_REG;
-    u32 SP_DMA_BUSY_REG;
+    u32 dmem_reg;
+    u32 imem_reg;
+    u32 mem_addr_reg;
+    u32 dram_addr_reg; // for DMA
+    u32 read_length;
+    u32 write_length;
+    u32 status_reg;
+    u32 dma_full_reg;
+    u32 dma_busy_reg;
 };
+
+struct AI_HANDLER {
+    u32 dram_addr; 
+    u32 length_reg;
+    u32 control_reg;
+    u32 status_reg;
+    u32 dacrate_reg;
+    u32 bitrate_reg;
+};
+
 
 #endif

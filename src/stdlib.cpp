@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <libn/stdlib.hpp>
 #include <libn/types.hpp>
-#include <libn/vi_display.hpp>
+#include <libn/vi.hpp>
 #include <limits.h>
 #include <malloc.h>
 #include <source_location>

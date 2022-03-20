@@ -1,9 +1,9 @@
 
 #include <cstdint>
-#include <libn/pi_dma.hpp>
+#include <libn/pi.hpp>
 #include <libn/sprite.hpp>
 #include <libn/types.hpp>
-#include <libn/vi_display.hpp>
+#include <libn/vi.hpp>
 
 namespace LibN64 {
 LibSprite::LibSprite(const u32 RomOffset) {

@@ -11,15 +11,9 @@
 
 namespace LibN64 {
 namespace Controller {
-void _SI_Busy();
-
-void SI_Write(AnyType dram_address);
-void SI_Read(AnyType dram_address);
-
 void Write();
 void Read();
 void WriteStatus();
-PakBuffer SI_GetData();
 
 enum JoyStick {
     JoyUp    = 0x00000072,

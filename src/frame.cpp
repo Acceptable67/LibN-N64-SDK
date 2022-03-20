@@ -1,19 +1,16 @@
-#include <libn/vi_display.hpp>
+#include <libn/vi.hpp>
 #include <libn/controller.hpp>
 #include <libn/frame.hpp>
 #include <libn/sprite.hpp>
+#include <libn/interrupts.hpp>
 
 using namespace LibN64;
 using namespace LibN64::Display;
 
 CreateControllerHandle(cpad_data);
 
-Frame::Frame(const Resolution res, const Bitdepth bitdepth, 
-	const AntiAliasing antialiasing)
-	: r(res), bd(bitdepth), aa(antialiasing) 
-{
-
-}
+Frame::Frame(const Resolution res, const Bitdepth bitdepth, const AntiAliasing antialiasing)
+	: r(res), bd(bitdepth), aa(antialiasing) {}
 
 void Frame::Begin() 
 {
@@ -21,18 +18,20 @@ void Frame::Begin()
 	TextColor local = { LibColor::YELLOW, LibColor::BLACK | 0xFF};
 
 	Initialize(this->r, this->bd, this->aa, this->g);
+	FillScreen(GREY);
 	SetColors(local.Foreground, local.Background);
+
+	Interrupts::Toggle(Interrupts::Type::VI, true);
+	Interrupts::SetCallback(Interrupts::Type::VI, [&](){
+		this->FrameUpdate();
+	});
+
+	Controller::Write();
 
 	this->OnCreate();
 
-	SetVI_Intterupt(0x200);
-	Controller::Write();
-
 	while (bRunning) {
-		/*clear screen on vertical retrace*/
-		SetVI_IntCallback([&]() {
-			this->FrameUpdate();
-		});
+		Interrupts::Handle();
 
 		Controller::Read();
 		if (cpad_data->A) 	{ this->KeyAPressed(); }
@@ -51,6 +50,9 @@ void Frame::Begin()
 			this->KeyJoyYPressed(
 			    *reinterpret_cast<u32 *>(cpad_data) & 0x000000FF);
 		}
+
+		ResetConsole();
+		Display::SwapBuffers();
 	}
 }
 
@@ -80,5 +82,5 @@ u32 Frame::ScreenHeight() {
  void Frame::KeyDLeftPressed(){}
  void Frame::KeyDRightPressed(){}
  void Frame::KeyStartPressed(){}
- void Frame::KeyJoyXPressed(int){}
- void Frame::KeyJoyYPressed(int){}
+ void Frame::KeyJoyXPressed(u32){}
+ void Frame::KeyJoyYPressed(u32){}

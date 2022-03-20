@@ -1,17 +1,27 @@
 
 #include <libn.hpp>
 #include <vector>
+#include <libn/interrupts.hpp>
 
 CreateGlobalRegister(MI, MI_REG);
 CreateGlobalRegister(DP, DP_REG);
 
 namespace RDP {
-std::vector<u32> cBuffer;
+
+#define CBUF_SIZE 4096
+
+s32 cBuffer[CBUF_SIZE * 2];
+u32 cbuf_pos = 0;
+
+bool spot_flag = false;
 
 void AddCommand(u32 command) {
-	if (cBuffer.size() >= 1024) { cBuffer.clear(); }
+	if(cbuf_pos >= CBUF_SIZE / 2) { 
+		return;  
+	};
 
-	cBuffer.push_back(command);
+	cBuffer[cbuf_pos] = command;
+	++cbuf_pos;
 }
 
 void Send() {
@@ -22,16 +32,13 @@ void Send() {
 
 	while (DP_REG->status & 0x600) {}
 
-	DP_REG->cmd_start = (reinterpret_cast<u32>(cBuffer.data()) | 0xA0000000);
-	DP_REG->cmd_end	  = (reinterpret_cast<u32>(cBuffer.data() + 1024) | 0xA0000000);
-	/*I have no idea why this works with + 285. It should just queue the
-	list then execute, but it doesn't work that way. It needs a very high
-	'magic' number to get the screen refresh perfect.*/
+	DP_REG->cmd_start = reinterpret_cast<u32>(UncachedAddr(cBuffer));
+	DP_REG->cmd_end	  = reinterpret_cast<u32>(UncachedAddr(cBuffer) + (sizeof(u32) * cbuf_pos));
+	
 }
 
 void DebugAddr() {
-	printf("%08X %08X", (u32)cBuffer.data(), (u32)cBuffer.data() + cBuffer.size());
-	printf("Buffer size %d", (u32)cBuffer.size());
+	
 }
 
 void SendDisplayList() {
@@ -100,11 +107,11 @@ void EnablePrimitive(void) {
 */
 
 void Init() {
-	MI_REG->mask = 0x0800;
+	Interrupts::Toggle(Interrupts::Type::DP, true);
 }
 
 void Close() {
-	MI_REG->mask = 0x0400;
+	Interrupts::Toggle(Interrupts::Type::DP, false);
 }
 
 void EnableBlend() {
@@ -148,8 +155,8 @@ void DrawRectangleSetup(u32 tx, u32 ty, u32 bx, u32 by, u32 color) {
 	RDP::DrawRectangle(tx, ty, bx, by);
 	RDP::Sync();
 	RDP::DrawRectangle(tx, ty, bx, by);
-	RDP::SendDisplayList();
-	RDP::Sync();
+	RDP::Send();
+
 }
 
 void FillScreen(u32 color) {
