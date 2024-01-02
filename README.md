@@ -1,5 +1,5 @@
 # LibN-N64-SDK
-The simplest solution to compiling a fully working N64 ROM with as little as possible in C or C++.
+The simplest solution to compiling a fully working N64 ROM with as little as possible in C or C++. Must have a current build of GCC version 13.2.0.
 
 What is here is nothing extraordinary, just a couple days of work and it's features are incredibly rudimentary.
 It comes as a statically linked library. 
