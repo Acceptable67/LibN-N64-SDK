@@ -1,29 +1,70 @@
 
+
 #include <libn.hpp>
 #include <libn/controller.hpp>
 #include <libn/interrupts.hpp>
 #include <libn/vector.hpp>
-
-#define FMT_HEADER_ONLY
-#include <fmt/format.h>
+#include "main.hpp"
 
 using namespace LibN64;
 using namespace LibN64::Display;
 
-#include <libn/menu.hpp>
-
-#define INC_AMT 0.002
-
-void FrameUpdate();
-
-CreateControllerHandle(cpad_data);
+CreateControllerHandle(CData);
 
 f32 x = 0, y = 0;
+LibVector vec;  
 
-bool bRunning = false;
-void InitDisplay()
+#define INC_AMT 0.002;
+
+void APressed()
 {
-		bRunning = true;
+	printf("A Pressed");
+}
+
+void BPressed()
+{
+	printf("B Pressed");
+}
+
+void CheckImmediateInput()
+{
+	if (CData->A) 
+	{ 
+		APressed(); 
+	}
+
+	if (CData->B) 
+	{ 
+		BPressed();
+	 }
+
+	if (CData->Z) 		{ }
+	if (CData->start) 	{ }
+	if (CData->x) 		{ }
+	if (CData->y) 		{ }
+}
+
+void CheckCPADInput()
+{
+	if (CData->up) 		{ y-=INC_AMT; }
+	if (CData->down) 	{ y+=INC_AMT; }
+	if (CData->left) 	{ x-=INC_AMT; }
+	if (CData->right) 	{ x+=INC_AMT; }
+}
+
+void FrameUpdate()
+{
+	RDP::FillScreen(GREY_SMOOTH);
+
+	CheckImmediateInput();
+
+	printf("vec = %u", vec.at(0));
+	DrawRect({40 + x, 40 + y}, 40, 40, RED, true);
+}
+
+
+extern "C" int main()
+{ 
 	TextColor local = { LibColor::YELLOW, LibColor::BLACK | 0xFF};
 
 	Initialize({320,240}, Bitdepth::BD32BPP, AA_REPLICATE, GAMMA_OFF);
@@ -36,42 +77,13 @@ void InitDisplay()
 	});
 
 	Controller::Write();
-}
 
-LibVector vec; 
-void FrameUpdate()
-{
-	RDP::FillScreen(GREY_SMOOTH);
-
-	printf("%u", vec.At(0));
-	DrawRect({40 + x,40 + y}, 40, 40, RED, true);
-}
-
-EXTERN int main()
-{
-	InitDisplay();
-
-	vec.Pushback((void*)42);
-	while(bRunning)
+	vec.push_back((void*)42);
+	while(true)
 	{
-	Interrupts::Handle();
-
+		Interrupts::Handle();
 		Controller::Read();
-		if (cpad_data->A) 	{ }
-		if (cpad_data->B) 	{ }
-		if (cpad_data->Z) 	{ }
-		if (cpad_data->start) { }
-		if (cpad_data->up) 	{ y-=INC_AMT; }
-		if (cpad_data->down) { y+=INC_AMT; }
-		if (cpad_data->left) { x-=INC_AMT; }
-		if (cpad_data->right) { x+=INC_AMT; }
-		if (cpad_data->x) {
-			
-		}
-		if (cpad_data->y) {
-			
-		}
-
+		CheckCPADInput();
 		ResetConsole();
 		Display::SwapBuffers();
 	}
