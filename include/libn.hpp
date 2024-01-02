@@ -1,10 +1,10 @@
 #ifndef LIBN_H
 #define LIBN_H
 
-#include <c++/11.2.0/cstdio>
-#include <c++/11.2.0/cstdint>
-#include <c++/11.2.0/cstdbool>
-#include <c++/11.2.0/cassert>
+#include <c++/13.2.0/cstdio>
+#include <c++/13.2.0/cstdint>
+#include <c++/13.2.0/cstdbool>
+#include <c++/13.2.0/cassert>
 #include <stdlib.h>
 #include <string>
 #include <bitset>
@@ -25,8 +25,9 @@
 
 #pragma GCC diagnostic ignored "-Wdeprecated-enum-enum-conversion"
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#pragma GCC diagnostic ignored "-Wnarrowing"
+#pragma GCC diagnostic ignored "-Wunused-variable"
 
-#define EXTERN extern "C"
 #define NUMBER_BUFFERS	2
 
 #define assertf(__e, reason)  std::source_location loc = std::source_location::current(); \
@@ -40,12 +41,7 @@
 
 #define MEMORY_BARRIER()   __asm__("" : : : "memory")
 
-#define LibPrintf(format, ...) printf(format, __VA_ARGS__)
-#define LibPrint(text)	       printf(text, NULL)
-
-
-#define HALT() while(1)
-#define MainLoop while(true)
+extern "C" int begin();
 
 #include <libn/types.hpp>
 #include <libn/font.hpp>
@@ -60,7 +56,5 @@
 #include <libn/stdlib.hpp>
 #include <libn/timer.hpp>
 #include <libn/rdp.hpp>
-
-EXTERN int begin();
 
 #endif
