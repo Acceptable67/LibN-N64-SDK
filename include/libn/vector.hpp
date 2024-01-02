@@ -8,14 +8,12 @@ public:
 	void **element;
 	s32 pos;
 
-    void  Pushback( void *item);
-    void* At( s32 position);
-    void  EraseAt( s32 position);
-    void  Clear();
-    s32   Size();
+    void  push_back(void *item);
+    void* at(s32 position);
+    void  erase_at(s32 position);
+    void  clear();
+    s32   size();
 
 };
-
-
 
 #endif
