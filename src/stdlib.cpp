@@ -1,5 +1,5 @@
+#include <ctime>
 #include <cstring>
-#include <dir.h>
 #include <errno.h>
 #include <libn/stdlib.hpp>
 #include <libn/types.hpp>
