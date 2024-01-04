@@ -1,4 +1,43 @@
+# draw a blank screen with a grey background every X seconds. 320 by 240 resolution, resampling only, 32bitdepth 
+# with BLUE and GOLD text (all lstdlib++/lm headers seem fully functional except for those with timers or clock related functions, among others.) 
 
+#include <libn.hpp>
+#include "inc/main.hpp"
+
+using namespace LibN64;
+using namespace LibN64::Display;
+
+CreateControllerHandle(CData);
+
+class game : public Frame {
+	public:
+		game(const Resolution res, const Bitdepth bitdepth, const AntiAliasing aa, const Display::TextColor textcolor) : Frame(res, bitdepth, aa, textcolor) {}
+
+		virtual void OnCreate()
+		{
+
+		}
+
+		virtual void FrameUpdate()
+		{
+			RDP::FillScreen(GREY);
+		}
+
+		virtual void KeyAPressed() {
+			std::printf("A key pressed");
+		}
+
+		virtual void KeyBPressed() {
+			std::printf("B key pressed");
+		}
+};
+extern "C" int main()
+{ 
+	game fr = game({320, 240}, BD32BPP, AA_RESAMP_ONLY, {LibColor::BLUE, LibColor::GOLD});
+	fr.Begin();
+}
+
+/*
 
 #include <libn.hpp>
 #include <libn/controller.hpp>
@@ -89,3 +128,4 @@ extern "C" int main()
 	}
 	return 0;
 }
+*/
