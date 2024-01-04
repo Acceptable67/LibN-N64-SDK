@@ -9,17 +9,15 @@ using namespace LibN64::Display;
 
 CreateControllerHandle(cpad_data);
 
-Frame::Frame(const Resolution res, const Bitdepth bitdepth, const AntiAliasing antialiasing)
-	: r(res), bd(bitdepth), aa(antialiasing) {}
+Frame::Frame(const Resolution res, const Bitdepth bitdepth, const AntiAliasing antialiasing, const Display::TextColor textcolor) : r(res), bd(bitdepth), aa(antialiasing), tc(textcolor) {}
 
 void Frame::Begin() 
 {
 	this->bRunning = true;
-	TextColor local = { LibColor::YELLOW, LibColor::BLACK | 0xFF};
 
 	Initialize(this->r, this->bd, this->aa, this->g);
 	FillScreen(GREY);
-	SetColors(local.Foreground, local.Background);
+	SetColors(this->tc.Foreground, this->tc.Background);
 
 	Interrupts::Toggle(Interrupts::Type::VI, true);
 	Interrupts::SetCallback(Interrupts::Type::VI, [&](){
@@ -30,18 +28,17 @@ void Frame::Begin()
 
 	this->OnCreate();
 
-	while (bRunning) {
-		Interrupts::Handle();
-
+	while (bRunning) 
+	{
 		Controller::Read();
 		if (cpad_data->A) 	{ this->KeyAPressed(); }
 		if (cpad_data->B) 	{ this->KeyBPressed(); }
 		if (cpad_data->Z) 	{ this->KeyZPressed(); }
-		if (cpad_data->start) { this->KeyStartPressed(); }
+		if (cpad_data->start) 	{ this->KeyStartPressed(); }
 		if (cpad_data->up) 	{ this->KeyDUpPressed(); }
-		if (cpad_data->down) { this->KeyDDownPressed(); }
-		if (cpad_data->left) { this->KeyDLeftPressed(); }
-		if (cpad_data->right) { this->KeyDRightPressed(); }
+		if (cpad_data->down) 	{ this->KeyDDownPressed(); }
+		if (cpad_data->left) 	{ this->KeyDLeftPressed(); }
+		if (cpad_data->right) 	{ this->KeyDRightPressed(); }
 		if (cpad_data->x) {
 			this->KeyJoyXPressed(
 			    *reinterpret_cast<u32 *>(cpad_data) & 0x0000FF00);
@@ -51,6 +48,7 @@ void Frame::Begin()
 			    *reinterpret_cast<u32 *>(cpad_data) & 0x000000FF);
 		}
 
+		Interrupts::Handle();
 		ResetConsole();
 		Display::SwapBuffers();
 	}
