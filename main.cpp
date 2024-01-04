@@ -1,5 +1,7 @@
-# draw a blank screen with a grey background every X seconds. 320 by 240 resolution, resampling only, 32bitdepth 
-# with BLUE and GOLD text (all lstdlib++/lm headers seem fully functional except for those with timers or clock related functions, among others.) 
+/*
+	draw a blank screen with a grey background every X seconds. 320 by 240 resolution, resampling only, 32bitdepth 
+ 	with BLUE and GOLD text (all lstdlib++/lm headers seem fully functional except for those with timers or clock related functions, among others.) 
+*/
 
 #include <libn.hpp>
 #include "inc/main.hpp"
@@ -31,6 +33,7 @@ class game : public Frame {
 			std::printf("B key pressed");
 		}
 };
+
 extern "C" int main()
 { 
 	game fr = game({320, 240}, BD32BPP, AA_RESAMP_ONLY, {LibColor::BLUE, LibColor::GOLD});
