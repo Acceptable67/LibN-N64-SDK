@@ -1,134 +1,131 @@
-/*
-	draw a blank screen with a grey background every X seconds. 320 by 240 resolution, resampling only, 32bitdepth 
- 	with BLUE and GOLD text (all lstdlib++/lm headers seem fully functional except for those with timers or clock related functions, among others.) 
-*/
+
+
+#pragma GCC diagnostic ignored "-Wnarrowing"
 
 #include <libn.hpp>
 #include "inc/main.hpp"
 
+#define INC_AMT 0.001f
+#define INC_DEC(A, B) 		\
+			A -= INC_AMT; 	\
+			B += INC_AMT; 	\
+
 using namespace LibN64;
 using namespace LibN64::Display;
 
-CreateControllerHandle(CData);
-
-class game : public Frame {
+class N64Game : public Frame 
+{
 	public:
-		game(const Resolution res, const Bitdepth bitdepth, const AntiAliasing aa, const Display::TextColor textcolor) : Frame(res, bitdepth, aa, textcolor) {}
+		N64Game(const Resolution res, const Bitdepth bitdepth, const AntiAliasing aa, const Gamma gamma, const Display::TextColor textcolor) : Frame(res, bitdepth, aa, gamma, textcolor) {}
 
-		virtual void OnCreate()
-		{
+		virtual void FrameUpdate();
+		virtual void OnCreate();
+		virtual void KeyAPressed();
+		virtual void KeyDDownPressed();
+		virtual void KeyDUpPressed();
+		virtual void KeyDLeftPressed();
+		virtual void KeyDRightPressed();
+		virtual void KeyCDownPressed();
+		virtual void KeyCUpPressed();
+		virtual void KeyCLeftPressed();
+		virtual void KeyCRightPressed();
+		virtual void KeyJoyXPressed();
+		virtual void KeyJoyYPressed();
 
-		}
-
-		virtual void FrameUpdate()
-		{
-			RDP::FillScreen(GREY);
-		}
-
-		virtual void KeyAPressed() {
-			std::printf("A key pressed");
-		}
-
-		virtual void KeyBPressed() {
-			std::printf("B key pressed");
-		}
+	private:
+		Timer::LibTimer timer 	= Timer::LibTimer(Timer::TimerType::CONTINUOUS_CALL, 0.115f);
+		Lib2DVec<f32> tri_pos 	= {40.0f,40.0f};
+		Lib2DVec<f32> rect_pos 	= {120.0f, 40.0f};
 };
 
-extern "C" int main()
-{ 
-	game fr = game({320, 240}, BD32BPP, AA_RESAMP_ONLY, {LibColor::BLUE, LibColor::GOLD});
-	fr.Begin();
-}
-
-/*
-
-#include <libn.hpp>
-#include <libn/controller.hpp>
-#include <libn/interrupts.hpp>
-#include <libn/vector.hpp>
-#include "main.hpp"
-
-using namespace LibN64;
-using namespace LibN64::Display;
-
-CreateControllerHandle(CData);
-
-f32 x = 0, y = 0;
-LibVector vec;  
-
-#define INC_AMT 0.002;
-
-void APressed()
+void N64Game::OnCreate()
 {
-	printf("A Pressed");
+	this->timer.Start();
 }
 
-void BPressed()
+void N64Game::FrameUpdate()
 {
-	printf("B Pressed");
-}
+	RDP::FillScreen(LibColor::BLACK);
+	printf("Tri:  X %.2f Y %.2f", this->tri_pos.x, this->tri_pos.y);
+	printf("Rect: X %.2f Y %.2f", this->rect_pos.x, this->rect_pos.y);
+	printf("Timer Secs Passed: %f", this->timer.GetSecondsPassed()*2);
+	DrawTri({this->tri_pos.x, 		this->tri_pos.y}, 
+			{this->tri_pos.x + 40, 	this->tri_pos.y}, 
+			{this->tri_pos.x + 5, 	this->tri_pos.y + 40}, 
+			LibColor::CYAN);
+	DrawRect({static_cast<u32>(this->rect_pos.x), 
+			  static_cast<u32>(this->rect_pos.y)},  
+			  20, 60, LibColor::PURPLE, false);
 
-void CheckImmediateInput()
-{
-	if (CData->A) 
-	{ 
-		APressed(); 
-	}
-
-	if (CData->B) 
-	{ 
-		BPressed();
-	 }
-
-	if (CData->Z) 		{ }
-	if (CData->start) 	{ }
-	if (CData->x) 		{ }
-	if (CData->y) 		{ }
-}
-
-void CheckCPADInput()
-{
-	if (CData->up) 		{ y-=INC_AMT; }
-	if (CData->down) 	{ y+=INC_AMT; }
-	if (CData->left) 	{ x-=INC_AMT; }
-	if (CData->right) 	{ x+=INC_AMT; }
-}
-
-void FrameUpdate()
-{
-	RDP::FillScreen(GREY_SMOOTH);
-
-	CheckImmediateInput();
-
-	printf("vec = %u", vec.at(0));
-	DrawRect({40 + x, 40 + y}, 40, 40, RED, true);
-}
-
-
-extern "C" int main()
-{ 
-	TextColor local = { LibColor::YELLOW, LibColor::BLACK | 0xFF};
-
-	Initialize({320,240}, Bitdepth::BD32BPP, AA_REPLICATE, GAMMA_OFF);
-	FillScreen(GREY);
-	SetColors(local.Foreground, local.Background);
-
-	Interrupts::Toggle(Interrupts::Type::VI, true);
-	Interrupts::SetCallback(Interrupts::Type::VI, [&](){
-		FrameUpdate();
+	timer.Update([&]()
+	{
+		DrawRect({rand() % 320, rand() % 240}, rand() % 20 + 10, rand() % 20 + 10, RED, true);
 	});
 
-	Controller::Write();
-
-	vec.push_back((void*)42);
-	while(true)
-	{
-		Interrupts::Handle();
-		Controller::Read();
-		CheckCPADInput();
-		ResetConsole();
-		Display::SwapBuffers();
-	}
-	return 0;
+	this->timer.Fetch();
 }
-*/
+
+void N64Game::KeyAPressed()
+{
+	printf("%Controller Data X %i Y %i", this->JoyDataX(), (u32)this->JoyDataY());
+}
+
+void N64Game::KeyDUpPressed() {
+	INC_DEC(tri_pos.y, rect_pos.x);
+}
+
+void N64Game::KeyDDownPressed() {
+	INC_DEC(rect_pos.x, tri_pos.y);
+}
+
+void N64Game::KeyDLeftPressed() {
+	INC_DEC(tri_pos.x, rect_pos.y);
+}
+
+void N64Game::KeyDRightPressed() {
+	INC_DEC(rect_pos.y, tri_pos.x);
+}
+
+void N64Game::KeyCRightPressed() {
+	printf("C-Right pressed");
+}
+
+void N64Game::KeyCUpPressed() {	
+	printf("C-Up pressed");
+
+}
+void N64Game::KeyCDownPressed() {	
+	printf("C-Down pressed");
+}
+
+void N64Game::KeyCLeftPressed() {	
+	printf("C-Left pressed");
+}
+
+void N64Game::KeyJoyXPressed() {
+	auto Left 	= [&]() 	{ printf("JoyX\tLeft"); };
+	auto Right 	= [&]() 	{ printf("JoyX\tRight"); };
+	switch(this->JoyDataX())
+	{
+		case Controller::JoyLeft: 	{ Left(); 	} break;
+		case Controller::JoyRight: 	{ Right(); 	} break;
+		default: break;
+	}
+}
+
+void N64Game::KeyJoyYPressed() {
+	auto Up 	= [&]() 	{ printf("JoyY\tUp"); };
+	auto Down 	= [&]() 	{ printf("JoyY\tDown"); };
+	switch(this->JoyDataY())
+	{
+		case Controller::JoyUp: 	{ Up(); 	} break;
+		case Controller::JoyDown: 	{ Down(); 	} break;
+		default: break;
+	}
+}
+
+extern "C" int main()
+{ 
+	N64Game fr = N64Game(RESOLUTION_320x240, BD32BPP, DIVOT_ENABLE, GAMMA_ENABLE, {LibColor::WHITE, LibColor::BLACK});
+	fr.Begin();
+}
