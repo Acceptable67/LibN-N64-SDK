@@ -9,7 +9,8 @@ using namespace LibN64::Display;
 
 CreateControllerHandle(cpad_data);
 
-Frame::Frame(const Resolution res, const Bitdepth bitdepth, const AntiAliasing antialiasing, const Display::TextColor textcolor) : r(res), bd(bitdepth), aa(antialiasing), tc(textcolor) {}
+Frame::Frame(const Resolution res, const Bitdepth bitdepth, const AntiAliasing antialiasing, const Gamma gamma, Display::TextColor textcolor)
+: r(res), bd(bitdepth), aa(antialiasing), g(gamma), tc(textcolor) {}
 
 void Frame::Begin() 
 {
@@ -20,7 +21,8 @@ void Frame::Begin()
 	SetColors(this->tc.Foreground, this->tc.Background);
 
 	Interrupts::Toggle(Interrupts::Type::VI, true);
-	Interrupts::SetCallback(Interrupts::Type::VI, [&](){
+	Interrupts::SetCallback(Interrupts::Type::VI, [&]()
+	{
 		this->FrameUpdate();
 	});
 
@@ -31,43 +33,53 @@ void Frame::Begin()
 	while (bRunning) 
 	{
 		Controller::Read();
-		if (cpad_data->A) 	{ this->KeyAPressed(); }
-		if (cpad_data->B) 	{ this->KeyBPressed(); }
-		if (cpad_data->Z) 	{ this->KeyZPressed(); }
-		if (cpad_data->start) 	{ this->KeyStartPressed(); }
-		if (cpad_data->up) 	{ this->KeyDUpPressed(); }
-		if (cpad_data->down) 	{ this->KeyDDownPressed(); }
-		if (cpad_data->left) 	{ this->KeyDLeftPressed(); }
+		if (cpad_data->A) 		{ this->KeyAPressed(); 		}
+		if (cpad_data->B) 		{ this->KeyBPressed(); 		}
+		if (cpad_data->Z) 		{ this->KeyZPressed(); 		}
+		if (cpad_data->start) 	{ this->KeyStartPressed(); 	}
+		if (cpad_data->up) 		{ this->KeyDUpPressed(); 	}
+		if (cpad_data->down) 	{ this->KeyDDownPressed(); 	}
+		if (cpad_data->left) 	{ this->KeyDLeftPressed(); 	}
 		if (cpad_data->right) 	{ this->KeyDRightPressed(); }
-		if (cpad_data->x) {
-			this->KeyJoyXPressed(
-			    *reinterpret_cast<u32 *>(cpad_data) & 0x0000FF00);
-		}
-		if (cpad_data->y) {
-			this->KeyJoyYPressed(
-			    *reinterpret_cast<u32 *>(cpad_data) & 0x000000FF);
-		}
-
+		if (cpad_data->C_up) 	{ this->KeyCUpPressed(); 	}
+		if (cpad_data->C_down) 	{ this->KeyCDownPressed(); 	}
+		if (cpad_data->C_left) 	{ this->KeyCLeftPressed(); 	}
+		if (cpad_data->C_right) { this->KeyCRightPressed(); }
+		if (cpad_data->x) 		{ this->KeyJoyXPressed();	}
+		if (cpad_data->y) 		{ this->KeyJoyYPressed();	}
+ 
 		Interrupts::Handle();
 		ResetConsole();
 		Display::SwapBuffers();
 	}
 }
 
-void Frame::SetScreenClear() {
+void Frame::SetScreenClear() 
+{
 	bClearScreen = true;
 }
 
-void Frame::ExitFrameLoop() {
+void Frame::ExitFrameLoop() 
+{
 	bRunning = false;
 }
 
-u32 Frame::ScreenWidth() {
+u32 Frame::ScreenWidth() 
+{
 	return r.width;
 }
 
-u32 Frame::ScreenHeight() {
+u32 Frame::ScreenHeight() 
+{
 	return r.height;
+}
+
+s32 Frame::JoyDataX() {
+	return cpad_data->x;
+}
+
+s32 Frame::JoyDataY() {
+	return cpad_data->y;
 }
 
  void Frame::FrameUpdate(){}
@@ -79,6 +91,10 @@ u32 Frame::ScreenHeight() {
  void Frame::KeyDDownPressed(){}
  void Frame::KeyDLeftPressed(){}
  void Frame::KeyDRightPressed(){}
+ void Frame::KeyCUpPressed(){}
+ void Frame::KeyCDownPressed(){}
+ void Frame::KeyCLeftPressed(){}
+ void Frame::KeyCRightPressed(){}
  void Frame::KeyStartPressed(){}
- void Frame::KeyJoyXPressed(u32){}
- void Frame::KeyJoyYPressed(u32){}
+ void Frame::KeyJoyXPressed(){}
+ void Frame::KeyJoyYPressed(){}
