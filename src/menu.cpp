@@ -1,4 +1,7 @@
-#include "LibMenu.h"
+/*I let ChatGPT autosplit this one from it's source into a header, so it may not be functional -- I haven't tested.*/
+
+#include <libn/menu.hpp>
+#include <libn/types.hpp>
 
 LibMenu::LibMenu(const u8 i, const std::string_view t, const LibPos p, const LibColor f, const LibColor b)
     : mId(i), mPos(p), mTitle(t), mForecolor(f), mBackcolor(b)
